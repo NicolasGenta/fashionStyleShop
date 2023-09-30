@@ -1,6 +1,6 @@
 function Footer () {
     return(
-        <table class="table">
+        <table className="table">
   <thead>
     <tr>
      
@@ -24,7 +24,7 @@ function Footer () {
     </tr>
     <tr>
      
-      <td colspan="2">Larry the Bird</td>
+      <td colSpan="2">Larry the Bird</td>
       <td>@twitter</td>
     </tr>
   </tbody>

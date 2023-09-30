@@ -1,0 +1,49 @@
+.registerFull{
+    background-image: url('https://i.pinimg.com/1200x/f0/08/c6/f008c6d55a123f5ceaa4cdbf0e3b2493.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding-bottom: 100px;
+
+}
+.texto{
+     
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ height: 10vh;
+ font-weight: bold;
+ font-size: 25px;
+}
+.dataUser{
+    border: 2px solid rgb(68, 68, 71);
+    border-radius: 5px;
+    padding: 60px;
+    margin-left: 100px;
+    margin-right: auto;
+    width: 40%;
+    
+}
+.mb-3 {    
+    
+    background-color: rgb(161, 153, 153);
+    color: aquamarine;
+    border: 2px solid rgb(80, 78, 76);
+    border-radius: 5px;}
+
+
+.registrarse{
+    color: aquamarine;
+    background-color: darkslategrey;
+    border: rgb(150, 150, 150) solid;
+}
+.nameField{
+    margin-left: auto;
+    margin-right: 0;
+}
+.registrarse:hover{
+    background-color: black;
+    border: 2px;
+    
+}
+
