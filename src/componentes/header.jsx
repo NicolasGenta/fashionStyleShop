@@ -1,3 +1,4 @@
+import  './Header.css';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -6,13 +7,13 @@ return(
   
 
       <>
-        <Navbar bg="dark" data-bs-theme="dark">
+        <Navbar  data-bs-theme="dark" className="custom-navbar">
           <Container>
-            <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-            <Nav className="me-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#features">Features</Nav.Link>
-              <Nav.Link href="#pricing">Pricing</Nav.Link>
+            <Navbar.Brand className="l0" href="#home">Home</Navbar.Brand>
+            <Nav className="ml-auto">
+              <Nav.Link className="l1" href="#home">Tienda</Nav.Link>
+              <Nav.Link className="l2" href="#features">Contacto</Nav.Link>
+              <Nav.Link className="l3" href="#pricing">Registro</Nav.Link>
             </Nav>
           </Container>
         </Navbar>
