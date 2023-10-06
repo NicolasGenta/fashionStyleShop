@@ -12,8 +12,8 @@ return(
             <Navbar.Brand className="l0" href="#home">Home</Navbar.Brand>
             <Nav className="ml-auto">
               <Nav.Link className="l1" href="#home">Tienda</Nav.Link>
-              <Nav.Link className="l2" href="#features">Contacto</Nav.Link>
-              <Nav.Link className="l3" href="#pricing">Registro</Nav.Link>
+              <Nav.Link className="l2" href="contacto">Contacto</Nav.Link>
+              <Nav.Link className="l3" href="registro">Registro</Nav.Link>
             </Nav>
           </Container>
         </Navbar>
