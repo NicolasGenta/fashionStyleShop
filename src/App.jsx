@@ -1,12 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router, Swith } from 'react-router-dom';
-import './App.css'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import './App.css';
 import Header from './componentes/Header';
 import Footer from './componentes/Footer';
 import Registro from './componentes/registro/Registro';
-import Home from './componentes/Home';
-import Tienda from './componentes/Tienda';
-import Contacto from './componentes/Contacto';
+//import Home from './componentes/Home';
+//import Tienda from './componentes/Tienda';
+import Contacto from './componentes/contacto/Contacto';
 
 function App() {
   
@@ -14,12 +14,12 @@ function App() {
   return (
     <Router>
      <Header/>
-      <Swith>
-       <Router path = "/home" component = {Home}/>
-       <Router path = "/tienda" component = {Tienda}/>
-       <Router path = "/contacto" component = {Contacto}/>
-       <Router path = "/registro" component = {Registro}/>
-      </Swith>
+      <Routes>
+       {/* <Route path = "/home" component = {Home}/> */}
+       {/* <Route path = "/tienda" component = {Tienda}/> */}
+       <Route path = "contacto" element = {<Contacto/>}/>
+       <Route path = "registro" element = {<Registro/>}/>
+      </Routes>
      <Footer/>
     </Router>
   
