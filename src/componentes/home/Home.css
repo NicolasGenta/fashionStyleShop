@@ -1,0 +1,18 @@
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+.main-content {
+  flex: 1;
+}
+
+  
+  .custom-image {
+    object-fit: cover; 
+    object-position: "top center"; 
+    height:  400px;
+  }

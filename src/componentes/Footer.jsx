@@ -1,5 +1,6 @@
 function Footer () {
     return(
+    
         <table class="table">
   <thead>
     <tr>
