@@ -1,0 +1,49 @@
+
+.redes{
+    font-size: 20px;
+    text-align: center;
+  
+    
+}
+.logo{
+    font-size: 15px;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+}
+.info{
+    font-size: 15px;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+}
+.medios{
+    font-size: 15px;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+}
+.instagram{
+    width: 20%;
+    height: auto;
+}
+.pagoFacil{
+    width:10%;
+    height: auto;
+}
+.facebook{
+    width: 15%;
+    height: auto;
+}
+.mercadoPago{
+    width: 10%;
+    height: auto;
+}
+.twitter{
+    width: 15%;
+    height: auto;
+}
+.cuentaDni{
+    width: 20%;
+    height: auto;
+}
