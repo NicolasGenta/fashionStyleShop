@@ -1,35 +1,64 @@
-.navbar-brand{
-    font-size: 40px;
-    color: beige;
-}
-.navbar-nav .nav-link{
-    font-size: 30px;
-    margin-right:15px;
-    color:beige;
-}
 .custom-navbar {
-    border-radius: 80px; 
-    background-color: rgb(161, 153, 153);
-  }
-  .l0{
-    border-radius: 30px;
-    background-color: rgb(150, 142, 142);
+    background-color: white;
+    color: black;
+}
 
-    
- } 
- .l1{
-    border-radius: 30px;
-    background-color: rgb(150, 142, 142);
+.icon {
+    width: 90%;
 
-    
- } 
- .l2{
-    border-radius: 30px;
-    background-color: rgb(150, 142, 142);
-    
- } 
- .l3{
-    border-radius: 30px;
-    background-color: rgb(150, 142, 142);
-    
- } 
+}
+
+.l0 {
+    width: 15%;
+}
+
+.nav-button{
+    color: black !important;
+}
+
+.nav-button::after{
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: #000; /* Cambia esto al color que desees */
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s; /* Controla la velocidad de la animación */
+}
+
+.nav-button:hover::after{
+    width: 100%; /* La línea se extenderá completamente */
+}
+.message-container{
+    background-color: black;
+    overflow: hidden;
+    height: 1.5em;
+    padding: 0.2em;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.moving-text {
+    font-size: 10px;
+    color: white;
+    font-weight: 900;
+    margin: 0;
+    width: 100%;
+    height: 1.5em;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: hidden;
+}
+/* .moving-text {
+    position: absolute;
+    animation: moveText 15s linear infinite;
+}
+@keyframes moveText {
+    0%{
+        left: -50%;
+    }100%{
+        left: 100%;
+    }
+} */

@@ -1,0 +1,35 @@
+.navbar-brand{
+    font-size: 40px;
+    color: beige;
+}
+.navbar-nav .nav-link{
+    font-size: 30px;
+    margin-right:15px;
+    color:beige;
+}
+.custom-navbar {
+    border-radius: 80px; 
+    background-color: rgb(161, 153, 153);
+  }
+  .l0{
+    border-radius: 30px;
+    background-color: rgb(150, 142, 142);
+
+    
+ } 
+ .l1{
+    border-radius: 30px;
+    background-color: rgb(150, 142, 142);
+
+    
+ } 
+ .l2{
+    border-radius: 30px;
+    background-color: rgb(150, 142, 142);
+    
+ } 
+ .l3{
+    border-radius: 30px;
+    background-color: rgb(150, 142, 142);
+    
+ } 

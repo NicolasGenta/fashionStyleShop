@@ -47,3 +47,8 @@
     width: 20%;
     height: auto;
 }
+
+footer {
+    position: fixed;
+    bottom: 0px;
+}
