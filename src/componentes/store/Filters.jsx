@@ -1,11 +1,26 @@
-import { useState } from "react";
+import {  useId } from "react";
 import { CATEGORIES } from "../../util/dictionary";
 import './Filters.css';
+import { useFilters } from "../../hooks/useFilters";
+
 export function Filters() {
-    const [ minPrice, setMinPrice ] = useState(0);
+    const { filters, setFilters } = useFilters();
+
+    const minPriceFilterId = useId();
+    const categoryFilterId = useId();
 
     const handleChangeMinPrice = (e) =>{
-        setMinPrice(e.target.value)
+        setFilters(prevState =>({
+            ... prevState,
+            minPrice: e.target.value
+        }))
+    }
+
+    const handleChangeCategory = (e)=>{
+        setFilters(prevState =>({
+            ... prevState,
+            category: e.target.value
+        }))
     }
 
     return (
@@ -14,16 +29,17 @@ export function Filters() {
                 <label htmlFor="price">Precio a partir de:</label>
                 <input 
                     type="range"
-                    id="price"
+                    id={ minPriceFilterId }
                     min='0'
-                    max='1000'
-                    onChange={handleChangeMinPrice}
+                    max='100000'
+                    onChange={ handleChangeMinPrice }
+                    value={filters.minPrice}
                 />
-                <span>$ {minPrice}</span>
+                <span>$ { filters.minPrice },00</span>
             </div>
             <div>
                 <label htmlFor="category">Categoría</label>
-                <select>
+                <select id={ categoryFilterId } onChange={ handleChangeCategory }>
                     <option value={CATEGORIES.ALL_CATEGORY}>Todos</option>
                     <option value={CATEGORIES.WOMEN_CATEGORY}>{CATEGORIES.WOMEN_CATEGORY}</option>
                     <option value={CATEGORIES.MENS_CATEGORY}>{CATEGORIES.MENS_CATEGORY}</option>

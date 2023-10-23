@@ -1,23 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
-import { APP_PROFILES, RESOURCES } from './util/dictionary';
 import Header from './componentes/Header';
 import Footer from './componentes/Footer';
 import Registro from './componentes/registro/Registro';
 //import Home from './componentes/Home';
 //import Tienda from './componentes/Tienda';
 import Contacto from './componentes/contacto/Contacto';
-import { Store } from './componentes/store/store';
+import { Store } from './componentes/Store/Store';
 import { getData } from './util/functions';
+import { Cart } from './componentes/Store/Cart';
 
 function App() {
-  const [profile, setProfile] = useState(APP_PROFILES.DEFAULT_PROFILE);
+  //const [profile, setProfile] = useState(APP_PROFILES.DEFAULT_PROFILE);
   const [datos, setDatos] = useState([]);
 
   useEffect(() => {
-    getData(RESOURCES.PRODUCTS_API)
+    getData("http://localhost:3000/productos/")
       .then(data => {
+        console.log(data);
         setDatos(data);
       })
       .catch(error => {
@@ -25,8 +26,10 @@ function App() {
       });
   }, []);
 
+  console.log(datos);
   return (
       <Router>
+        <Cart></Cart>
         <Header/>
           <Routes>
             {/* <Route path = "/home" component = {Home}/> */}

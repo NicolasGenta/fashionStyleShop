@@ -4,12 +4,14 @@ export const APP_PROFILES = Object.freeze({
 });
 
 export const APP_MESSAGES = Object.freeze({
-    FREE_DELIVERY: `ENVÍO GRATIS DESDE $30.000`
-})
+    FREE_DELIVERY: `ENVÍO GRATIS DESDE $30.000`,
+    BUTTON_ADD_TO_CART: 'LO QUIERO',
+    BUTTON_REMOVE_TO_CART: 'QUITAR'
+});
 
 export const RESOURCES = Object.freeze({
-    PRODUCTS_API: "http://localhost:3030/productos/"
-})
+    PRODUCTS_API: "http://localhost:3000/productos/"
+});
 
 export const CATEGORIES = Object.freeze({
     ALL_CATEGORY: 'All',
@@ -17,4 +19,4 @@ export const CATEGORIES = Object.freeze({
     MENS_CATEGORY: 'Masculino',
     KIDS_CATEGORY: 'Niños',
     ACCESSORIES_CATEGORY: 'Accesorios',
-})
+});

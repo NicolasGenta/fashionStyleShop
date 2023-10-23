@@ -1,0 +1,158 @@
+.cart {
+    background-color: white;
+    display: none;
+    padding: 32px;
+    position: fixed;
+    right: 0px;
+    top: 0px;
+    width: 400px;
+    z-index: 8;
+    box-shadow: 2px 2px 8px 1px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Estilado condicional: si no hay items en el carrito */
+  .cart div{
+    width: 100%;
+    display: grid;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 3%
+  }
+
+  .cart > div > img{
+    width: 70%;
+    aspect-ratio: 1/1;
+    padding: 1em;
+    justify-self: center;
+  }
+
+  .cart > div > p{
+    justify-self: center;
+    align-self: flex-start;
+    width: 70%;
+    color: var(--color_2);
+  }
+/* Estilado condicional: si hay items en el carrito */
+  .cart ul {
+    margin-top: 8vh;
+    list-style: none;
+    height: 70%;
+    overflow-y: scroll;
+  }
+  
+  .cart img {
+    width: 40%;
+    aspect-ratio: 1/1;
+    display: block;
+    object-fit: cover;
+  }
+  
+  .cart li {
+    border-bottom: 1px solid #444;
+    margin-bottom: 1em;
+    padding: 1em;
+    padding-bottom: 16px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .cart  li > div {
+    width: 60%;
+    display: flex;
+  }
+
+  .cart span {
+    font-weight: bold;
+    width: 100%;
+  }
+  
+  .footer-cart {
+    display: flex;
+    width: 100%;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  
+  .footer-cart button {
+    padding: 1px;
+    width: 2em;
+    height: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .footer-cart button> img {
+    width: 1em;
+    height: 1em;
+    display: flex;
+  }
+  
+  .cart-button {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    height: 32px;
+    justify-content: center;
+    padding: 4px;
+    position: fixed;
+    right: 39px;
+    top: 8px;
+    transition: all .3s ease;
+    width: 32px;
+    z-index: 9999;
+  }
+
+  .cart-button :first-child{
+    width: 4vw;
+  }
+
+  .cart-button > :last-child {
+    display: flex;
+    position: fixed;
+    right: 28px;
+    top: 8px;
+    width: 0.8em;
+    height: 0.8em;
+    border-radius: 100px;
+    padding: 0.6em;
+    font-size: 0.8em;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+  .cart-button :hover{
+    scale: 1.1;
+  }
+  
+  .cart-button ~ input:checked ~ .cart {
+    height: 100%;
+    display: block;
+  }
+
+  .cart button{
+    background-color: var(--color_1);
+    border: none;
+    padding: 1em;
+    border-radius: 10px;
+    box-shadow: 2px 2px 8px 1px rgba(0, 0, 0, 0.2);
+  }
+
+  .cart > button{
+    background-color: var(--color_1);
+    border: none;
+    padding: 1em;
+    margin: 0em 2em 4em 0em;
+    border-radius: 10px;
+    box-shadow: 2px 2px 8px 1px rgba(0, 0, 0, 0.2);
+  }
+
+  .cart > ul> button:hover{
+    cursor: pointer;
+    scale: 1.1;
+  }
+
+  

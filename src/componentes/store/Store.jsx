@@ -2,35 +2,25 @@ import { useState } from "react";
 import { Products } from "./Products";
 import { Banner } from "./banner";
 import './store.css';
-import { CATEGORIES } from "../../util/dictionary";
 import { Filters } from "./Filters";
+import { IS_DEVELOPMENT } from "../../util/config";
+import { useFilters } from "../../hooks/useFilters";
+import { MostPurchasedSection } from "./MostPurchased";
 
-export const Store = ({products})=> {
-    console.log(products)
-    const [filters, setFilters] = useState({
-        category: CATEGORIES.ALL_CATEGORY,
-        minPrice: 0,
-    });
+export const Store = ({ products })=> {
+    const {filterProducts} = useFilters();
+    console.log(products);
 
-    const filterProducts = (productos) =>{
-        return productos.filter(producto => {
-            return (
-                producto.precio >= filters.minPrice && (
-                    filters.category === CATEGORIES.ALL_CATEGORY ||
-                    producto.categoria === filters.category
-                )
-            );
-        });
-    }
-
+    // 👇 Error con la siguiente linea devuelve []
     const filteredProducts = filterProducts(products);
-    console.log(filteredProducts);
+
+    if(IS_DEVELOPMENT) console.log(filteredProducts);
 
     return(
         <>
             <Banner></Banner>
-            <Filters></Filters>
-            <Products products={filteredProducts}></Products>
+            <MostPurchasedSection products={products}></MostPurchasedSection>
+            <Products products={ products }></Products>
         </>
     );
 }
