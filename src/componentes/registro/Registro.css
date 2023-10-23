@@ -6,14 +6,14 @@
     padding-bottom: 100px;
 
 }
+
 .texto{
-     
- display: flex;
- justify-content: center;
- align-items: center;
- height: 10vh;
- font-weight: bold;
- font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    font-weight: bold;
+    font-size: 25px;
 }
 .dataUser{
     border: 2px solid rgb(68, 68, 71);

@@ -2,10 +2,11 @@ import {  useId } from "react";
 import { CATEGORIES } from "../../util/dictionary";
 import './Filters.css';
 import { useFilters } from "../../hooks/useFilters";
+import { useWindowSize } from "../../hooks/useWindowSize";
 
 export function Filters() {
     const { filters, setFilters } = useFilters();
-
+    const { windowSize } = useWindowSize();
     const minPriceFilterId = useId();
     const categoryFilterId = useId();
 

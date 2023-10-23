@@ -1,3 +1,5 @@
+import { useWindowSize } from "../../hooks/useWindowSize";
+
 export const Banner = ()=> {
     return(
         <section>

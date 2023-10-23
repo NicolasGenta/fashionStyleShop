@@ -1,0 +1,40 @@
+.title-contacto{
+    padding: 1rem 4rem;
+}
+
+.container-contacto main {
+    width: 60%;
+    padding: 0.5rem 2rem;
+    height: 70%;
+    margin: 1rem;
+}
+
+.container-contacto h2 {
+    padding: 0.5em 2em;
+}
+
+.container-contacto {
+    margin: 1rem;
+    display: flex;
+}
+
+.container-contacto >:last-child{
+    width: 40%;
+}
+
+.container-contacto > main >  div > :last-child{
+    display: flex;
+    gap: 1rem;
+}
+
+.mb-3{
+    box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.2);
+    border: none;
+    padding: 1em;
+    background-color: white;
+    border-radius: 0;
+}
+
+label {
+    color: black;
+}

@@ -10,7 +10,7 @@ function Header() {
     <>
       <Navbar data-bs-theme="dark" className="custom-navbar">
         <Container>
-          <Navbar.Brand className="l0" href="#home">
+          <Navbar.Brand className="l0" href="/">
             <img className='icon'
             src='./src/assets/images/logo_left.png'></img>
           </Navbar.Brand>
@@ -18,9 +18,9 @@ function Header() {
             <Nav.Link className="nav-button" href="store">Tienda</Nav.Link>
             <Nav.Link className="nav-button" href="contacto">Contacto</Nav.Link>
             <Nav.Link className="nav-button" href="registro">Registro</Nav.Link>
-            <Nav.Link href="cart">
+            {/* <Nav.Link href="cart">
               <img src='./src/assets/icons/shopping-bag.svg'/>
-            </Nav.Link>
+            </Nav.Link> */}
             <Nav.Link href="like">
               <img src='./src/assets/icons/heart.svg'/>
             </Nav.Link>

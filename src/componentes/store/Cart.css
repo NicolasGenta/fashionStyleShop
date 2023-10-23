@@ -1,5 +1,6 @@
 .cart {
     background-color: white;
+    opacity: 0.98;
     display: none;
     padding: 32px;
     position: fixed;
@@ -13,10 +14,11 @@
   /* Estilado condicional: si no hay items en el carrito */
   .cart div{
     width: 100%;
-    display: grid;
+    display: flex;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    padding: 3%
+    padding: 4%
   }
 
   .cart > div > img{
@@ -40,10 +42,9 @@
     overflow-y: scroll;
   }
   
-  .cart img {
+  .cart  img {
     width: 40%;
     aspect-ratio: 1/1;
-    display: block;
     object-fit: cover;
   }
   
@@ -67,12 +68,18 @@
   }
   
   .footer-cart {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(
+            20px,
+            1fr
+        )
+    );
+    gap: 0.5rem;
     width: 100%;
-    gap: 8px;
-    justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
+    justify-content: center;
   }
   
   
@@ -83,13 +90,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 1rem;
   }
 
-  .footer-cart button> img {
-    width: 1em;
-    height: 1em;
-    display: flex;
-  }
   
   .cart-button {
     align-items: center;
@@ -98,21 +101,21 @@
     height: 32px;
     justify-content: center;
     padding: 4px;
-    position: fixed;
+    position: absolute;
     right: 39px;
-    top: 8px;
+    top: 12px;
     transition: all .3s ease;
     width: 32px;
     z-index: 9999;
   }
 
   .cart-button :first-child{
-    width: 4vw;
+    width: 3.5vw;
   }
 
   .cart-button > :last-child {
     display: flex;
-    position: fixed;
+    position: absolute;
     right: 28px;
     top: 8px;
     width: 0.8em;
@@ -133,20 +136,11 @@
     display: block;
   }
 
-  .cart button{
-    background-color: var(--color_1);
-    border: none;
-    padding: 1em;
-    border-radius: 10px;
-    box-shadow: 2px 2px 8px 1px rgba(0, 0, 0, 0.2);
-  }
 
   .cart > button{
-    background-color: var(--color_1);
     border: none;
     padding: 1em;
     margin: 0em 2em 4em 0em;
-    border-radius: 10px;
     box-shadow: 2px 2px 8px 1px rgba(0, 0, 0, 0.2);
   }
 
@@ -154,5 +148,7 @@
     cursor: pointer;
     scale: 1.1;
   }
-
+  .cart span {
+    color: black;
+  }
   

@@ -11,19 +11,20 @@ function CartItem({img, precio, nombre, quantity, addToCart, removeFromCart}){
                 <p>{nombre}</p> 
                 <p>Precio unitario: $ {precio}</p>
             </div>
-            <div className='footer-cart'>
+            <footer className='footer-cart'>
                 <p>
                     Cantidad: {quantity}
                 </p>
-                <button onClick={addToCart}>
-                    <img src='../../public/icons/add_plus_icon.png'/>
-                </button>
-                <button onClick={removeFromCart}>
-                    <img src='../../public/icons/minus_icon.png'/>
-                </button>
-                <span style={{width: "100%"}}>Precio total: ${Number((precio * quantity).toFixed(2))}</span>
-                
-            </div>
+                <div>
+                    <button onClick={addToCart} style={{backgroundColor: 'black'}}>
+                        +
+                    </button>
+                    <button onClick={removeFromCart} style={{backgroundColor: 'black'}}>
+                        -
+                    </button>
+                </div>
+            </footer>
+            <span style={{width: "100%"}}>Precio total: ${Number((precio * quantity).toFixed(2))}</span>
         </li>
     )
 }
@@ -42,6 +43,7 @@ export function Cart() {
         </label>
         <input id="cart" type="checkbox" hidden />
         <aside className="cart">
+            <h2>Mi carrito 🛒</h2>
             {cartCount === 0
             ? <div>
                 <img src='../../../src/assets/images/empty_cart.svg'/>
@@ -62,8 +64,8 @@ export function Cart() {
                 <div>
                     {totalPriceCart === 0 ? '' : `Total: $ ${totalPriceCart}`}
                 </div>
-                <button onClick={()=>clearCart()}> Borrar carrito</button>
-                <button onClick={()=>alert('Ha confirmado su compra')}> Comprar</button>
+                <button onClick={()=>clearCart()} style={{backgroundColor: 'black'}}> Borrar carrito</button>
+                <button onClick={()=>alert('Ha confirmado su compra')} style={{backgroundColor: 'black'}}> Comprar</button>
             </> 
             }
             

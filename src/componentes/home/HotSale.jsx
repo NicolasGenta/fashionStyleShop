@@ -1,42 +1,56 @@
 import React from 'react';
 import './hot-sale.css';
+import { IS_DEVELOPMENT } from '../../util/config';
+import { useData } from '../../hooks/useData';
+import { useWindowSize } from '../../hooks/useWindowSize';
+import '../../index.css';
+import { useCart } from '../../hooks/useCart';
+import { APP_MESSAGES } from '../../util/dictionary';
 
 const HotSale = () => {
-    
-    const hotSale = [
-        {
-            nombre: "LUNE Sudadera con estampado de letra con forro",
-            img: "https://img.ltwebstatic.com/images3_pi/2023/07/18/16896441460352109edf60d31c06682784c20608b2_thumbnail_600x.webp",
-    },
-    {
-     
-        nombre: "Manfinity EMRG Hombres Camiseta con estampado",
-        img: "https://img.ltwebstatic.com/images3_pi/2023/04/06/1680759342e8849d12586ae3e69d3f548b3deabee5_thumbnail_600x.webp",
+  const { datos } = useData();
+  const hotSaleProducts = datos.filter(product => product.descuento);
+  const { windowSize } = useWindowSize();
 
+  const {addToCart, cart, removeFromCart} = useCart();
 
+  const checkProductInCart = product =>{
+    return cart.some(item => item.id === product.id)
+}
 
-    },
-      {
-        nombre: "Manfinity Homme Hombres Capucha japonés carácter & con estampado de onda",
-        img: "https://img.ltwebstatic.com/images3_pi/2022/08/25/1661394095cc055ccf2d15e73b0394a6c595649835_thumbnail_600x.webp",
-
-      },
-
-        
-    ];
   return (
-    <div className='hot-sale'>
-     <h2 className='hot-sale-title'>Hot Sale</h2>
-    <div className="productos-destacados">
-    {hotSale.map((producto, index) => (
-      <div key={index} className="producto">
-        <h3>{producto.nombre}</h3>
-        <img src={producto.img} alt={producto.nombre} />
-      </div>
-    ))}
-  </div>
-  </div>
-);
+    <section className='hotSale-container'>
+      <h2 >Hot Sale</h2>
+      <main className='products'>
+        <ul style={{width: windowSize.width}}>
+          { hotSaleProducts.slice(0,5).map((producto, index) => {
+              const isProductInCart = checkProductInCart(producto);
+              return(
+                  <li key={producto.id}>
+                      <img
+                          src={producto.img}
+                          alt={producto.nombre}
+                      />
+                      <button className="button-buy " style={{backgroundColor: isProductInCart ? '#824133' : '#000000'}}onClick={()=> isProductInCart
+                          ? removeFromCart(producto)
+                          : addToCart(producto)}>
+                              {
+                                  isProductInCart
+                              ? APP_MESSAGES.BUTTON_REMOVE_TO_CART
+                              : APP_MESSAGES.BUTTON_ADD_TO_CART}</button>
+                      <div>
+                          <strong>{producto.nombre}</strong>
+                      </div>
+                      <div>
+                          <p>$ {producto.precio}</p>
+                      </div>
+                  </li>
+              )
+          })}
+        </ul>
+      </main>
+  </section>
+  );
 }
 
 

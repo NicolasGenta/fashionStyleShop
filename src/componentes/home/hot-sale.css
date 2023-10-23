@@ -1,41 +1,13 @@
-.productos-destacados {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
+.hotSale-container{
+  padding: 1rem 0.5rem;
+  background-color: #FAACA8;
+  background-image: linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%);  
+}
 
-    .hot-sale-container {
+  .hotSale-container h2 {
     text-align: center;
-    margin-top: 20px;
-  }
-
-  .hot-sale-title {
-    margin-top: 30px;
-    text-align: center;
-    font-size: 36px;
+    font-size: 40px;
     color: black; 
     text-transform: uppercase;
     font-weight: bold;
   }
-  
-  .producto {
-    border: 1px solid #ccc;
-    padding: 16px;
-    margin: 16px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    width: 300px; 
-  }
-  
-  .producto h3 {
-    font-size: 18px;
-    margin-bottom: 8px;
-  }
-  
-  .producto img {
-    max-width: 100%;
-    height: auto;
-  }
- 
-  

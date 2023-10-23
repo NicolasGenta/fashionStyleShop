@@ -1,10 +1,13 @@
 import { useCart } from "../../hooks/useCart";
+import { useData } from "../../hooks/useData";
 import { APP_MESSAGES } from "../../util/dictionary";
 import { Filters } from "./Filters";
 import "./Products.css";
+import "../../index.css"
 
-export function Products ({products}) {
+export function Products () {
 
+    const {datos} = useData();
     const { addToCart, cart, removeFromCart } = useCart();
 
     const checkProductInCart = product =>{
@@ -12,12 +15,12 @@ export function Products ({products}) {
     }
 
     return (
-        <section>
+        <section className="store-container">
             <h2> Compra tus productos favoritos!</h2>
             <Filters></Filters>
             <main className="products">
                 <ul>
-                    {products.map(product => {
+                    {datos.map(product => {
                         const isProductInCart = checkProductInCart(product);
                         return(
                             <li key={product.id}>

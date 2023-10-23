@@ -7,12 +7,11 @@ import Button from 'react-bootstrap/Button';
 const Registro = () => {
   return (
     <div className='registerFull'>
-           <p className='texto'>¿No estás registrado?</p>
+      <p className='texto'>¿No estás registrado?</p>
     <div className='dataUser'>     
-       <Form.Group className="mb-3" controlId="formBasicName">
+      <Form.Group className="mb-3" controlId="formBasicName">
         <Form.Label>Name</Form.Label>
         <Form.Control type="name" placeholder="Enter name" />
-
       </Form.Group>
     <Form>
       <Form.Group className="mb-3 nameField" controlId="formBasicEmail">
@@ -34,12 +33,8 @@ const Registro = () => {
         Submit
       </Button>
     </Form>
-  
-    
     </div>
 </div> 
-    
-    
     );
   };
 

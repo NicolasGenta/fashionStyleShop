@@ -23,3 +23,26 @@ button {
     border-radius: 0px;
     border: 3px solid black
 }
+
+.products li {
+    background-color: white;
+    box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.products li:hover{
+    transform: scale(1.05);
+}
+
+.carousel-caption{
+    top: 15.25rem;
+    bottom: 0;
+}
+
+.carousel-caption h2 {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+ul {
+    padding-left: 0 !important;
+}

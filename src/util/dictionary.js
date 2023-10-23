@@ -10,7 +10,8 @@ export const APP_MESSAGES = Object.freeze({
 });
 
 export const RESOURCES = Object.freeze({
-    PRODUCTS_API: "http://localhost:3000/productos/"
+    PRODUCTS_API: "http://localhost:3000/productos/",
+    AUTHENTICATION_API: "http://localhost:3000/authentication/"
 });
 
 export const CATEGORIES = Object.freeze({
