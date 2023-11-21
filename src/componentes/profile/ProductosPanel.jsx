@@ -144,7 +144,7 @@ export const ProductosPanel = ()=>{
                             name="nombre_producto" 
                             type="text" 
                             onChange={onInputChange}
-                            value={nombre_producto ?  nombre_producto : productSelected.Producto}
+                            value={nombre_producto ?  nombre_producto : productSelected?.Producto}
                             required/>
                         </div>
                         <div>
@@ -153,7 +153,7 @@ export const ProductosPanel = ()=>{
                             name="descripcion" 
                             type="text" 
                             onChange={onInputChange}
-                            value={descripcion ? descripcion : productSelected.Descripción}
+                            value={descripcion ? descripcion : productSelected?.Descripción}
                             required/>
                         </div>
                         <div>
@@ -162,7 +162,7 @@ export const ProductosPanel = ()=>{
                             name="precio" 
                             type="number" 
                             onChange={onInputChange}
-                            value={precio ? precio : productSelected.precio}
+                            value={precio ? precio : productSelected?.precio}
                             required/>
                         </div>
                         <div>
@@ -170,13 +170,13 @@ export const ProductosPanel = ()=>{
                             <input id='url' 
                             name="url" 
                             type="url" 
-                            value={url ? url : productSelected.Imagen}
+                            value={url ? url : productSelected?.Imagen}
                             onChange={onInputChange}
                             required/>
                         </div>
                         <div>
                             <label htmlFor='categoria'>Categoria</label>
-                            <select name='categoria' id='categoria' onChange={onInputChange} value={categoria ? categoria : productSelected.Categoria}>
+                            <select name='categoria' id='categoria' onChange={onInputChange} value={categoria ? categoria : productSelected?.Categoria}>
                                 {categorias.map(categoria =>(<option value={categoria.nombre_categoria}>{categoria.nombre_categoria}</option>))}
                             </select>
                         </div>
