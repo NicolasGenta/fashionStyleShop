@@ -36,7 +36,7 @@ Los clientes pueden agregar productos al carrito de compras y realizar pedidos e
 ###PASOS PARA CORRER LA APLICACIÓN
 -Clonar este repositorio
 - Utilizar npm i para instalar las dependencias del proyecto
-- Clonar el repositorio de la API
+- Clonar el repositorio de la API https://github.com/NicolasGenta/API-Trabajo-Fashion-Style
 - Utilizar npm i para instalar las dependencias del proyecto
 - En el código de la API estará el script backup de la Base de datos
 - Replicar la base de datos en localstore y cambiar los parametros de la conexión en AppModule
