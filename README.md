@@ -28,6 +28,22 @@ Los clientes pueden agregar productos al carrito de compras y realizar pedidos e
 - Nest JS para el servidor backend.
 - Base de datos relacional mySQL Server para almacenar información de productos y usuarios.
 
+### USUARIOS DE PRUEBA
+-Cliente: garcia.ana@mail.com pass: Tester1$
+-Emprendedor: flores.anamaria@email.com pass: tester9
+-Administrador: rodriguez.juan@email.com pass: Tester2$
+
+###PASOS PARA CORRER LA APLICACIÓN
+-Clonar este repositorio
+- Utilizar npm i para instalar las dependencias del proyecto
+- Clonar el repositorio de la API
+- Utilizar npm i para instalar las dependencias del proyecto
+- En el código de la API estará el script backup de la Base de datos
+- Replicar la base de datos en localstore y cambiar los parametros de la conexión en AppModule
+- Correr la API con el comando npm start
+- Correr el Front con el comando npm run dev
+
+
 ## ¿Cómo correr la aplicación?
 
 Utilize el comando npm run dev para correr la aplicación en el navegador
