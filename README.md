@@ -24,7 +24,7 @@
 - **Administración del estado de los emprendimientos:**
     Cada administrador va a poder dar de alta o baja emprendimiento según las reglas de su negocio
 
-![946shots_so](https://github.com/NicolasGenta/fashionStyleShop/assets/110864533/34b63e13-780b-4be9-992c-d4057fbcb6e8)
+![111shots_so](https://github.com/NicolasGenta/fashionStyleShop/assets/110864533/0cc7f50b-8cf1-46bc-8945-b818e5f54778)
 
 ## Tecnologías Utilizadas
 ### Frontend:
