@@ -33,7 +33,7 @@ Los clientes pueden agregar productos al carrito de compras y realizar pedidos e
 -Emprendedor: flores.anamaria@email.com pass: tester9
 -Administrador: rodriguez.juan@email.com pass: Tester2$
 
-###PASOS PARA CORRER LA APLICACIÓN
+### PASOS PARA CORRER LA APLICACIÓN
 -Clonar este repositorio
 - Utilizar npm i para instalar las dependencias del proyecto
 - Clonar el repositorio de la API https://github.com/NicolasGenta/API-Trabajo-Fashion-Style
