@@ -1,0 +1,116 @@
+.form-container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-image: url('../../assets/images/pattern.svg');
+    background-repeat:repeat;
+    /* background-repeat: repeat; */
+    overflow-y: hidden;
+    align-items: center;
+}
+
+.form-container >:first-child{
+    width: 35%;
+    background-color: white;
+    height: 90%;
+    align-self: center;
+    /* padding: 1rem; */
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.form-container >:nth-child(2) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    margin: 2rem;
+    box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.register-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+.register-container h2 {
+    width: 100%;
+    padding: 0.7rem;
+    text-align: center;
+    margin: 0.9rem 0.9rem 0.3rem 0.9rem;
+}
+
+.form-auth {
+    width: 100%;
+    height: auto;
+    display: grid;
+    flex-wrap: wrap;
+    padding: 1rem 3rem;
+    overflow-y: hidden;
+}
+button[type="submit"] {
+    justify-self: center;
+    margin-top: 0.2rem;
+    justify-self: center !important;
+    height: 100%;
+}
+.form-auth > button[type="submit"] {
+    height: 60%;
+    margin-top: 1rem;
+}
+
+.form-auth > main {
+    margin-bottom: 0.5rem ;
+}
+.register-container > div {
+    width: 100%;
+    height: 11%;
+    margin-top: 1rem;
+    display: flex;
+    align-self: flex-end;
+}
+
+.button-form {
+    background-color: #445957;
+    width: 50%;
+    height: 100%;
+    padding: 0.5rem;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    gap: 0.10;
+}
+
+input {
+    border: none;
+    width: 100%;
+    padding: 0.5rem;
+    border-bottom: 1px solid black;
+}
+
+.register-input {
+    padding: 0.5rem;
+}
+input:focus-visible{
+    outline: none;
+    border-bottom: 2px solid #E4B523;
+}
+label {
+    width: 100%;
+    font-size: 0.8rem;
+}
+
+.container-select {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    height: 70%;
+    padding: 0.5rem;
+    border-radius: 10px;
+    width: 90%;
+} 
+.container-select > input {
+    width: 100%;
+}
+

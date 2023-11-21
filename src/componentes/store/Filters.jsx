@@ -1,51 +1,72 @@
-import {  useId } from "react";
+import { useId } from "react";
 import { CATEGORIES } from "../../util/dictionary";
 import './Filters.css';
 import { useFilters } from "../../hooks/useFilters";
-import { useWindowSize } from "../../hooks/useWindowSize";
+import { useData } from "../../hooks/useData";
 
 export function Filters() {
     const { filters, setFilters } = useFilters();
-    const { windowSize } = useWindowSize();
     const minPriceFilterId = useId();
     const categoryFilterId = useId();
-
-    const handleChangeMinPrice = (e) =>{
-        setFilters(prevState =>({
-            ... prevState,
+    const { emprendimientos, categorias, maxPrecio } = useData();
+    console.log(maxPrecio);
+    const handleChangeMinPrice = (e) => {
+        setFilters(prevState => ({
+            ...prevState,
             minPrice: e.target.value
         }))
     }
 
-    const handleChangeCategory = (e)=>{
-        setFilters(prevState =>({
-            ... prevState,
+    const handleChangeCategory = (e) => {
+        setFilters(prevState => ({
+            ...prevState,
             category: e.target.value
+        }))
+    }
+
+    const handleChangeEmprendimiento = (e) => {
+        setFilters(prevState => ({
+            ...prevState,
+            emprendimiento: e.target.value
         }))
     }
 
     return (
         <section className="filters">
+            <h3>Tienda</h3>
             <div>
                 <label htmlFor="price">Precio a partir de:</label>
-                <input 
+                <input
                     type="range"
-                    id={ minPriceFilterId }
+                    id={minPriceFilterId}
                     min='0'
-                    max='100000'
-                    onChange={ handleChangeMinPrice }
+                    max={maxPrecio}
+                    onChange={handleChangeMinPrice}
                     value={filters.minPrice}
                 />
-                <span>$ { filters.minPrice },00</span>
+                <span>$ {filters.minPrice},00</span>
             </div>
             <div>
                 <label htmlFor="category">Categoría</label>
-                <select id={ categoryFilterId } onChange={ handleChangeCategory }>
+                <select id={categoryFilterId} onChange={handleChangeCategory}>
                     <option value={CATEGORIES.ALL_CATEGORY}>Todos</option>
-                    <option value={CATEGORIES.WOMEN_CATEGORY}>{CATEGORIES.WOMEN_CATEGORY}</option>
-                    <option value={CATEGORIES.MENS_CATEGORY}>{CATEGORIES.MENS_CATEGORY}</option>
-                    <option value={CATEGORIES.ACCESSORIES_CATEGORY}>{CATEGORIES.ACCESSORIES_CATEGORY}</option>
-                    <option value={CATEGORIES.KIDS_CATEGORY}>{CATEGORIES.KIDS_CATEGORY}</option>
+                    {categorias.map(categoria => {
+                        return <option key={categoria.id}
+                            value={categoria.nombre_categoria}>{categoria.nombre_categoria}</option>
+                    })}
+                </select>
+            </div>
+            <div>
+                <label htmlFor="category">Emprendimiento</label>
+                <select id={categoryFilterId} onChange={handleChangeEmprendimiento}>
+                    <option value={CATEGORIES.ALL_CATEGORY}>Todos</option>
+                    {emprendimientos.map(emprendimiento => {
+                        if(emprendimiento.estado)
+                        return <option
+                            key={emprendimiento.nombre}
+                            value={emprendimiento.nombre}
+                        >{emprendimiento.nombre}</option>
+                    })}
                 </select>
             </div>
         </section>

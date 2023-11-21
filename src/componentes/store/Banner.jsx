@@ -2,12 +2,11 @@ import { useWindowSize } from "../../hooks/useWindowSize";
 
 export const Banner = ()=> {
     return(
-        <section>
+        <section className="container-video">
             <video src="/src/assets/video/video_chica.mp4" autoPlay muted loop></video>
             <div className="position-absolute">
                 <p>Viste con estilo, define tu actitud</p>
-                <span>By Fashion Style</span>
-                <button>COMPRAR</button>
+                <span>By EMPRENDE</span>
             </div>
         </section>
     )

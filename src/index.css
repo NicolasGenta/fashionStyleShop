@@ -1,14 +1,25 @@
 :root {
-    --principal-color: black;
+    --principal-color: #445957;
 }
 *{
     font-family: 'Poppins', sans-serif;
 }
-
+.box-shadow {
+    box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.2);
+}
+a:hover {
+    color: #F3E0D4 !important;
+    cursor: pointer;
+}
 button {
-    background-color: black;
+    background-color: #445957;
     color: white;
     padding: 0.5em 1em;
+    border: none;
+    border-radius: 10px;
+}
+.products >ul > li > button {
+    border-radius: 0;
 }
 
 *::-webkit-scrollbar {
@@ -34,7 +45,7 @@ button {
 }
 
 .carousel-caption{
-    top: 15.25rem;
+    top: 13.25rem;
     bottom: 0;
 }
 

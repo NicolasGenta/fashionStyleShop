@@ -1,36 +1,50 @@
+:root{
+    --principal-color: #545E3F !important;
+    --secondary-color: #d78b30;
+    --color-3: #9f886f;
+    --color-4: #f5e6c5;
+}
+
 .custom-navbar {
-    background-color: white;
-    color: black;
+    background: #445957;
+    color: white !important;
     width: 100%;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    padding: 0.7rem 4rem;
+    height: 3.5rem;
 }
 
 .icon {
     width: 90%;
-
 }
 
 .l0 {
     width: 15%;
 }
 
-.nav-button{
-    color: black !important;
-}
-
-.nav-button::after{
-    content: '';
+.menu-toggle{
     position: absolute;
-    width: 0;
-    height: 2px;
-    background-color: #000; /* Cambia esto al color que desees */
-    bottom: 0;
-    left: 0;
-    transition: width 0.3s; /* Controla la velocidad de la animación */
+    top: 3rem;
+    display: flex;
+    flex-direction: column;
+    background-color: #445957;
+    padding: 1rem;
+    z-index: 3;
+    width: 200px;
+    border-radius: 10px;
 }
 
-.nav-button:hover::after{
-    width: 100%; /* La línea se extenderá completamente */
+.hidden {
+    display: none;
 }
+
+.nav-button{
+    color: white !important;
+    text-decoration: none;
+    margin-right: 1rem;
+}
+
+
 .message-container{
     background-color: black;
     overflow: hidden;

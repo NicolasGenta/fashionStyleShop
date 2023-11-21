@@ -1,0 +1,96 @@
+table {
+    background-color: white;
+    margin-top: 1rem;
+    padding: 5rem;
+    width: 100%;
+    height: 85%;
+}
+
+table > thead {
+    height: 15%;
+    text-align: center;
+    border-radius: 20px;
+    background-color: #445957;
+    color: white;
+    font-size: 14px;
+}
+table > tbody > tr:hover {
+    background-color: rgb(192, 190, 190);
+}
+
+
+table > thead > tr > :first-child {
+    width: 10%;
+}
+
+table > thead > tr > :last-child {
+    width: 20%;
+}
+table > tbody > tr{
+    width: 10%;
+    height: 20%;
+    text-align: center;
+}
+table > tbody > tr >:last-child {
+    text-align: center;
+}
+table > tbody > tr >:last-child :hover{
+    cursor: pointer;
+}
+
+.modal-container {
+    width: 40%;
+    padding: 2rem;
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    z-index: 7;
+    height: 70%;
+    overflow-y: scroll;
+    background-color: #e3eeec;
+    display: grid;
+    flex-wrap: wrap;
+}
+
+.modal-content {
+    width: 85%;
+    justify-self: center;
+}
+
+.modal-content > div {
+    margin-bottom: 1rem;
+}
+
+.modal-content > div > select {
+    width: 100%;
+    height: 70%;
+    border: none;
+    background-color: transparent;
+    border-bottom: 2px solid #E4B523;
+}
+.modal-content > :last-child {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+.modal-content > :last-child > button {
+    margin-top: 0;
+    margin-left: 1rem;
+}
+.modal-content > div > select:focus-visible{
+    border-bottom: 3px solid #E4B523;
+}
+
+.c-70{
+    margin: 2rem 2rem 2rem 0.5rem;
+    width: 65%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 3rem;
+    box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.2);
+    align-items: center;
+}
+
+.c-70 > h2 {
+    height: min-content;
+}

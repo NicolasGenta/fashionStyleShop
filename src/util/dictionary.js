@@ -1,6 +1,8 @@
 export const APP_PROFILES = Object.freeze({
     DEFAULT_PROFILE: "Default",
-    ADMIN_PROFILE: "Admin",
+    EMPRENDEDOR_PROFILE: "Emprendedor",
+    CLIENT_PROFILE: "Cliente",
+    ADMIN_PROFILE: "Administrador",
 });
 
 export const APP_MESSAGES = Object.freeze({
@@ -10,9 +12,31 @@ export const APP_MESSAGES = Object.freeze({
 });
 
 export const RESOURCES = Object.freeze({
-    PRODUCTS_API: "http://localhost:3000/productos/",
-    AUTHENTICATION_API: "http://localhost:3000/authentication/"
+    API_URL: "http://localhost:3000/",
+    ENDPOINTS: {
+        PRODUCTOS: 'productos/',
+        USUARIOS: {
+            BASE: 'user/',
+            LOGIN: 'user/login',
+            REGISTER: 'user/register'
+        },
+        EMPRENDIMIENTOS: 'emprendimiento',
+        CATEGORIAS: 'productos/categorias',
+        PRECIO_MAXIMO: 'productos/maxPrecio',
+        EMPRENDIMIENTO_USUARIOS: 'emprendimiento/usuario'
+    }
 });
+
+// export const ENDPOINTS = Object.freeze({
+//     PRODUCTOS: '/productos',
+//     USUARIOS: '/user'
+// })
+
+export const METHODS = Object.freeze({
+    PUT: 'PUT',
+    POST: 'POST',
+    DELETE: 'DELETE'
+})
 
 export const CATEGORIES = Object.freeze({
     ALL_CATEGORY: 'All',

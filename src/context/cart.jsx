@@ -9,7 +9,7 @@ export const CartProvider = ({children})=>{
 
     const addToCart= (product)=>{
 
-        const productInCart = cart.findIndex(item => item.id === product.id);
+        const productInCart = cart.findIndex(item => item.codigo_producto === product.codigo_producto);
         
         if(productInCart >= 0){
             const newCart = [...cart];
@@ -25,7 +25,7 @@ export const CartProvider = ({children})=>{
             ])
             setCartCount(prevCount => prevCount + 1)
         }
-        setTotalPriceCart(prevTotalPice => Number((prevTotalPice + product.price).toFixed(2)))
+        setTotalPriceCart(prevTotalPice => Number((prevTotalPice + product.precio).toFixed(2)))
     }   
 
     const clearCart = ()=>{
@@ -35,16 +35,16 @@ export const CartProvider = ({children})=>{
     }
 
     const removeFromCart = (product) => {
-        const productInCart = cart.find(item => item.id === product.id);
+        const productInCart = cart.find(item => item.codigo_producto === product.codigo_producto);
         if (productInCart) {
             if (productInCart.quantity === 1) {
-                const newCart = cart.filter(item => item.id !== product.id);
+                const newCart = cart.filter(item => item.codigo_producto !== product.codigo_producto);
                 setCart(newCart);
                 setCartCount(prevCount => prevCount - 1);
-                setTotalPriceCart(prevTotalPrice => Number((prevTotalPrice - (productInCart.price * productInCart.quantity)).toFixed(2)));
+                setTotalPriceCart(prevTotalPrice => Number((prevTotalPrice - (productInCart.precio * productInCart.quantity)).toFixed(2)));
             } else {
                 const updatedCart = cart.map(item => {
-                if (item.id === product.id) {
+                if (item.codigo_producto === product.codigo_producto) {
                     const updatedQuantity = item.quantity - 1;
                     const updatedPrice = item.price * updatedQuantity;
                     return { ...item, quantity: updatedQuantity, totalPrice: updatedPrice };
@@ -52,7 +52,7 @@ export const CartProvider = ({children})=>{
                 return item;
                 });
                 setCart(updatedCart);
-                setTotalPriceCart(prevTotalPrice => Number((prevTotalPrice - productInCart.price).toFixed(2)));
+                setTotalPriceCart(prevTotalPrice => Number((prevTotalPrice - productInCart.precio).toFixed(2)));
             }
         }
     };

@@ -6,15 +6,23 @@ import { FiltersProvider } from './context/filters.jsx'
 import { CartProvider } from './context/cart.jsx'
 import { DataProvider } from './context/data.jsx'
 import { WindowsSizeProvider } from './context/windowsSize.jsx'
-
+import { AppProfileProvider } from './context/appProfile.jsx'
+import { UserProvider } from './context/userContex.jsx'
+import { BrowserRouter } from 'react-router-dom';
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <WindowsSizeProvider>
-        <DataProvider>
-            <CartProvider>
-                <FiltersProvider>
-                    <App />
-                </FiltersProvider>
-            </CartProvider>
-        </DataProvider>
-    </WindowsSizeProvider>
+    <BrowserRouter>
+        <WindowsSizeProvider>
+            <DataProvider>
+                <UserProvider>
+                    <AppProfileProvider>
+                        <CartProvider>
+                            <FiltersProvider>
+                                <App />
+                            </FiltersProvider>
+                        </CartProvider>
+                    </AppProfileProvider>
+                </UserProvider>
+            </DataProvider>
+        </WindowsSizeProvider>
+    </BrowserRouter>
 )

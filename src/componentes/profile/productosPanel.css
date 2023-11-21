@@ -1,0 +1,7 @@
+.c-70 > :first-child{
+    display: flex;
+}
+
+.c-70 > :first-child > button {
+    margin-left: 1rem;
+}

@@ -1,0 +1,9 @@
+.c-70{
+    margin: 2rem 2rem 2rem 0.5rem;
+    width: 65%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: row;
+    padding: 3rem;
+    box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.2);
+}

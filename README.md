@@ -1,8 +1,37 @@
-# React + Vite
+# Proyecyto ECOMMERCE
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Para Emprendedores
+Registro de Emprendedores:
 
-Currently, two official plugins are available:
+Los emprendedores locales pueden registrarse fácilmente en la plataforma, proporcionando información sobre sus productos y negocios.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Subida de Productos:
+Los emprendedores pueden agregar y gestionar sus productos, incluyendo detalles como nombre, descripción, imágenes y precio.
+- Perfil Personalizado:
+Cada emprendedor tiene su propio perfil personalizado donde pueden mostrar información sobre su negocio, historia, y otros detalles relevantes.
+- Visibilidad Local:
+Los emprendedores pueden llegar a una audiencia local más amplia, aumentando su visibilidad y atrayendo nuevos clientes en la comunidad.
+
+## Para Clientes
+Navegación Intuitiva:
+
+Los clientes pueden explorar fácilmente la plataforma, filtrar productos por categorías y descubrir nuevos emprendedores locales.
+- Carrito de Compras:
+Los clientes pueden agregar productos al carrito de compras y realizar pedidos en línea de manera conveniente.
+
+## Tecnologías Utilizadas
+### Frontend:
+- ReactJS para la interfaz de usuario dinámica.
+- HTML, CSS y JavaScript para el desarrollo web.
+
+### Backend:
+- Nest JS para el servidor backend.
+- Base de datos relacional mySQL Server para almacenar información de productos y usuarios.
+
+## ¿Cómo correr la aplicación?
+
+Utilize el comando npm run dev para correr la aplicación en el navegador
+
+### Requisitos:
+    - Debe correr el servidor de backend
+    - Y replicar la base de datos en su instancia local

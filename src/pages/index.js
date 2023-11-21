@@ -1,0 +1,7 @@
+export * from './HomePage'
+export * from './Contacto'
+export * from './LoginPage'
+export * from './Store'
+export * from './AdminDashboard'
+export * from './ClientDashboard'
+export * from './EmprendedorDashboard'

@@ -1,4 +1,5 @@
 import { createContext , useState} from "react";
+import { CATEGORIES } from "../util/dictionary";
 
 //Creación del contexto
 export const FiltersContext = createContext();
@@ -6,8 +7,9 @@ export const FiltersContext = createContext();
 //Proveedor del contexto
 export function FiltersProvider ({ children }){
     const [ filters, setFilters] = useState({
-        category: 'All',
-        minPrice: 0
+        category: CATEGORIES.ALL_CATEGORY,
+        minPrice: 0,
+        emprendimiento: CATEGORIES.ALL_CATEGORY
     })
 
     return(
