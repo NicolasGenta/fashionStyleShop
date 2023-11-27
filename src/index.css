@@ -1,5 +1,6 @@
 :root {
     --principal-color: #445957;
+    font-size: 15px;
 }
 *{
     font-family: 'Poppins', sans-serif;
@@ -23,7 +24,7 @@ button {
 }
 
 *::-webkit-scrollbar {
-    width: 12px;
+    width: 0px;
 }
 *::-webkit-scrollbar-track {
     background: rgb(176, 176, 177);

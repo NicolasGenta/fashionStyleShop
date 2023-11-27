@@ -23,14 +23,19 @@ export const RESOURCES = Object.freeze({
         EMPRENDIMIENTOS: 'emprendimiento',
         CATEGORIAS: 'productos/categorias',
         PRECIO_MAXIMO: 'productos/maxPrecio',
-        EMPRENDIMIENTO_USUARIOS: 'emprendimiento/usuario'
+        EMPRENDIMIENTO_USUARIOS: 'emprendimiento/usuario',
+        PEDIDOS: {
+            PEDIDOS_BY_CLIENT : 'pedidos/',
+            PEDIDOS_BY_EMPRENDIMIENTO: 'pedidos/emprendimientos/'
+        }
     }
 });
 
-// export const ENDPOINTS = Object.freeze({
-//     PRODUCTOS: '/productos',
-//     USUARIOS: '/user'
-// })
+export const STATUS = Object.freeze({
+    APROBADO: 'Aprobado',
+    ENTREGADO: 'Entregado',
+    EN_PROCESO: 'En proceso'
+})
 
 export const METHODS = Object.freeze({
     PUT: 'PUT',

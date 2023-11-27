@@ -3,6 +3,7 @@ import { useData } from "../../hooks/useData";
 import './emprendedoresManager.css';
 import {  updateCreate } from '../../util/functions';
 import { METHODS, RESOURCES } from '../../util/dictionary';
+import { Pedidos } from './Pedidos';
 
 export const EmprendedoresManager = () => {
     const { emprendimientos } = useData();

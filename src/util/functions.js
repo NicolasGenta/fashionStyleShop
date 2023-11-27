@@ -101,6 +101,15 @@ export const convertFormToObject = (formData)=> {
     return datos
 }
 
+export const changeDateDB =(date)=> {
+    const fecha= new Date(date);
+    const year = fecha.getFullYear();
+    const month = fecha.getMonth() + 1;
+    const day = fecha.getDate();
+
+    return `${day + '/'+ month + '/' + year}`
+}
+
 
 
 
