@@ -20,7 +20,7 @@ export const Pedidos = ({})=>{
     const excludeKeysClient = ['email', 'nombre', 'apellido', 'codigo_producto', 'cantidad', 'producto', 'img', 'categoria', 'precio'];
     const excludeKeysEmp = ['codigo_producto', 'categoria'];
     return(
-        <section className='box-shadow c-70' style={{width: user.rol_name !== APP_PROFILES.CLIENT_PROFILE 
+        <section className='shadow-lg c-70' style={{width: user.rol_name !== APP_PROFILES.CLIENT_PROFILE 
         ? '90%'
         : null
         }}>
