@@ -1,4 +1,4 @@
-.title-contacto{
+.title-contacto {
     padding: 1rem 4rem;
 }
 
@@ -10,11 +10,11 @@
 }
 
 .container-contacto > main > form,
-.container-contacto > main > form >div {
+.container-contacto > main > form > div {
     margin-top: 1rem;
 }
 
-.container-contacto > main> form > div> textarea {
+.container-contacto > main > form > div > textarea {
     border: none;
     background-color: #f8f7f3;
     width: 100%;
@@ -25,12 +25,11 @@
     overflow-y: scroll;
 }
 
-
-.container-contacto > main> form > div> textarea:focus-visible {
+.container-contacto > main > form > div > textarea:focus-visible {
     outline: none;
 }
 
-.container-contacto > main > form > :last-child > button{
+.container-contacto > main > form > :last-child > button {
     margin-right: 1rem;
 }
 
@@ -41,18 +40,19 @@
 .container-contacto {
     margin: 1rem;
     display: flex;
+    flex-wrap: wrap;
 }
 
-.container-contacto >:last-child{
+.container-contacto > :last-child {
     width: 40%;
 }
 
-.container-contacto > main >  div > :last-child{
+.container-contacto > main > div > :last-child {
     display: flex;
     gap: 1rem;
 }
 
-.mb-3{
+.mb-3 {
     box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.2);
     border: none;
     padding: 1em;
@@ -71,6 +71,76 @@ select {
     border-bottom: 2px solid #E4B523;
 }
 
-.container-contacto> :last-child{
+.container-contacto > :last-child {
+    padding: 4rem;
+}
+
+/* Media query para pantallas más pequeñas */
+@media screen and (max-width: 768px) {
+    .title-contacto {
+        padding: 1rem 2rem;
+    }
+
+    .container-contacto > main {
+        width: 100%;
+        padding: 0.5rem 1rem;
+        height: auto;
+        margin: 1rem 0;
+    }
+
+    .container-contacto > main > form > div > textarea {
+        resize: vertical;
+        overflow-y: auto;
+    }
+
+    .container-contacto > :last-child {
+        width: 100%;
+        padding: 2rem;
+    }
+
+    .container-contacto > main > div > :last-child {
+        gap: 0.5rem;
+    }
+}
+
+/* Estilos para "Nuestras oficinas" */
+.title-oficinas {
+    padding: 1rem 4rem;
+}
+
+.container-oficinas {
+    margin: 1rem;
+    display: flex;
+}
+
+.container-oficinas > :last-child {
+    width: 40%;
+}
+
+.container-oficinas > main > div > :last-child {
+    display: flex;
+    gap: 1rem;
+}
+
+.mb-3-oficinas {
+    box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.2);
+    border: none;
+    padding: 1em;
+    background-color: white;
+    border-radius: 0;
+}
+
+.label-oficinas {
+    color: black;
+}
+
+.select-oficinas {
+    width: 100%;
+    height: 60%;
+    border: none;
+    border-bottom: 2px solid #E4B523;
+}
+
+.container-oficinas > :last-child {
     padding: 4rem;
 }

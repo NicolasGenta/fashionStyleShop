@@ -32,6 +32,12 @@
     width: 20%;
 }
 
+.filters span, .filters label {
+    color: black;
+    font-size: 14px;
+    padding: 0;
+  }
+
 .filters span {
     color: black;
     font-size: 14px;
@@ -39,9 +45,10 @@
 }
 
 .filters label {
-    font-size: 14px;
+    font-size: 90%;
     margin-bottom: 1rem;
     width: 100%;
+    
 }
 
 .filters > div > select {
@@ -54,4 +61,28 @@
 select:focus-visible{
     outline: none;
     border-bottom: 2px solid #E4B523;
+}
+
+@media only screen and (max-width: 768px) {
+    .filters {
+      padding: 1rem; /* Reducir el relleno en pantallas más pequeñas */
+      margin: 0.5rem; /* Reducir el margen en pantallas más pequeñas */
+    }
+  
+    /* Ajustar el ancho del input range en pantallas más pequeñas */
+    .filters > div > input[type="range"] {
+      width: 100%;
+    }
+  
+    /* Ajustar el ancho de los selectores en pantallas más pequeñas */
+    .filters > div > select {
+      width: 100%;
+    }
+
+    .filters label {
+        font-size: 70%;
+      
+        
+    }
+ 
 }

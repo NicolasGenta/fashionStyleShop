@@ -66,12 +66,15 @@ export function Cart() {
                                         {...product}
                                     />
                                 ))}
-                        </ul>
-                        <div>
+                        <div className=''>
                             {totalPriceCart === 0 ? '' : `Total: $ ${totalPriceCart}`}
                         </div>
+                        <div className="cart-actions">
                         <button onClick={() => clearCart()} style={{ backgroundColor: 'black' }}> Borrar carrito</button>
                         <button onClick={() => alert('Ha confirmado su compra')} style={{ backgroundColor: 'black' }}> Comprar</button>
+                    
+                        </div>
+                        </ul>
                     </>
                 }
 
