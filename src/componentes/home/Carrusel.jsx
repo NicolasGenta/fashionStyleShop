@@ -18,7 +18,7 @@ function Carrusel() {
           />
         <Carousel.Caption>
           <h2>Tu estilo, a solo un clic de distancia</h2>
-          <button>COMPRA AHORA</button>
+        
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -31,7 +31,7 @@ function Carrusel() {
         />
         <Carousel.Caption>
           <h2>La moda llegó a tu puerta, ¿estás listo para recibirla?</h2>
-          <button>COMPRA AHORA</button>
+         
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -44,7 +44,7 @@ function Carrusel() {
         />
         <Carousel.Caption>
           <h2>Viste bien, siéntete bien, compra en línea con nosotros.</h2>
-          <button>COMPRA AHORA</button>
+        
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>

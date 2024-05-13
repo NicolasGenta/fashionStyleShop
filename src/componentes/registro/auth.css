@@ -10,7 +10,7 @@
 }
 
 .form-container >:first-child{
-    width: 35%;
+    width: 65%;
     background-color: white;
     height: 90%;
     align-self: center;
@@ -114,3 +114,8 @@ label {
     width: 100%;
 }
 
+.error-message{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}

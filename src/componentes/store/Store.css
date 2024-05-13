@@ -1,13 +1,14 @@
 .store-container > :last-child {
     display: flex;
     flex-wrap: nowrap;
+    justify-content: center;
 }
 
 .store-container > :last-child > :first-child {
     width: 25%;
 }
 .store-container > :last-child > :last-child {
-    width: 80%;
+    width: 50%;
 }
 .products >ul > li > section {
     margin-top: 0.5rem;
@@ -45,12 +46,13 @@ video {
 }
 
 .position-absolute :first-child {
-    font-size: 6em;
+    font-size: 3em;
     display: flex;
     padding: 0.3em 0.5em;
     flex-wrap: wrap;
     font-weight: 900;
     text-align: center;
+
 }
 
 span {
@@ -59,3 +61,32 @@ span {
     text-align: center;
     color: white;
 }
+
+.position-absolute p {
+    font-size: 3em;
+    font-weight: 900;
+    text-align: center;
+  }
+  
+  .position-absolute span {
+    font-size: 1.5em; /* Tamaño de fuente más pequeño para el texto secundario */
+    padding: 0.5em 0; /* Aumentar el espacio entre los elementos */
+    text-align: center;
+  }
+  
+
+  @media screen and (max-width: 768px) {
+    .position-absolute {
+      height: auto; /* Altura automática para adaptarse al contenido */
+      padding: 1em; /* Reducir el padding para dispositivos más pequeños */
+      top: 3em; /* Ajustar la posición hacia arriba */
+    }
+  
+    .position-absolute p {
+      font-size: 2em; /* Reducir el tamaño de fuente del título en dispositivos más pequeños */
+    }
+  
+    .position-absolute span {
+      font-size: 1em; /* Reducir el tamaño de fuente del texto secundario */
+    }
+      }

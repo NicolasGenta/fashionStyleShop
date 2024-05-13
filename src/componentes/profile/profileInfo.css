@@ -32,3 +32,10 @@
 .chip-container {
     background-color: #c5ac61;
 }
+
+@media only screen and (max-width: 768px) {
+    .info-profile {
+        width: 60%; /* Cambiar el ancho para adaptarse mejor a pantallas más pequeñas */
+        padding: 2rem; /* Cambiar el relleno para un aspecto más compacto */
+    }
+}

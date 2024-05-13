@@ -17,12 +17,17 @@ a:hover {
     cursor: pointer;
 }
 button {
-    background-color: #445957;
-    color: white;
+    color: aquamarine;
+    background-color: darkslategrey;
     padding: 0.5em 1em;
-    border: none;
-    border-radius: 10px;
+    border: 2px solid rgb(150, 150, 150);
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    margin-top:5px ;
 }
+
+
 .products >ul > li > button {
     border-radius: 0;
 }
@@ -62,3 +67,4 @@ button {
 ul {
     padding-left: 0 !important;
 }
+
