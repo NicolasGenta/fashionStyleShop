@@ -6,7 +6,6 @@ export const Card = ({ product }) => {
     const checkProductInCart = product => {
         return cart.some(item => item.codigo_producto === product.codigo_producto)
     }
-    console.log(product);
 
     const isProductInCart = checkProductInCart(product);
     return (

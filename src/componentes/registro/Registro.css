@@ -47,3 +47,45 @@
     
 }
 
+.register-container {
+    /* Estilos para el contenedor del formulario */
+    border: 2px solid rgb(68, 68, 71);
+    border-radius: 5px;
+    padding: 5vw; /* Utilizando medidas relativas */
+    margin: 0 auto; /* Centrando el elemento */
+    max-width: 600px; /* Estableciendo un ancho máximo */
+}
+
+.container-select {
+    /* Estilos para el contenedor de selección de tipo */
+    display: flex;
+    gap: 10px;
+}
+
+.register-input {
+    /* Estilos para los campos de entrada */
+    width: 100%; /* Ocupar todo el ancho disponible */
+    margin-bottom: 10px; /* Espacio entre los campos */
+}
+
+button[type="submit"] {
+    /* Estilos para el botón de registro */
+    width: 100%; /* Ocupar todo el ancho disponible */
+    background-color: darkslategrey;
+    color: aquamarine;
+    border: 2px solid rgb(150, 150, 150);
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: black;
+}
+
+/* Media query para ajustar el diseño en pantallas más pequeñas */
+@media screen and (max-width: 768px) {
+    .register-container {
+        padding: 3vw; /* Reduciendo el padding en pantallas más pequeñas */
+    }
+}

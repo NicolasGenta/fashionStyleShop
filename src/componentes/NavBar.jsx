@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import './header.css';
 import '../index.css';
 import Container from 'react-bootstrap/Container';
@@ -6,55 +7,72 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Outlet, Link, useNavigate } from 'react-router-dom';
 import { useUser } from '../hooks/useUser';
 
-export const NavBar= ()=> {
+export const NavBar = () => {
+  const { user, logout } = useUser();
+  const navigate = useNavigate();
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const {user, logout} = useUser();
+  useEffect(() => {
+    function handleResize() {
+      setIsSmallScreen(window.innerWidth < 768);
+    }
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
-  const navigate = useNavigate()
-  console.log(user);
+  const onLogout = () => {
+    logout();
+    navigate("/login", { replace: true });
+  };
 
-  const onLogout = ()=>{
-    logout()
-    navigate("/login", {
-      replace: true,
-    })
-  }
-
-  const openCloseMenu = ()=>{
-    const menuContainer = document.getElementById('menu-toggle');
-    if(menuContainer.classList.contains("hidden")) menuContainer.classList.remove('hidden')
-    else menuContainer.classList.add('hidden')
-  }
-  
   return (
     <>
       <Navbar data-bs-theme="dark" className="custom-navbar">
         <Container>
           <Link className="l0" to="/">
-            <img className='icon'
-            src='./src/assets/images/logo-left.svg'></img>
+            <img className='icon' src='./src/assets/images/logo-left.svg' alt="Logo" />
           </Link>
-          <Nav className="ml-auto">
-            <Link className="nav-button" to="/store">Tienda</Link>
-            <Link className="nav-button" to="/contacto">Contacto</Link>
-            {user?.logged == true
-            ? <div>
-                <span>{"Bienvenid@, "+ user?.firstName + "!"}</span>
-                <img onClick={openCloseMenu} src='./src/assets/icons/menu-toggle.png' style={{width: '1.5rem'}}/>
-                <div id="menu-toggle" className='menu-toggle hidden'>
+          <Nav className={`ml-auto ${isOpen && "open"}`}>
+
+            <div className="nav-item">
+              <Link className="nav-button" to="/store">Tienda</Link>
+            </div>
+
+            <div className="nav-item">
+              <Link className="nav-button" to="/contacto">Contacto</Link>
+            </div>
+            <div className="nav-item">
+              <Link className="nav-button" to="/events">Próximos eventos</Link>
+            </div>
+            <div className="nav-item">
+              {user?.logged === true ? (
+                <div>
+                  <span>{"Bienvenid@, " + user?.firstName + "!"}</span>
+
                   <Link className='nav-button' to={user.profileRoute}>Perfil</Link>
                   <a onClick={onLogout}>Cerrar sesión</a>
                 </div>
-              </div>
-              : <Link className="nav-button" to="/login">Iniciar sesión</Link>
-            }
+
+              ) : (
+                <div className="nav-item">
+                  <Link className="nav-button" to="/login">Iniciar sesión</Link>
+                </div>
+              )}
+            </div>
           </Nav>
         </Container>
+        <div className={`nav_toggle ${isOpen && "open"}`} onClick={() => setIsOpen(!isOpen)}>
+          <span></span>
+          <span></span>
+          <span></span>
+
+        </div>
       </Navbar>
-      <Outlet/>
+      <Outlet />
     </>
   );
 }
-
 
 export default NavBar;

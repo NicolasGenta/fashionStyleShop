@@ -6,11 +6,38 @@ import { METHODS, RESOURCES } from '../../util/dictionary';
 import { Pedidos } from './Pedidos';
 
 export const EmprendedoresManager = () => {
-    const { emprendimientos } = useData();
+
+    //👇Status variables
+    const [emprendimientos, setEmprendimientos] = useState([]);
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedEmprendimiento, setSelectedEmprendimiento] = useState(null);
     const [selectedEstado, setSelectedEstado] = useState(selectedEmprendimiento?.estado);
+    
+    //👇UseEffect
+    useEffect(()=> {
+        const token = sessionStorage.getItem('jwt')
+        async function getEmprendimientos() {
+            const response = await fetch('http://localhost:3000/emprendimiento', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            });
 
+            if(!response.ok) {
+                throw new Error('Network response was not ok')
+            }
+            return response.json()
+        }
+
+        
+        getEmprendimientos()
+        .then(emprendimientos => setEmprendimientos(emprendimientos))
+        .catch(error => console.error('Error fetching data:', error));
+    },[]);
+
+    //👇Handlers
     const handleEstadoChange = (e) => {
         setSelectedEstado(e.target.value);
     };
@@ -30,6 +57,8 @@ export const EmprendedoresManager = () => {
         setModalVisible(false);
     };
 
+    
+    //Send Data
     const sendUpdate = (e)=>{
         e.preventDefault();
         const updatedEmprendimiento = {

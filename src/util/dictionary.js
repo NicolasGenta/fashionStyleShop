@@ -17,7 +17,7 @@ export const RESOURCES = Object.freeze({
         PRODUCTOS: 'productos/',
         USUARIOS: {
             BASE: 'user/',
-            LOGIN: 'user/login',
+            LOGIN: 'auth/login',
             REGISTER: 'user/register'
         },
         EMPRENDIMIENTOS: 'emprendimiento',

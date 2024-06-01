@@ -9,6 +9,7 @@
     width: 400px;
     z-index: 8;
     box-shadow: 2px 2px 8px 1px rgba(0, 0, 0, 0.2);
+  
   }
 
   /* Estilado condicional: si no hay items en el carrito */
@@ -38,7 +39,7 @@
   .cart ul {
     margin-top: 8vh;
     list-style: none;
-    height: 70%;
+    height: 90%;
     overflow-y: scroll;
   }
   
@@ -98,19 +99,21 @@
     align-items: center;
     cursor: pointer;
     display: flex;
-    height: 32px;
+    height: 48px;
     justify-content: center;
-    padding: 4px;
+    padding: 8px;
     position: absolute;
     right: 39px;
     top: 12px;
     transition: all .3s ease;
-    width: 32px;
+    width: 48px;
     z-index: 9999;
+   
   }
 
   .cart-button :first-child{
-    width: 3.5vw;
+    width: 60px;
+    margin-bottom: 50%;
   }
 
   .cart-button > :last-child {
@@ -137,18 +140,14 @@
   }
 
 
-  .cart > button{
-    border: none;
-    padding: 1em;
-    margin: 0em 2em 4em 0em;
-    box-shadow: 2px 2px 8px 1px rgba(0, 0, 0, 0.2);
-  }
 
   .cart > ul> button:hover{
     cursor: pointer;
-    scale: 1.1;
+    transform : scale( 1.1);
   }
   .cart span {
     color: black;
   }
   
+
+
