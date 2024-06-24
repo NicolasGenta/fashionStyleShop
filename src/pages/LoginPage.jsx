@@ -53,11 +53,9 @@ export const LoginPage = () => {
                     lastName: data.userData.last_name,
                     email: data.userData.email,
                     rol_name: data.userData.role_name,
-                    emprendimiento_id: data.userData.emprendimiento_id,
                     persona_id: data.userData.persona_id,
-                    razon_social: data.userData.razon_social,
-                    nombre_rubro: data.userData.nombre_rubro,
                     profileRoute: setRoute(data.userData.role_name),
+                    token: data.token,
                     logged: true,
                 }));
                 navigate('/', {

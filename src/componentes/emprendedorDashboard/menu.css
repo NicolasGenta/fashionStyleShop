@@ -1,0 +1,57 @@
+.w-5 {
+    width: 5%;
+    background-color: aqua;
+}
+
+.w-10 {
+    width: 10%;
+    background-color: aqua;
+}
+
+.flex {
+    display: flex;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.wrap {
+    flex-wrap: wrap;
+}
+
+.font-10 {
+    font-size: 10px;
+}
+
+.bg-primaryColor {
+    background-color: #344955;
+}
+
+.text-white {
+    color: white;
+}
+
+.shadow {
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.pt-1 {
+    padding: 1em !important;
+}
+
+.leaflet-container {
+    width: 100%;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.gap-2 {
+    gap: 4;
+}
+
+.justify-beetwen {
+    justify-content: space-between;
+}
