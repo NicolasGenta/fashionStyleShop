@@ -1,18 +1,27 @@
+import React from "react"
 import { Pedidos } from "../componentes/profile/Pedidos"
 import { ProductosPanel } from "../componentes/profile/ProductosPanel"
 import { ProfileInfo } from "../componentes/profile/ProfileInfo"
-import { useUser } from "../hooks/useUser";
+import { Menu } from "../componentes/emprendedorDashboard/menu"
 
 export const EmprendedorDashboard = ()=>{
-    const{user} = useUser();
+
+    const [ menuOption, setMenuOption ] = React.useState('profile');
+
+    const handlerMenu = (option) => {
+        setMenuOption(option)
+    }
+
     return (
-        <section style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-evenly'}}>
-            <ProfileInfo/> 
-            {user.emprendimiento_id!= null
-            ? <h1>hola</h1>
-            
-            :(<><ProductosPanel /><Pedidos /></>)
+        <section style={{display: 'flex', flexWrap: 'wrap'}}>
+            <Menu setOption={handlerMenu}></Menu>
+            {menuOption === 'profile'
+                ? <ProfileInfo/>
+                : menuOption === 'products'
+                    ? <ProductosPanel/>
+                    : <Pedidos/>
             }
+
         </section>
     )
 }

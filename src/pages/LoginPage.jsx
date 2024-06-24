@@ -1,16 +1,42 @@
-import { useNavigate, METHODS, RESOURCES, updateCreate, convertFormToObject, setRoute, useUser, useForm, useWindowSize, NavForm } from "../imports";
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react'; // Importa useState
+import '../componentes/registro/auth.css';
+import { METHODS, RESOURCES } from '../util/dictionary';
+import { updateCreate, convertFormToObject, setRoute } from '../util/functions';
+import { useUser } from '../hooks/useUser';
+import { useForm } from '../hooks/useForm';
+import { useWindowSize } from '../hooks/useWindowSize';
+import { NavForm } from '../componentes/registro/NavForm';
+import { useNotification } from '../hooks/useNotification';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import IconButton from '@mui/material/IconButton';
+import Input from '@mui/material/Input';
+import FilledInput from '@mui/material/FilledInput';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import FormHelperText from '@mui/material/FormHelperText';
+import FormControl from '@mui/material/FormControl';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import Tooltip from '@mui/material/Tooltip';
+
 
 export const LoginPage = () => {
 
     const { windowSize } = useWindowSize();
     const navigate = useNavigate();
     const { email, password, onInputChange, onResetForm } = useForm({
-        email: '',
+        username: '',
         password: ''
     });
 
     const { user, setUser } = useUser();
+    const { setNotification } = useNotification() || {};
 
+    const [errorMessage, setErrorMessage] = useState('');
+    const [viewPassword, setViewPassword] = useState(false);
 
     const onLogin = (e) => {
         e.preventDefault();
@@ -19,18 +45,17 @@ export const LoginPage = () => {
         const data = convertFormToObject(formData);
         updateCreate(RESOURCES.ENDPOINTS.USUARIOS.LOGIN, data, METHODS.POST)
             .then((data) => {
+                sessionStorage.setItem('jwt', data.token)
                 setUser((prevUser) => ({
                     ...prevUser,
-                    user_id: data.usuario_id,
-                    firstName: data.first_name,
-                    lastName: data.last_name,
-                    email: data.email,
-                    rol_name: data.role_name,
-                    emprendimiento_id: data.emprendimiento_id,
-                    persona_id: data.persona_id,
-                    razon_social: data.razon_social,
-                    nombre_rubro: data.nombre_rubro,
-                    profileRoute: setRoute(data.role_name),
+                    user_id: data.userData.usuario_id,
+                    firstName: data.userData.first_name,
+                    lastName: data.userData.last_name,
+                    email: data.userData.email,
+                    rol_name: data.userData.role_name,
+                    persona_id: data.userData.persona_id,
+                    profileRoute: setRoute(data.userData.role_name),
+                    token: data.token,
                     logged: true,
                 }));
                 navigate('/', {
@@ -43,9 +68,23 @@ export const LoginPage = () => {
                 })
                 onResetForm();
             })
-            .catch(
-                console.log("error")
-            )
+            .catch((error) => {
+                setErrorMessage('usuario o contraseña incorrecto');
+                setNotification(true);
+            })
+    }
+
+    const handlePasswordChange = (e) => {
+        onInputChange(e);
+        setErrorMessage('');
+    };
+
+    const handleViewPassword = () => {
+        if (viewPassword) {
+            setViewPassword(false)
+        } else {
+            setViewPassword(true)
+        }
     }
 
     return (
@@ -53,27 +92,34 @@ export const LoginPage = () => {
             <section className='register-container'>
                 <h2>Iniciar Sesión</h2>
                 <form id="form-login" className='form-auth' onSubmit={onLogin}>
-                    <main>
-                        <label htmlFor="email">Email</label>
-                        <input id='email'
-                            name="email"
-                            type="email"
-                            value={email}
-                            onChange={onInputChange} required></input>
-                    </main>
-                    <main>
-                        <label htmlFor="password">Contraseña</label>
-                        <input id='password'
+                    <FormControl>
+                        <TextField id="email" name='username' type='email' value={email} onChange={onInputChange} label="Email" variant="standard" />
+                    </FormControl>
+                    <FormControl sx={{ width: '100%' }} variant="standard">
+                        <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+                        <Input
+                            id="password"
                             name='password'
-                            type="password"
                             value={password}
-                            onChange={onInputChange}
-                            required></input>
-                    </main>
+                            onChange={handlePasswordChange}
+                            type={viewPassword ? 'text' : 'password'}
+                            endAdornment={
+                                <InputAdornment position="end">
+                                    <Tooltip title={viewPassword ? 'Ocultar' : 'Ver'}>
+                                    <IconButton
+                                        aria-label="toggle password visibility"
+                                        onClick={handleViewPassword}
+                                    >
+                                        {viewPassword ? <VisibilityOff /> : <Visibility />}
+                                    </IconButton>
+                                    </Tooltip>
+                                </InputAdornment>
+                            }
+                        />
+                    </FormControl>
                     <button type="submit">Iniciar Sesión</button>
-                <button className='btr' onClick={() => navigate('/registro')}>Registrarse</button>
                 </form>
-                <NavForm backgroundColor="#445957" color="white" />
+
             </section>
         </main>
     )

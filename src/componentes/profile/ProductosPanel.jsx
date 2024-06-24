@@ -36,14 +36,24 @@ export const ProductosPanel = ()=>{
         setModalVisible(false);
     };
     useEffect(() => {
-        getData(RESOURCES.ENDPOINTS.EMPRENDIMIENTO_USUARIOS + queryUrl)
-            .then(data => {
-                console.log(data);
-                setProductos(data)
+
+        function getProducts(id, token) {
+            fetch(`http://localhost:3000/productos/byEmprendimiento/${id}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept' : 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
             })
+            .then(res => res.json())
+            .then(data => setProductos(data))
             .catch(error => {
                 console.log("Se ha producido un error", error);
             });
+        }
+
+        getProducts(5, user.token)
     }, []);
 
     const sendUpdate = (e) =>{
@@ -57,8 +67,6 @@ export const ProductosPanel = ()=>{
             category: productSelected ? productSelected.Categoria : categoria,
             emprendimiento: user.emprendimiento_id
         }
-        console.log(JSON.stringify(product))
-        console.log(RESOURCES.ENDPOINTS.PRODUCTOS + (productSelected ? productSelected.ID : ''), productSelected ? METHODS.PUT : METHODS.POST);
         updateCreate(RESOURCES.ENDPOINTS.PRODUCTOS +(productSelected ? productSelected.ID : ''),product,productSelected ? METHODS.PUT : METHODS.POST)
         .then( 
             window.location.reload()
@@ -78,7 +86,7 @@ export const ProductosPanel = ()=>{
 
 
     return(
-        <section className='box-shadow c-70'>
+        <section className='box-shadow w-90 p-2 m-5 flex wrap'>
             <div>
                 <h2>Gestionar productos</h2>
                 <button onClick={() => handleEditClick()}>Nuevo</button>
