@@ -9,20 +9,21 @@ import { WindowsSizeProvider } from './context/windowsSize.jsx'
 import { AppProfileProvider } from './context/appProfile.jsx'
 import { UserProvider } from './context/userContex.jsx'
 import { BrowserRouter } from 'react-router-dom';
+
 ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
-        <WindowsSizeProvider>
-            <DataProvider>
-                <UserProvider>
-                    <AppProfileProvider>
-                        <CartProvider>
-                            <FiltersProvider>
-                                <App />
-                            </FiltersProvider>
-                        </CartProvider>
-                    </AppProfileProvider>
-                </UserProvider>
-            </DataProvider>
-        </WindowsSizeProvider>
+            <WindowsSizeProvider>
+                <DataProvider>
+                    <UserProvider>
+                        <AppProfileProvider>
+                            <CartProvider>
+                                <FiltersProvider>
+                                    <App />
+                                </FiltersProvider>
+                            </CartProvider>
+                        </AppProfileProvider>
+                    </UserProvider>
+                </DataProvider>
+            </WindowsSizeProvider>
     </BrowserRouter>
 )
