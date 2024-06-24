@@ -24,25 +24,26 @@ export const LoginPage = ()=>{
     
     const [errorMessage, setErrorMessage] = useState('');
 
-    const onLogin = (e) =>{
+    const onLogin = (e) => {
         e.preventDefault();
         const form = document.getElementById('form-login');
         const formData = new FormData(form);
         const data = convertFormToObject(formData);
         updateCreate(RESOURCES.ENDPOINTS.USUARIOS.LOGIN, data, METHODS.POST)
         .then((data)=> {
+            sessionStorage.setItem('jwt', data.token)
             setUser((prevUser) =>({
                 ... prevUser,
-                user_id: data.user.usuario_id,
-                firstName: data.user.first_name,
-                lastName: data.user.last_name,
-                email: data.user.email,
-                rol_name: data.user.role_name,
-                emprendimiento_id: data.user.emprendimiento_id,
-                persona_id: data.user.persona_id,
-                razon_social: data.user.razon_social,
-                nombre_rubro: data.user.nombre_rubro,
-                profileRoute: setRoute(data.user.role_name),
+                user_id: data.userData.usuario_id,
+                firstName: data.userData.first_name,
+                lastName: data.userData.last_name,
+                email: data.userData.email,
+                rol_name: data.userData.role_name,
+                emprendimiento_id: data.userData.emprendimiento_id,
+                persona_id: data.userData.persona_id,
+                razon_social: data.userData.razon_social,
+                nombre_rubro: data.userData.nombre_rubro,
+                profileRoute: setRoute(data.userData.role_name),
                 logged: true,
             }));
             navigate('/',{
@@ -60,7 +61,6 @@ export const LoginPage = ()=>{
             setNotification(true);
         })
     }
-    
     const handlePasswordChange = (e) => {
         onInputChange(e);
         setErrorMessage('');
@@ -90,8 +90,8 @@ export const LoginPage = ()=>{
                 {errorMessage && <p className="error-message">{errorMessage}</p>}
                     </main>
                     <button type="submit">Iniciar Sesión</button>
+                <button className='btr' onClick={() => navigate('/registro')}>Registrarse</button>
                 </form>
-             
             </section>
         </main>
     )

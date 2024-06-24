@@ -36,7 +36,7 @@
 }
 .register-container h2 {
     width: 100%;
-    padding: 0.7rem;
+    padding: 0.1rem;
     text-align: center;
     margin: 0.9rem 0.9rem 0.3rem 0.9rem;
 }
@@ -46,18 +46,18 @@
     height: auto;
     display: grid;
     flex-wrap: wrap;
-    padding: 1rem 3rem;
+    padding: 0rem 1rem;
     overflow-y: hidden;
 }
 button[type="submit"] {
     justify-self: center;
-    margin-top: 0.2rem;
+    margin-top: 0.1rem;
     justify-self: center !important;
-    height: 100%;
+   
 }
 .form-auth > button[type="submit"] {
     height: 60%;
-    margin-top: 1rem;
+    margin-top: 0.2rem;
 }
 
 .form-auth > main {
@@ -118,4 +118,7 @@ label {
     display: flex;
     justify-content: center;
     padding: 10px;
+}
+.btr{
+    padding: 5px;
 }

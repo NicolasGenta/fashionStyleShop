@@ -56,11 +56,11 @@ button {
 }
 
 .carousel-caption h2 {
-    font-size: 40px;
+    font-size: 30px;
     font-weight: bold;
+    color:white;
+  
+    
 }
 
-ul {
-    padding-left: 0 !important;
-}
 

@@ -3,44 +3,50 @@ import './Home.css'
 import { useWindowSize } from '../../hooks/useWindowSize';
 
 function Carrusel() {
-  const { windowSize } = useWindowSize();
+  const { width, height } = useWindowSize();
   
   return (
-    <div className='carruselContenedor' style={{height: windowSize.height}}>
+    <div className='carruselContenedor' style={{height: `${height}px` }}>
     <Carousel data-bs-theme="dark">
       <Carousel.Item>
+        <div className='custom-image-container'>   
         <img
           className="d-block w-100 custom-image"
-          src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&q=80&w=1374&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          src="https://media.diario7lagos.com.ar/p/f1187511d43b85659138e77a7f014517/adjuntos/321/imagenes/000/090/0000090754/1200x675/smart/feria-emprendedores-sma-1jpg.jpg"
           alt="First slide"
-          style={{height: windowSize.height}}
+        
           />
+          </div>
         <Carousel.Caption>
-          <h2>Tu estilo, a solo un clic de distancia</h2>
+          <h2 className='tit'>Bienvenido, conoce nuestros productos</h2>
         
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
+      <div className="custom-image-container">
         <img
           className="d-block w-100 custom-image"
-          src="https://images.unsplash.com/photo-1559563458-527698bf5295?auto=format&fit=crop&q=80&w=1470&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          src="https://d1ih8jugeo2m5m.cloudfront.net/2023/11/Ferias_De_Emprendimiento-1200x685.jpg"
           alt="Second slide"
-          style={{height: windowSize.height}}
+          
         />
+        </div>
         <Carousel.Caption>
-          <h2>La moda llegó a tu puerta, ¿estás listo para recibirla?</h2>
+          <h2 className='tit'>Permititelo, te lo mereces </h2>
          
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
+      <div className="custom-image-container">
         <img
           className="d-block w-100 custom-image"
-          src="https://images.unsplash.com/photo-1572705824045-3dd0c9a47945?auto=format&fit=crop&q=80&w=1468&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          src="https://revistatourgourmet.com/wp-content/uploads/2023/03/La_feria-2-scaled-1.jpg"
           alt="Third slide"
-          style={{height: windowSize.height}}
+          
         />
+        </div>
         <Carousel.Caption>
-          <h2>Viste bien, siéntete bien, compra en línea con nosotros.</h2>
+          <h2 className='tit'>Confianza, prestigio, diversidad,  compra en línea.</h2>
         
         </Carousel.Caption>
       </Carousel.Item>

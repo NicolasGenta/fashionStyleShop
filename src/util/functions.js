@@ -16,11 +16,13 @@ export async function getData(endpoint){
 
 // 👇 Función que realiza metodo post a la API para el envio de datos
 export const updateCreate = async (endpoint, data, method) =>{
+   const token = sessionStorage.getItem("jwt")
     try {
         const res = await fetch(RESOURCES.API_URL+endpoint, {
             method: method,
             headers: {
-                'content-type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization' : `Bearer ${token}`
             },
             body: JSON.stringify(data)
         })
@@ -28,6 +30,7 @@ export const updateCreate = async (endpoint, data, method) =>{
         const parsed = await res.json()
         return parsed;
     }catch(err) {
+        console.error(err)
         throw new Error(err)
     }
 }

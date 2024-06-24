@@ -1,8 +1,4 @@
-.store-container > :last-child {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: center;
-}
+
 
 .store-container > :last-child > :first-child {
     width: 25%;
@@ -35,14 +31,14 @@ video {
 }
 
 .position-absolute{
-    width: 100%;
-    height: 300px;
-    position: relative;
-    padding: 2em;
-    top: 6em;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  position: absolute;
+  bottom: 20%; /* Alinea al fondo del contenedor */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 1em; /* Ajusta el espacio desde el fondo */
+   
 }
 
 .position-absolute :first-child {
@@ -63,9 +59,10 @@ span {
 }
 
 .position-absolute p {
-    font-size: 3em;
-    font-weight: 900;
+    font-size: 1.5em;
     text-align: center;
+    color: white;
+    margin: 0; /* Elimina márgenes */
   }
   
   .position-absolute span {
@@ -77,9 +74,9 @@ span {
 
   @media screen and (max-width: 768px) {
     .position-absolute {
-      height: auto; /* Altura automática para adaptarse al contenido */
-      padding: 1em; /* Reducir el padding para dispositivos más pequeños */
-      top: 3em; /* Ajustar la posición hacia arriba */
+     
+      padding: 0.5em; /* Reducir el padding para dispositivos más pequeños */
+   
     }
   
     .position-absolute p {

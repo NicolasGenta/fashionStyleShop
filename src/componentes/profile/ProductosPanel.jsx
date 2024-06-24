@@ -54,7 +54,7 @@ export const ProductosPanel = ()=>{
             descripcion: descripcion ? descripcion : productSelected.Descripción,
             precio: precio ? Number(precio) : productSelected.Precio,
             img: url ? url : productSelected.Imagen,
-            category: categoria ? categoria : productSelected.Categoria,
+            category: productSelected ? productSelected.Categoria : categoria,
             emprendimiento: user.emprendimiento_id
         }
         console.log(JSON.stringify(product))
@@ -176,7 +176,7 @@ export const ProductosPanel = ()=>{
                         </div>
                         <div>
                             <label htmlFor='categoria'>Categoria</label>
-                            <select name='categoria' id='categoria' onChange={onInputChange} value={categoria ? categoria : productSelected?.Categoria}>
+                            <select name='categoria' id='categoria' onChange={onInputChange} value={productSelected ? productSelected.Categoria : categoria}>
                                 {categorias.map(categoria =>(<option value={categoria.nombre_categoria}>{categoria.nombre_categoria}</option>))}
                             </select>
                         </div>
