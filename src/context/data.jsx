@@ -8,10 +8,14 @@ export const DataProvider = ({ children }) => {
     const [datos, setDatos] = useState([]);
     const [emprendimientos, setEmprendimientos] = useState([]);
     const [categorias, setCategorias] = useState([]);
-    const [maxPrecio, setMaxPrecio] = useState()
+    const [maxPrecio, setMaxPrecio] = useState();
+    const [emprendimiento, setEmprendimiento] = useState([]);
+    const [rubros, setRubros] = useState([]);
+
     useEffect(() => {
         getData(RESOURCES.ENDPOINTS.PRODUCTOS)
             .then(data => {
+                console.log('productos context', data);
                 setDatos(data);
             })
             .catch(error => {
@@ -39,7 +43,11 @@ export const DataProvider = ({ children }) => {
             datos,
             emprendimientos,
             categorias,
-            maxPrecio
+            maxPrecio,
+            emprendimiento,
+            setEmprendimiento,
+            rubros,
+            setRubros
         }}>
             {children}
         </DataContext.Provider>

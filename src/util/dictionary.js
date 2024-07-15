@@ -5,25 +5,39 @@ export const APP_PROFILES = Object.freeze({
     ADMIN_PROFILE: "Administrador",
 });
 
-export const APP_MESSAGES = Object.freeze({
+export const APP_TEXTS = Object.freeze({
     FREE_DELIVERY: `ENVÍO GRATIS DESDE $30.000`,
     BUTTON_ADD_TO_CART: 'LO QUIERO',
-    BUTTON_REMOVE_TO_CART: 'QUITAR'
+    BUTTON_REMOVE_TO_CART: 'QUITAR',
+    COMPLETE_ADRESS: 'Por favor, complete la dirección a la que se le debe enviar el pedido',
+    CART : 'Mi carrito',
+    BUY_DATA: 'Datos de facturación',
+    BUTTON_BUY: 'Comprar',
+    WITHOUT_PRODUCTS: 'No hay artículos en su carrito. Por favor, añada productos para comprar',
+    BUTTON_DISCOVER_PRODUCTS: 'Descubre nuestros productos'
 });
 
+export const API_URL = "http://localhost:3000/"
+
 export const RESOURCES = Object.freeze({
-    API_URL: "http://localhost:3000/",
     ENDPOINTS: {
-        PRODUCTOS: 'productos/',
+        PRODUCTOS: API_URL + 'productos/',
         USUARIOS: {
             BASE: 'user/',
-            LOGIN: 'auth/login',
             REGISTER: 'user/register'
         },
-        EMPRENDIMIENTOS: 'emprendimiento',
-        CATEGORIAS: 'productos/categorias',
-        PRECIO_MAXIMO: 'productos/maxPrecio',
+        LOGIN: API_URL + 'auth/login',
+        IMAGE: API_URL + 'image?filename=',
+        PRODUCTOS_BY_EMPRENDIMIENTO: API_URL + 'productos/byEmprendimiento/',
+        EMPRENDIMIENTOS: API_URL + 'emprendimiento',
+        EMPRENDIMIENTO_BY_USER: API_URL + 'emprendimiento/byUser/',
+        RUBROS: API_URL + 'emprendimiento/rubros',
+        CATEGORIAS: API_URL + 'productos/categorias',
+        NEW_CATEGORIA : API_URL + 'emprendimiento/categorias',
+        PRECIO_MAXIMO: API_URL + 'productos/maxPrecio',
         EMPRENDIMIENTO_USUARIOS: 'emprendimiento/usuario',
+        UPDATE_EMPRENDIMIENTO: API_URL +'emprendimiento/updateData/',
+        UPDATE_USER: API_URL + 'user/',
         PEDIDOS: {
             PEDIDOS_BY_CLIENT : 'pedidos/',
             PEDIDOS_BY_EMPRENDIMIENTO: 'pedidos/emprendimientos/'

@@ -7,43 +7,66 @@ import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import StoreIcon from '@mui/icons-material/Store';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import { useWindowSize } from '../../hooks/useWindowSize';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import { useData } from '../../hooks/useData';
+import { useUser } from '../../hooks/useUser';
 
 
-export const Menu = ({setOption}) => {
-    const {windowSize} = useWindowSize()
+export const Menu = ({ setOption }) => {
+    const { windowSize } = useWindowSize();
+    const { emprendimiento } = useData();
+    const { user } = useUser()
 
     return (
-        <div className='w-5 bg-primaryColor shadow pt-1' style={{height: windowSize.height}}>
+        <div className='w-5 bg-primaryColor shadow pt-1' style={{ height: windowSize.height }}>
             <div className='flex justify-center wrap'>
                 <IconButton onClick={() => setOption('profile')}>
-                    <AccountCircleIcon sx={{color: 'white'}}/>
+                    <AccountCircleIcon sx={{ color: 'white' }} />
                 </IconButton>
                 <p className='font-10 text-white'>Perfil</p>
             </div>
-            <div className='flex justify-center wrap'>
-                <IconButton onClick={() => setOption('products')}>
-                    <InventoryIcon sx={{color: 'white'}}/>
-                </IconButton>
-                <p className='font-10 text-white'>Productos</p>
-            </div>
-            <div className='flex justify-center wrap'>
-                <IconButton onClick={() => setOption('pedidos')}>
-                    <StoreIcon sx={{color: 'white'}}/>
-                </IconButton>
-                <p className='font-10 text-white'>Pedidos</p>
-            </div>
+            {
+                user.rol_name === 'Emprendedor' || user.rol_name === 'Cliente'
+                    ? 
+                    <>
+                        <div className='flex justify-center wrap'>
+                            <IconButton onClick={() => setOption('pedidos')} disabled={emprendimiento ? false : true}>
+                                <StoreIcon sx={emprendimiento ? { color: 'white' } : { color: '#8c8c8c' }} />
+                            </IconButton>
+                            <p className='font-10 text-white'>Pedidos</p>
+                        </div>
+                        < div className='flex justify-center wrap'>
+                            <IconButton onClick={() => setOption('products')} disabled={emprendimiento ? false : true}>
+                                <InventoryIcon sx={emprendimiento ? { color: 'white' } : { color: '#8c8c8c' }} />
+                            </IconButton>
+                            <p className='font-10 text-white'>Productos</p>
+                        </div>
+                    </>
+                    :  user.rol_name === 'Administrador'
+                            ? <>
+                                <div className='flex justify-center wrap'>
+                                    <IconButton onClick={() => setOption('admin')}>
+                                        <AdminPanelSettingsIcon sx={{ color: 'white' }} />
+                                    </IconButton>
+                                    <p className='font-10 text-white'>Administrar</p>
+                                </div>
+                                <div className='flex justify-center wrap'>
+                                    <IconButton onClick={() => setOption('stadistics')}>
+                                        <BarChartIcon sx={{ color: 'white' }} />
+                                    </IconButton>
+                                    <p className='font-10 text-white'>Estadisticas</p>
+                                </div>
+                            </>
+                            : null
+
+            }
             <div className='flex justify-center wrap'>
                 <IconButton onClick={() => setOption('messages')}>
-                    <ChatBubbleIcon sx={{color: 'white'}}/>
+                    <ChatBubbleIcon sx={{ color: 'white' }} />
                 </IconButton>
                 <p className='font-10 text-white'>Mensajes</p>
             </div>
-            <div className='flex justify-center wrap'>
-                <IconButton onClick={() => setOption('stadistics')}>
-                    <BarChartIcon sx={{color: 'white'}}/>
-                </IconButton>
-                <p className='font-10 text-white'>Estadisticas</p>
-            </div>
-        </div>
+        </div >
     )
 }

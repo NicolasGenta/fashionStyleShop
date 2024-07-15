@@ -1,4 +1,4 @@
-table {
+/* table {
     background-color: white;
     margin-top: 1rem;
     padding: 5rem;
@@ -36,7 +36,7 @@ table > tbody > tr >:last-child {
 }
 table > tbody > tr >:last-child :hover{
     cursor: pointer;
-}
+} */
 
 .modal-container {
     width: 40%;

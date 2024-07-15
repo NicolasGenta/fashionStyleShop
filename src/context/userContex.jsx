@@ -1,10 +1,12 @@
 import { createContext, useEffect, useState } from "react";
 import { APP_PROFILES } from "../util/dictionary";
+import { useData } from "../hooks/useData";
 
 // 👇 Creo el contexto del usuario
 export const userContext = createContext();
 
 export const UserProvider = ({children})=>{
+    const {emprendimiento, setEmprendimiento} = useData();
     const storedUser = JSON.parse(localStorage.getItem("user")) || {
         user_id: null,
         firstName: null,
@@ -37,6 +39,7 @@ export const UserProvider = ({children})=>{
             profileRoute: "/",
             logged: false,
         });
+        setEmprendimiento(null)
     };
     
     useEffect(()=>{

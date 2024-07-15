@@ -49,16 +49,16 @@
     padding: 1rem 3rem;
     overflow-y: hidden;
 }
-button[type="submit"] {
+/* button[type="submit"] {
     justify-self: center;
     margin-top: 0.2rem;
     justify-self: center !important;
     height: 100%;
-}
-.form-auth > button[type="submit"] {
+} */
+/* .form-auth > button[type="submit"] {
     height: 60%;
     margin-top: 1rem;
-}
+} */
 
 .form-auth > main {
     margin-bottom: 0.5rem ;

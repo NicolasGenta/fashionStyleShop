@@ -1,5 +1,5 @@
 import { useCart } from "../../hooks/useCart";
-import { APP_MESSAGES } from "../../util/dictionary";
+import { APP_TEXTS, RESOURCES } from "../../util/dictionary";
 
 export const Card = ({ product }) => {
     const { addToCart, cart, removeFromCart } = useCart();
@@ -11,7 +11,7 @@ export const Card = ({ product }) => {
     return (
         <li key={product.id}>
             <img
-                src={product.img}
+                src={ RESOURCES.ENDPOINTS.IMAGE + product.img}
                 alt={product.nombre}
             />
             <button className="button-buy " style={{ backgroundColor: isProductInCart ? '#824133' : '#000000' }} onClick={() => isProductInCart
@@ -19,8 +19,8 @@ export const Card = ({ product }) => {
                 : addToCart(product)}>
                 {
                     isProductInCart
-                        ? APP_MESSAGES.BUTTON_REMOVE_TO_CART
-                        : APP_MESSAGES.BUTTON_ADD_TO_CART}</button>
+                        ? APP_TEXTS.BUTTON_REMOVE_TO_CART
+                        : APP_TEXTS.BUTTON_ADD_TO_CART}</button>
             <section>
                 <div>
                     <strong className='chip-container'>{product.emprendimiento.razon_social}</strong>

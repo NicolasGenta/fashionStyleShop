@@ -9,7 +9,13 @@ export function FiltersProvider ({ children }){
     const [ filters, setFilters] = useState({
         category: CATEGORIES.ALL_CATEGORY,
         minPrice: 0,
-        emprendimiento: CATEGORIES.ALL_CATEGORY
+        emprendimiento: CATEGORIES.ALL_CATEGORY,
+        nombre_producto : '',
+        descripcion: '',
+        razon_social: '',
+        responsable: '',
+        rubro: 'All',
+        estado: 'All'
     })
 
     return(

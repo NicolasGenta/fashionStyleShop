@@ -6,6 +6,7 @@ export const CartProvider = ({children})=>{
     const [cart, setCart] = useState([]);
     const [cartCount, setCartCount] = useState(0);
     const [totalPriceCart, setTotalPriceCart] = useState(0);
+    const [openCart, setOpenCart] = useState(false)
 
     const addToCart= (product)=>{
 
@@ -57,6 +58,11 @@ export const CartProvider = ({children})=>{
         }
     };
 
+    const handleOpen = () => {
+        if(openCart) setOpenCart(false);
+        else setOpenCart(true)
+    }
+
     return(
         <CartContext.Provider value={{
             cart,
@@ -67,6 +73,8 @@ export const CartProvider = ({children})=>{
             cartCount,
             setCartCount,
             totalPriceCart,
+            openCart,
+            handleOpen
         }}>
             {children}
         </CartContext.Provider>

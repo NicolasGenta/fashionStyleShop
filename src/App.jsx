@@ -36,7 +36,7 @@ function App() {
     <>
     <Cart></Cart>
     <AppRoutes/>
-    <Footer />
+    {/* <Footer /> */}
     </>
   );
 }

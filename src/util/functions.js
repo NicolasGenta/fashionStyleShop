@@ -1,9 +1,9 @@
 import { APP_PROFILES, RESOURCES } from "./dictionary";
 
 // 👇 Función que envía la petición GET al endpoint a la API
-export async function getData(endpoint){
+export async function getData(url){
     try{
-        const res = await fetch(RESOURCES.API_URL+endpoint);
+        const res = await fetch(url);
         if (!res.ok) {
             throw new Error('Error al procesar los datos')
         }
@@ -15,17 +15,17 @@ export async function getData(endpoint){
 };
 
 // 👇 Función que realiza metodo post a la API para el envio de datos
-export const updateCreate = async (endpoint, data, method) =>{
+export const updateCreate = async (url, data, method) =>{
     const token = sessionStorage.getItem('jwt');
     console.log(token);
     try {
-        const res = await fetch(RESOURCES.API_URL+endpoint, {
+        const res = await fetch(url, {
             method: method,
             headers: {
-                'content-type': 'application/json',
+                // 'content-type': 'application/json',
                 'Authorization' : `Bearer ${token}`
             },
-            body: JSON.stringify(data)
+            body: data
         })
         if(!res.ok) throw new Error(console.log(res.message));
         const parsed = await res.json()
@@ -36,11 +36,13 @@ export const updateCreate = async (endpoint, data, method) =>{
 }
 
 export const deleteResource = async (endpoint, method, id)=>{
+    const token = sessionStorage.getItem('jwt');
     try {
-        const res = await fetch(RESOURCES.API_URL+endpoint+id, {
+        const res = await fetch(endpoint+id, {
             method: method,
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                'Authorization' : `Bearer ${token}`
             },
         })
         if(!res.ok) throw new Error(console.log(res.message));

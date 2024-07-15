@@ -8,15 +8,24 @@ export function useFilters(){
     function filterProducts(products){
         let productosFiltrados;
         productosFiltrados = products.filter(product =>{
-            if(product.emprendimiento.estado)
+            // if(product.emprendimiento.estado)
             return (
             product.precio >= filters.minPrice && 
             (
                 filters.category === CATEGORIES.ALL_CATEGORY ||
-                product.category.nombre_categoria === filters.category
-            ) && (
+                product.categoria === filters.category
+            ) && 
+            (
                 filters.emprendimiento === CATEGORIES.ALL_CATEGORY ||
                 product.emprendimiento.razon_social === filters.emprendimiento
+            ) && 
+            (
+                filters.nombre_producto === '' ||
+                product.nombre.toLowerCase().includes(filters.nombre_producto.toLowerCase())
+            ) && 
+            (
+                filters.descripcion === '' ||
+                product.descripcion.toLowerCase().includes(filters.descripcion.toLowerCase())
             )
             )
         })

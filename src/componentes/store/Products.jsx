@@ -6,7 +6,7 @@ import { Card } from "./Card";
 export function Products ({productos}) {
 
     return (
-        <section id="store" className="store-container">
+        <section className="store-container">
             <h2> Compra tus productos favoritos!</h2>
             <section>
                 <main>

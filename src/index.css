@@ -1,22 +1,94 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 :root {
     --principal-color: #445957;
     font-size: 15px;
 }
-*{
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --chart-1: 12 76% 61%;
+        --chart-2: 173 58% 39%;
+        --chart-3: 197 37% 24%;
+        --chart-4: 43 74% 66%;
+        --chart-5: 27 87% 67%;
+    }
+
+    .dark {
+        --chart-1: 220 70% 50%;
+        --chart-2: 160 60% 45%;
+        --chart-3: 30 80% 55%;
+        --chart-4: 280 65% 60%;
+        --chart-5: 340 75% 55%;
+    }
+}
+
+
+* {
     font-family: 'Poppins', sans-serif;
 }
+
+.flex {
+    display: flex;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.font-bold {
+    font-weight: bold;
+}
+
+.overflow-y-hidden {
+    overflow-y: hidden;
+}
+
+.content-center {
+    align-content: center;
+}
+
+.mb-2 {
+    margin-bottom: 2em;
+}
+
+.mt-1 {
+    margin-top: 1em !important;
+}
+
+.w-50 {
+    width: 50%;
+}
+
 .box-shadow {
     box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.2);
 }
+
+/*Estilos de diseño*/
+
+.message-container {
+    background-color: #c8dee0;
+    opacity: 0.7;
+    padding: 1rem;
+    border: 1px dashed #62a0a8;
+}
+
+
 a:hover {
     color: #F3E0D4 !important;
     cursor: pointer;
 }
-button {
+
+/* button {
     color: aquamarine;
     background-color: darkslategrey;
     padding: 0.5em 1em;
@@ -25,16 +97,17 @@ button {
     padding: 10px;
     width: 100%;
     margin-top:5px ;
-}
+} */
 
 
-.products >ul > li > button {
+.products>ul>li>button {
     border-radius: 0;
 }
 
 *::-webkit-scrollbar {
     width: 0px;
 }
+
 *::-webkit-scrollbar-track {
     background: rgb(176, 176, 177);
 }
@@ -50,11 +123,11 @@ button {
     box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
-.products li:hover{
+.products li:hover {
     transform: scale(1.05);
 }
 
-.carousel-caption{
+.carousel-caption {
     top: 13.25rem;
     bottom: 0;
 }
@@ -67,4 +140,3 @@ button {
 ul {
     padding-left: 0 !important;
 }
-

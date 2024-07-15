@@ -68,20 +68,6 @@
     margin-bottom: 10px; /* Espacio entre los campos */
 }
 
-button[type="submit"] {
-    /* Estilos para el botón de registro */
-    width: 100%; /* Ocupar todo el ancho disponible */
-    background-color: darkslategrey;
-    color: aquamarine;
-    border: 2px solid rgb(150, 150, 150);
-    border-radius: 5px;
-    padding: 10px;
-    cursor: pointer;
-}
-
-button[type="submit"]:hover {
-    background-color: black;
-}
 
 /* Media query para ajustar el diseño en pantallas más pequeñas */
 @media screen and (max-width: 768px) {

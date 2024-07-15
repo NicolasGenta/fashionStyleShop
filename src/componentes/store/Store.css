@@ -55,12 +55,12 @@ video {
 
 }
 
-span {
+/* span {
     width: 100%;
     padding: 0em 0.5em 1em 0.5em;
     text-align: center;
     color: white;
-}
+} */
 
 .position-absolute p {
     font-size: 3em;
