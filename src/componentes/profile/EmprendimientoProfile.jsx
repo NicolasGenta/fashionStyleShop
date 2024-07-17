@@ -46,7 +46,7 @@ export const EmprendimientoProfile = () => {
                 throw new Error('NOT FOUND');
             }
         } catch (err) {
-            setEmprendimiento(null);
+            setEmprendimiento([]);
             handleOpen();
             setEditable(true)
         }

@@ -119,7 +119,8 @@ export const LoginPage = () => {
                                 '&:active': {
                                   backgroundColor: '#467d6a', // Cambia a tu color deseado
                                 },
-                              }}
+                            }}
+                            required
                             />
                         </FormControl>
                         <FormControl sx={{ width: '100%' }} variant="standard">
@@ -129,6 +130,7 @@ export const LoginPage = () => {
                                 name='password'
                                 value={password}
                                 onChange={handlePasswordChange}
+                                required
                                 type={viewPassword ? 'text' : 'password'}
                                 endAdornment={
                                     <InputAdornment position="end">
