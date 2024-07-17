@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import '../componentes/contacto/contacto.css';
+import React, { useState, useEffect } from 'react';
 import { useUser } from '../hooks/useUser';
-import { APP_PROFILES } from '../util/dictionary';
 import { useData } from '../hooks/useData';
+import { APP_PROFILES } from '../util/dictionary';
+import '../componentes/contacto/contacto.css';
 import '../componentes/registro/auth.css';
 
 export const Contacto = () => {
@@ -11,48 +11,64 @@ export const Contacto = () => {
   const [selectedEmail, setSelectedEmail] = useState('');
   const [telefono, setTelefono] = useState('');
   const [mensaje, setMensaje] = useState('');
-  const [userEmail, setUserEmail] = useState(user?.mail || ''); 
+  const [userEmail, setUserEmail] = useState(user?.mail || '');
+  const [selectedEmprendimiento, setSelectedEmprendimiento] = useState('');
+  const [selectedEmprendimientoDetails, setSelectedEmprendimientoDetails] = useState({});
+
+  useEffect(() => {
+    // Actualizar detalles del emprendimiento seleccionado
+    const empDetails = emprendimientos.find(emp => emp.nombre === selectedEmprendimiento);
+    setSelectedEmprendimientoDetails(empDetails || {});
+  }, [selectedEmprendimiento, emprendimientos]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-   
+
     const templateParams = {
       to: selectedEmail || "emprende.dev11@gmail.com",
-      text: mensaje,
-      subject: "Nuevo mensaje de: Emprende"
+      from: userEmail,
+      subject: "Nuevo mensaje de: Emprende",
+      text: `Mensaje de ${userEmail} para ${selectedEmprendimiento}:\n\n${mensaje}\n\nTeléfono: ${telefono}`
     };
 
-    fetch('http://localhost:3000/emprendimiento/send-email', {
+    console.log('templateParams:', templateParams);
 
+    fetch('http://localhost:3000/emprendimiento/send-email', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body:JSON.stringify(templateParams)
-    }
-
-    )
-    .then((response) => {
-      console.log('Correo enviado exitosamente:', response.status, response.text);
-      alert('Correo enviado exitosamente');
-    }, (err) => {
-      console.log('Error al enviar el correo:', err);
+      body: JSON.stringify(templateParams)
+    })
+    .then(response => {
+      if (response.ok) {
+        console.log('Correo enviado exitosamente');
+        alert('Correo enviado exitosamente');
+      } else {
+        throw new Error('Error al enviar el correo');
+      }
+    })
+    .catch(err => {
+      console.error('Error al enviar el correo:', err);
       alert('Error al enviar el correo. Inténtalo de nuevo.');
     });
 
-  // Limpia los campos del formulario
-  setTelefono('');
-  setMensaje('');
-  setUserEmail(user?.mail || '');
-};
+    // Limpia los campos del formulario
+    setTelefono('');
+    setMensaje('');
+    setUserEmail(user?.mail || '');
+    setSelectedEmprendimiento('');
+    setSelectedEmprendimientoDetails({});
+  };
 
   const handleSelectChange = (e) => {
     const selectedOption = e.target.value;
-    const selectedEmprendimiento = emprendimientos.find(emp => emp.nombre === selectedOption);
-    if (selectedEmprendimiento && selectedEmprendimiento.usuario ) {
-      setSelectedEmail(selectedEmprendimiento.usuario.mail); // Asumiendo que el emprendimiento tiene un campo 'email'
+    setSelectedEmprendimiento(selectedOption);
+    const selectedEmp = emprendimientos.find(emp => emp.nombre === selectedOption);
+    if (selectedEmp && selectedEmp.usuario) {
+      setSelectedEmail(selectedEmp.usuario.mail);
     } else {
-      setSelectedEmail(''); // Clear the email if no valid selection is made
+      setSelectedEmail('');
     }
   };
 
@@ -63,12 +79,13 @@ export const Contacto = () => {
         <form onSubmit={handleSubmit}>
           <div>
             <label>Enviar a:</label>
-            <select onChange={handleSelectChange}>
+            <select onChange={handleSelectChange} value={selectedEmprendimiento}>
+              <option value="">Seleccione un emprendimiento</option>
               {user?.rol === APP_PROFILES.EMPRENDEDOR_PROFILE
-                ? (<option>Administrador</option>)
+                ? (<option value="Administrador">Administrador</option>)
                 : (
                   emprendimientos
-                    .filter(emprendimiento => emprendimiento.estado) 
+                    .filter(emprendimiento => emprendimiento.estado)
                     .map((emprendimiento) => (
                       <option key={emprendimiento.id} value={emprendimiento.nombre}>
                         {emprendimiento.nombre}

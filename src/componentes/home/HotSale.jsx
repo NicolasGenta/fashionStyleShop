@@ -3,7 +3,7 @@ import './hot-sale.css';
 import { useData } from '../../hooks/useData';
 import { useWindowSize } from '../../hooks/useWindowSize';
 import '../../index.css';
-import { Card } from '../Store/Card';
+import { Card } from '../store/Card';
 
 const HotSale = () => {
   const { datos } = useData();

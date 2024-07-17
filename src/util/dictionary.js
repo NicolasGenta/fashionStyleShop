@@ -15,6 +15,7 @@ export const RESOURCES = Object.freeze({
     API_URL: "http://localhost:3000/",
     ENDPOINTS: {
         PRODUCTOS: 'productos/',
+        MOSTPURCHASED: 'productos/most-purchased',
         USUARIOS: {
             BASE: 'user/',
             LOGIN: 'auth/login',
@@ -49,4 +50,6 @@ export const CATEGORIES = Object.freeze({
     MENS_CATEGORY: 'Masculino',
     KIDS_CATEGORY: 'Niños',
     ACCESSORIES_CATEGORY: 'Accesorios',
-});
+})
+
+;

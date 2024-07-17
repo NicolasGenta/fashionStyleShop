@@ -59,7 +59,7 @@ export const ProductosPanel = ()=>{
     const sendUpdate = (e) =>{
         e.preventDefault();
         const product = {
-            id: id ?  id  : productSelected ?  productSelected.ID  : 0 ,
+           // id: id ?  id  : productSelected ?  productSelected.ID  : 0 ,
             nombre: nombre_producto ? nombre_producto : productSelected.Producto,
             descripcion: descripcion ? descripcion : productSelected.Descripción,
             precio: precio ? Number(precio) : productSelected.Precio,
