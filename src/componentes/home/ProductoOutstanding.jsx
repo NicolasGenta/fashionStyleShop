@@ -2,7 +2,7 @@ import React from 'react'
 import './produc-outstanding.css'
 import { useData } from '../../hooks/useData';
 import { useWindowSize } from '../../hooks/useWindowSize';
-import { Card } from '../Store/Card';
+import { Card } from '../store/Card';
 
 const ProductoOutstanding = () => {
   const { datos } = useData();

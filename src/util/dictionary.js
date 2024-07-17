@@ -24,6 +24,7 @@ export const API_URL = "https://app-a26f0285-a336-4709-8ae8-7b46f0607934.clevera
 export const RESOURCES = Object.freeze({
     ENDPOINTS: {
         PRODUCTOS: API_URL + 'productos/',
+        MOSTPURCHASED: 'productos/most-purchased',
         USUARIOS: {
             BASE: 'user/',
             REGISTER: 'user/register'
@@ -42,7 +43,8 @@ export const RESOURCES = Object.freeze({
         UPDATE_EMPRENDIMIENTO: API_URL +'emprendimiento/updateData/',
         UPDATE_USER: API_URL + 'user/',
         PEDIDOS: API_URL + 'pedidos',
-        PEDIDOS_BY_USER: API_URL + 'pedidos/usuario/'
+        PEDIDOS_BY_USER: API_URL + 'pedidos/usuario/',
+        SEND_EMAIL : API_URL + 'emprendimiento/send-email'
     }
 });
 
@@ -64,4 +66,6 @@ export const CATEGORIES = Object.freeze({
     MENS_CATEGORY: 'Masculino',
     KIDS_CATEGORY: 'Niños',
     ACCESSORIES_CATEGORY: 'Accesorios',
-});
+})
+
+;

@@ -31,6 +31,7 @@ export const updateCreate = async (url, data, method) =>{
         const parsed = await res.json()
         return parsed;
     }catch(err) {
+        console.error(err)
         throw new Error(err)
     }
 }

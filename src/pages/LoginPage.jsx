@@ -19,7 +19,6 @@ import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
 import { useApp } from '../hooks/useApp';
 import CircularProgress from '@mui/material/CircularProgress';
-import { Loader } from '../componentes/Loader';
 
 
 export const LoginPage = () => {

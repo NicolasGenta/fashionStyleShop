@@ -12,11 +12,6 @@ import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Chip from '@mui/material/Chip';
-import { Mapa } from "../../pages/Map";
-import { ModalContainer } from "../Modal";
-import { FormUser } from "../Forms";
-import CloseIcon from '@mui/icons-material/Close';
-import FormControl from '@mui/material/FormControl'
 import Button from '@mui/material/Button'
 import { EmprendimientoProfile } from "./EmprendimientoProfile";
 import Avatar from '@mui/material/Avatar';
