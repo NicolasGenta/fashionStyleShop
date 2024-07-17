@@ -4,14 +4,18 @@ import { useUser } from '../hooks/useUser'
 import { APP_PROFILES } from '../util/dictionary';
 import { useData } from '../hooks/useData';
 import '../componentes/registro/auth.css'
+import '../index.css';
+import FmdGoodIcon from '@mui/icons-material/FmdGood';
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import  TextField from '@mui/material/TextField';
 
 export const Contacto = () => {
   const { user } = useUser();
   const { emprendimientos } = useData();
-  
+
   return (
-    <section className='container-contacto'>
-      <main className='box-shadow'>
+    <section className='container-contacto' style={{height: '516px', overflow: 'hidden'}}>
+      <main className='shadow' style={{height: '90%'}}>
         <h2 className='title-contacto'>Contactenos</h2>
         <form>
           <div>
@@ -48,16 +52,17 @@ export const Contacto = () => {
           </div>
         </form>
       </main>
-      <main className='box-shadow'>
-        <h2>Nuestras Oficinas</h2>
-        <p>Santa Catalina N° 456, Ciudad de Posadas, Misiones</p>
-        <p>Telefono: 0554446698752</p>
-        <p>Horarios</p>
-        <ul>
-          <li>Lunes: de 8 a 22hrs</li>
-          <li>Miercoles: de 8 a 22hrs</li>
-          <li>Viernes: de 8 a 22hrs</li>
-        </ul>
+      <main className='flex wrap' style={{ height: '90%', width: '45%', justifyContent: 'center', alignContent: 'center' }}>
+        <img src='./src/assets/images/contacto.png' style={{ width: '55%' }} />
+        <h2 className='principal-color' style={{ fontWeight: 'bolder' }}>Red de Emprendedores</h2>
+        <div className='flex' style={{gap: 10}}>
+          <FmdGoodIcon />
+          <p>Santa Catalina N° 456, Ciudad de Posadas, Misiones</p>
+        </div>
+        <div className='flex' style={{gap: 10}}>
+          <LocalPhoneIcon />
+          <p>0554446698752</p>
+        </div>
       </main>
     </section>
   )

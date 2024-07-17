@@ -15,13 +15,23 @@ export function FiltersProvider ({ children }){
         razon_social: '',
         responsable: '',
         rubro: 'All',
-        estado: 'All'
-    })
+        estado: 'All',
+        nro_pedido: '',
+        estado_pedido: 'All'
+    });
+
+    const handlerChangeFilters = (e) => {
+        setFilters({
+            ...filters,
+            [e.target.name]: e.target.value
+        })
+    }
 
     return(
         <FiltersContext.Provider value={{
             filters,
-            setFilters
+            setFilters,
+            handlerChangeFilters
         }}
         >
             {children}

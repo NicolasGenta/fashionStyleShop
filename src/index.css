@@ -1,5 +1,6 @@
 :root {
-    --principal-color: #445957;
+    --principal-color: #1d3025!important;
+    --secondary-color: #717866 !important;
     font-size: 15px;
 }
 @tailwind base;
@@ -27,6 +28,14 @@
 
 * {
     font-family: 'Poppins', sans-serif;
+}
+
+.principal-color {
+    color: var(--principal-color);
+}
+.bg-secondayColor {
+
+    background-color: var(--secondary-color);
 }
 
 .flex {
@@ -76,10 +85,10 @@
 /*Estilos de diseño*/
 
 .message-container {
-    background-color: #c8dee0;
-    opacity: 0.7;
+    background-color: #f0e5da;
+    opacity: 0.6;
     padding: 1rem;
-    border: 1px dashed #62a0a8;
+    border: 1px dashed #BA7933;
 }
 
 

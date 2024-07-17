@@ -9,21 +9,28 @@ import { WindowsSizeProvider } from './context/windowsSize.jsx'
 import { AppProfileProvider } from './context/appProfile.jsx'
 import { UserProvider } from './context/userContex.jsx'
 import { BrowserRouter } from 'react-router-dom';
+import { AppProvider } from './context/app.jsx';
+import { ThemeProvider } from '@mui/material/styles';
+import { theme } from './theme.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
+    <ThemeProvider theme={theme}>
     <BrowserRouter>
             <WindowsSizeProvider>
                 <DataProvider>
-                    <UserProvider>
-                        <AppProfileProvider>
-                            <CartProvider>
-                                <FiltersProvider>
-                                    <App />
-                                </FiltersProvider>
-                            </CartProvider>
-                        </AppProfileProvider>
-                    </UserProvider>
+                    <AppProvider>
+                        <UserProvider>
+                            <AppProfileProvider>
+                                <CartProvider>
+                                    <FiltersProvider>
+                                        <App />
+                                    </FiltersProvider>
+                                </CartProvider>
+                            </AppProfileProvider>
+                        </UserProvider>
+                    </AppProvider>
                 </DataProvider>
             </WindowsSizeProvider>
     </BrowserRouter>
+    </ThemeProvider>
 )

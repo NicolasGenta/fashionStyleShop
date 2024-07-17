@@ -48,7 +48,7 @@ export const NavBar = () => {
 
   return (
     <>
-      <Navbar data-bs-theme="dark" className="custom-navbar">
+      <Navbar data-bs-theme="dark" className="custom-navbar shadow">
         <Container>
           <Link className="l0" to="/">
             <img className='icon' src='./src/assets/images/logo-left.svg' alt="Logo" />

@@ -28,6 +28,7 @@ export const DataProvider = ({ children }) => {
             .catch(err => console.log("Se ha producido un error", err));
         getData(RESOURCES.ENDPOINTS.CATEGORIAS)
             .then(data => {
+                console.log(data);
                 setCategorias(data)
             })
             .catch(err => console.log("Se ha producido un error", err));
@@ -47,7 +48,8 @@ export const DataProvider = ({ children }) => {
             emprendimiento,
             setEmprendimiento,
             rubros,
-            setRubros
+            setRubros,
+            setCategorias
         }}>
             {children}
         </DataContext.Provider>

@@ -80,7 +80,7 @@ export const ProfileInfo = () => {
 
     return (
         <section className="flex" style={{ margin: '1rem 1rem 0.5rem 2rem', width: '90%', height: '95%', overflow: 'hidden', alignContent: 'start', justifyContent: 'space-between' }}>
-            <main className="shadow justify-center" style={{ minWidth: '30%', maxWidth: '30%', margin: '1em', padding: '3em' }}>
+            <main className="shadow justify-center" style={{ minWidth: '30%', maxWidth: '40%', margin: '1em', padding: '3em' }}>
                 <main className="flex wrap align-center" style={{ display: 'flex' }}>
                     <Avatar sx={{ width: 80, height: 80 }}>{(user.lastName)[0] + (user.firstName)[0]}</Avatar>
                     <section className="flex wrap" style={{ width: '70%', gap: 10, padding: '1em' }}>
@@ -119,10 +119,9 @@ export const ProfileInfo = () => {
                                 <HouseIcon sx={{color: '#344955'}}/>
                                 <p>{user.calle} {user.nro} entre {user.calle_1} y {user.calle_2}</p>
                             </div>
-                            <Button>Cambiar contraseña</Button>
                         </section>
                         : <section className="w-full flex wrap justify-center message-container">
-                            <p>Por favor complete sus datos</p>
+                            <p className="w-full" style={{textAlign: 'center'}}>Por favor complete sus datos</p>
                             <Button onClick={handleOpen}>Completar datos</Button>
                         </section>
                 }
@@ -218,7 +217,9 @@ export const ProfileInfo = () => {
             {user.rol_name == 'Emprendedor'
                 ? <EmprendimientoProfile />
 
-                : null
+                : <div style={{height: '100%', width: '50%'}}>
+                    <img src="./src/assets/images/profile_illustration.png" style={{height: '100%'}}/>
+                </div>
 
             }
 

@@ -31,8 +31,8 @@ export const Menu = ({ setOption }) => {
                     ? 
                     <>
                         <div className='flex justify-center wrap'>
-                            <IconButton onClick={() => setOption('pedidos')} disabled={emprendimiento ? false : true}>
-                                <StoreIcon sx={emprendimiento ? { color: 'white' } : { color: '#8c8c8c' }} />
+                            <IconButton onClick={() => setOption('pedidos')} disabled={ user.rol_name === 'Cliente' ? false : emprendimiento ? false : true}>
+                                <StoreIcon sx={ user.role_name === 'Cliente' ? { color: 'white' } : emprendimiento ? { color: 'white' } : { color: '#8c8c8c' }} />
                             </IconButton>
                             <p className='font-10 text-white'>Pedidos</p>
                         </div>
@@ -51,22 +51,10 @@ export const Menu = ({ setOption }) => {
                                     </IconButton>
                                     <p className='font-10 text-white'>Administrar</p>
                                 </div>
-                                <div className='flex justify-center wrap'>
-                                    <IconButton onClick={() => setOption('stadistics')}>
-                                        <BarChartIcon sx={{ color: 'white' }} />
-                                    </IconButton>
-                                    <p className='font-10 text-white'>Estadisticas</p>
-                                </div>
                             </>
                             : null
 
             }
-            <div className='flex justify-center wrap'>
-                <IconButton onClick={() => setOption('messages')}>
-                    <ChatBubbleIcon sx={{ color: 'white' }} />
-                </IconButton>
-                <p className='font-10 text-white'>Mensajes</p>
-            </div>
         </div >
     )
 }

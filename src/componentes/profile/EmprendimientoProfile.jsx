@@ -17,7 +17,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import { API_URL, RESOURCES } from '../../util/dictionary';
-import Alert from '@mui/material/Alert'
+import Alert from '@mui/material/Alert';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export const EmprendimientoProfile = () => {
     const { emprendimiento, setEmprendimiento, rubros, setRubros } = useData();
@@ -37,7 +38,7 @@ export const EmprendimientoProfile = () => {
                     'Authorization': `Bearer ${token}`
                 }
             });
-    
+
             if (response.ok) {
                 const data = await response.json();
                 setEmprendimiento(data);
@@ -54,8 +55,8 @@ export const EmprendimientoProfile = () => {
     const handleChange = (e) => {
         setEmprendimiento({
             ...emprendimiento,
-            [e.target.name] : e.target.value,
-            usuario_id : user.user_id
+            [e.target.name]: e.target.value,
+            usuario_id: user.user_id
         })
     }
 
@@ -90,15 +91,15 @@ export const EmprendimientoProfile = () => {
     const updateEmprendimiento = (e) => {
         e.preventDefault();
         setEmprendimiento({
-            ... emprendimiento,
-            usuario_id : user.user_id
+            ...emprendimiento,
+            usuario_id: user.user_id
         });
         let url,
-        method;
-        if(emprendimiento.id) {
+            method;
+        if (emprendimiento.id) {
             url = RESOURCES.ENDPOINTS.UPDATE_EMPRENDIMIENTO + emprendimiento.id;
             method = 'PUT'
-        }else {
+        } else {
             url = RESOURCES.ENDPOINTS.EMPRENDIMIENTOS;
             method = 'POST'
         }
@@ -110,9 +111,9 @@ export const EmprendimientoProfile = () => {
             },
             body: JSON.stringify(emprendimiento)
         })
-        .then(data => {
-            console.log(data);
-        })
+            .then(data => {
+                console.log(data);
+            })
         setEditable(false)
     }
 
@@ -134,75 +135,83 @@ export const EmprendimientoProfile = () => {
                 </div>
             </div>
             <Divider />
-            <div className="flex wrap" style={{ width: '100%', padding: '1em', gap: 15 }}>
-            {emprendimiento && emprendimiento.estado === 0 && 
-                    <Alert style={{width: '100%'}}severity="error">El emprendimiento esta INACTIVO. Por favor contacte con el Administrador</Alert>}
-                <TextField
-                    labelId="demo-simple-select-standard-label"
-                    label="Nombre"
-                    variant="standard"
-                    name='razon_social'
-                    onChange={handleChange}
-                    value={emprendimiento && emprendimiento.razon_social}
-                    disabled={(emprendimiento && editable) || (emprendimiento === null && editable) ? false : true}
-                ></TextField>
-                <FormControl sx={{ width: '50%' }}>
-                    <InputLabel>Rubro</InputLabel>
-                    <Select
-                        variant="standard"
-                        name='rubro_id'
-                        key='rubro-options'
-                        onChange={handleChange}
-                        value={emprendimiento && emprendimiento.rubro_id}
-                        disabled={(emprendimiento && editable) || (emprendimiento === null && editable) ? false : true}
-                    >
-                        {rubros.map(elem => (
-                            <MenuItem value={elem.id}>{elem.nombre}</MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
-            </div>
-            <section style={{ marginTop: '2em' }}>
-                <h2>Dirección</h2>
-                <Divider />
-                <div className="flex align-center wrap" style={{ gap: 20 }}>
-                    <TextField
-                        label="Calle"
-                        variant="standard"
-                        name='calle'
-                        value={emprendimiento && emprendimiento.calle}
-                        onChange={handleChange}
-                        disabled={editable ? false : true}
-                    ></TextField>
-                    <TextField
-                        label="Numero"
-                        variant="standard"
-                        type="number"
-                        value={emprendimiento && emprendimiento.nro}
-                        name='nro'
-                        onChange={handleChange}
-                        disabled={editable ? false : true}
-                    ></TextField>
-                    <TextField
-                        label="Entre"
-                        variant="standard"
-                        type="text"
-                        value={emprendimiento && emprendimiento.calle_1}
-                        name='calle_1'
-                        onChange={handleChange}
-                        disabled={editable ? false : true}
-                    ></TextField>
-                    <TextField
-                        label="Y"
-                        variant="standard"
-                        type="text"
-                        name='calle_2'
-                        value={emprendimiento && emprendimiento.calle_2}
-                        onChange={handleChange}
-                        disabled={editable ? false : true}
-                    ></TextField>
+            {!emprendimiento
+                ? <div className='w-full flex justify-center' style={{ height: '80%', alignItems: 'center' }}>
+                    <CircularProgress />
                 </div>
-            </section>
+                :
+                <>
+                    <div className="flex wrap" style={{ width: '100%', padding: '1em', gap: 15 }}>
+                        {emprendimiento && emprendimiento.estado === 0 && <Alert style={{ width: '100%' }} severity="error">El emprendimiento esta INACTIVO. Por favor contacte con el Administrador</Alert>}
+                        <TextField
+                            labelId="demo-simple-select-standard-label"
+                            label="Nombre"
+                            variant="standard"
+                            name='razon_social'
+                            onChange={handleChange}
+                            value={emprendimiento && emprendimiento.razon_social}
+                            disabled={(emprendimiento && editable) || (emprendimiento === null && editable) ? false : true}
+                        ></TextField>
+                        <FormControl sx={{ width: '50%' }}>
+                            <InputLabel>Rubro</InputLabel>
+                            <Select
+                                variant="standard"
+                                name='rubro_id'
+                                key='rubro-options'
+                                onChange={handleChange}
+                                value={emprendimiento && emprendimiento.rubro_id}
+                                disabled={(emprendimiento && editable) || (emprendimiento === null && editable) ? false : true}
+                            >
+                                {rubros.map(elem => (
+                                    <MenuItem value={elem.id}>{elem.nombre}</MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
+                    </div>
+                    <section style={{ marginTop: '2em' }}>
+                        <h2>Dirección</h2>
+                        <Divider />
+                        <div className="flex align-center wrap" style={{ gap: 20 }}>
+                            <TextField
+                                label="Calle"
+                                variant="standard"
+                                name='calle'
+                                value={emprendimiento && emprendimiento.calle}
+                                onChange={handleChange}
+                                disabled={editable ? false : true}
+                            ></TextField>
+                            <TextField
+                                label="Numero"
+                                variant="standard"
+                                type="number"
+                                value={emprendimiento && emprendimiento.nro}
+                                name='nro'
+                                onChange={handleChange}
+                                disabled={editable ? false : true}
+                            ></TextField>
+                            <TextField
+                                label="Entre"
+                                variant="standard"
+                                type="text"
+                                value={emprendimiento && emprendimiento.calle_1}
+                                name='calle_1'
+                                onChange={handleChange}
+                                disabled={editable ? false : true}
+                            ></TextField>
+                            <TextField
+                                label="Y"
+                                variant="standard"
+                                type="text"
+                                name='calle_2'
+                                value={emprendimiento && emprendimiento.calle_2}
+                                onChange={handleChange}
+                                disabled={editable ? false : true}
+                            ></TextField>
+                        </div>
+                    </section>
+                </>
+            }
+
             <Dialog open={open} onClose={handleClose}>
                 <section style={{ padding: '0.5em' }}>
                     <DialogTitle>

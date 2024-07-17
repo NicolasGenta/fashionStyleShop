@@ -28,14 +28,14 @@ import { useUser } from '../../hooks/useUser';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import { useFilters } from '../../hooks/useFilters';
-import DomainDisabledIcon from '@mui/icons-material/DomainDisabled';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export const EmprendedoresManager = () => {
 
     const { user } = useUser()
-    const {filters, setFilters} = useFilters()
+    const { filters, setFilters } = useFilters()
     //👇Status variables
-    const [emprendimientos, setEmprendimientos] = useState([]);
+    const [emprendimientos, setEmprendimientos] = useState(null);
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedEmprendimiento, setSelectedEmprendimiento] = useState(null);
     const [rubro, setRubro] = useState("");
@@ -49,24 +49,24 @@ export const EmprendedoresManager = () => {
     const [feedback, setFeedback] = useState('');
     const [error, setError] = useState(false);
 
-    const filterEmprendimientos = (emprendimientos)=>{
+    const filterEmprendimientos = (emprendimientos) => {
         let emprendimientosFiltrados;
-        emprendimientosFiltrados = emprendimientos.filter(emprendimiento =>{
+        emprendimientosFiltrados = emprendimientos.filter(emprendimiento => {
             return (
-            (
-                filters.razon_social === '' ||
-                emprendimiento.nombre.toLowerCase().includes(filters.razon_social.toLowerCase())
-            ) && 
-            (
-                filters.responsable === '' ||
-                emprendimiento.responsable.toLowerCase().includes(filters.responsable.toLowerCase())
-            ) && (
-                filters.rubro === 'All' ||
-                emprendimiento.rubro_id === filters.rubro
-            ) && (
-                filters.estado === 'All'  ||
-                emprendimiento.estado_id === filters.estado
-            )
+                (
+                    filters.razon_social === '' ||
+                    emprendimiento.nombre.toLowerCase().includes(filters.razon_social.toLowerCase())
+                ) &&
+                (
+                    filters.responsable === '' ||
+                    emprendimiento.responsable.toLowerCase().includes(filters.responsable.toLowerCase())
+                ) && (
+                    filters.rubro === 'All' ||
+                    emprendimiento.rubro_id === filters.rubro
+                ) && (
+                    filters.estado === 'All' ||
+                    emprendimiento.estado_id === filters.estado
+                )
             )
         })
         return emprendimientosFiltrados
@@ -91,9 +91,9 @@ export const EmprendedoresManager = () => {
 
 
         getEmprendimientos()
-            .then(emprendimientos => { 
+            .then(emprendimientos => {
                 const emprendimientosFiltrados = filterEmprendimientos(emprendimientos)
-                setEmprendimientos(emprendimientosFiltrados); 
+                setEmprendimientos(emprendimientosFiltrados);
             })
             .catch(error => console.error('Error fetching data:', error));
     }, [reload, filters]);
@@ -178,28 +178,28 @@ export const EmprendedoresManager = () => {
             body: JSON.stringify(updatedEmprendimiento)
 
         })
-        .then((res) => {
-            if(!res.ok) {
-                setError(true)
-            }
-            return res.json()
-        })
-        .then(data => {
-            handleCloseModal();
-            setReload(!reload);
-            setOpenSnakbar(true)
-            setFeedback(data)
-        })
+            .then((res) => {
+                if (!res.ok) {
+                    setError(true)
+                }
+                return res.json()
+            })
+            .then(data => {
+                handleCloseModal();
+                setReload(!reload);
+                setOpenSnakbar(true)
+                setFeedback(data)
+            })
     }
 
     //👇Petición para crear un nuevo rubro
     const createRubro = () => {
         let url;
         let data
-        if(rubro !== "") {
+        if (rubro !== "") {
             url = RESOURCES.ENDPOINTS.RUBROS;
             data = rubro
-        }else {
+        } else {
             url = RESOURCES.ENDPOINTS.NEW_CATEGORIA;
             data = category
         }
@@ -212,18 +212,18 @@ export const EmprendedoresManager = () => {
             },
             body: JSON.stringify(data)
         })
-        .then(res => {
-            if(!res.ok) {
-                setError(true)
-            }
-            return res.json()
-        })
-        .then(data => {    
-            handleCloseRubro();
-            setCategoryModal(false)
-            setOpenSnakbar(true)
-            setFeedback(data)
-        })
+            .then(res => {
+                if (!res.ok) {
+                    setError(true)
+                }
+                return res.json()
+            })
+            .then(data => {
+                handleCloseRubro();
+                setCategoryModal(false)
+                setOpenSnakbar(true)
+                setFeedback(data)
+            })
     }
 
 
@@ -234,17 +234,17 @@ export const EmprendedoresManager = () => {
                     <h2>Gestionar emprendimientos</h2>
                     <div>
                         <Button onClick={handleOpenRubro}>+ Rubro</Button>
-                        <Button onClick={()=> {setCategoryModal(true)}}>+ Categoria</Button>
+                        <Button onClick={() => { setCategoryModal(true) }}>+ Categoria</Button>
                     </div>
                 </div>
                 <Snackbar
-                open={openSnackbar}
-                autoHideDuration={6000}
-                onClose={() => setOpenSnakbar(false)}
+                    open={openSnackbar}
+                    autoHideDuration={6000}
+                    onClose={() => setOpenSnakbar(false)}
                 >
-                    <Alert     
-                    severity={error ? "error" : "success"}
-                    variant="filled">
+                    <Alert
+                        severity={error ? "error" : "success"}
+                        variant="filled">
                         {feedback}
                     </Alert>
                 </Snackbar>
@@ -260,7 +260,7 @@ export const EmprendedoresManager = () => {
                             onChange={handlerChangeFilters}
                         >
                             <MenuItem value="All">Todas</MenuItem>
-                            {emprendimientos.map(emp => (
+                            {emprendimientos && emprendimientos.map(emp => (
                                 <MenuItem value={emp.rubro_id}>{emp.rubro}</MenuItem>
                             ))}
                         </Select>
@@ -279,51 +279,53 @@ export const EmprendedoresManager = () => {
                         </Select>
                     </FormControl>
                 </section>
-                {
-                    emprendimientos.length === 0
-                    ? <section className='flex wrap' style={{maxHeight: '70%', minHeight: '70%', height: '70%', justifyContent: 'center', alignContent: 'center'}}>
-                        <img width="100" height="100" src="https://img.icons8.com/ios/100/nothing-found.png" alt="nothing-found"/>
-                        <p className='w-full' style={{textAlign: 'center'}}>No se encontraron emprendimientos</p>
-                    </section>
-                    :
-                    <TableContainer sx={{ maxHeight: '70%', overflowY: 'scroll' }}>
-                        <Table size='small'>
-                            <TableHead style={{ marginBottom: '1em' }}>
-                                <TableRow>
-                                    <TableCell></TableCell>
-                                    <TableCell sx={{ fontWeight: 'bold' }}>EMPRENDIMIENTO</TableCell>
-                                    <TableCell sx={{ fontWeight: 'bold' }}>ESTADO</TableCell>
-                                    <TableCell sx={{ fontWeight: 'bold' }}>RUBRO</TableCell>
-                                    <TableCell sx={{ fontWeight: 'bold' }}>RESPONSABLE</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            {/* <Divider/> */}
-                            <TableBody className='shadow'>
-                                {emprendimientos.map(emprendimiento => (
-                                    <TableRow key={emprendimiento.id}>
-                                        <TableCell>
-                                            <Tooltip title="Ver">
-                                                <IconButton onClick={() => { handleOpenViewEmprendimiento(emprendimiento) }}>
-                                                    <VisibilityIcon />
-                                                </IconButton>
-                                            </Tooltip>
-                                        </TableCell>
-                                        <TableCell cscope="row">{emprendimiento.nombre}</TableCell>
-                                        <TableCell scope="row">
-                                            <Tooltip title="Cambiar estado">
-                                                <IconButton onClick={() => handleEditClick(emprendimiento)}>
-                                                    <EditIcon />
-                                                </IconButton>
-                                            </Tooltip>
-                                            <Chip label={emprendimiento.estado} color={emprendimiento.estado === 'Activo' ? 'success' : 'primary'} variant="outlined" ></Chip></TableCell>
-                                        <TableCell scope="row">{emprendimiento.rubro}</TableCell>
-                                        <TableCell scope="row">{emprendimiento.responsable}</TableCell>
+                {!emprendimientos
+                    ? <div className='w-full flex justify-center' style={{ height: '80%', alignItems: 'center' }}>
+                        <CircularProgress />
+                    </div>
+                    : (emprendimientos && emprendimientos.length === 0)
+                        ? <section className='flex wrap' style={{ maxHeight: '70%', minHeight: '70%', height: '70%', justifyContent: 'center', alignContent: 'center' }}>
+                            <img width="100" height="100" src="https://img.icons8.com/ios/100/nothing-found.png" alt="nothing-found" />
+                            <p className='w-full' style={{ textAlign: 'center' }}>No se encontraron emprendimientos</p>
+                        </section>
+                        :
+                        <TableContainer sx={{ maxHeight: '70%', overflowY: 'scroll' }}>
+                            <Table size='small'>
+                                <TableHead style={{ marginBottom: '1em' }}>
+                                    <TableRow>
+                                        <TableCell></TableCell>
+                                        <TableCell sx={{ fontWeight: 'bold' }}>EMPRENDIMIENTO</TableCell>
+                                        <TableCell sx={{ fontWeight: 'bold' }}>ESTADO</TableCell>
+                                        <TableCell sx={{ fontWeight: 'bold' }}>RUBRO</TableCell>
+                                        <TableCell sx={{ fontWeight: 'bold' }}>RESPONSABLE</TableCell>
                                     </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-
+                                </TableHead>
+                                {/* <Divider/> */}
+                                <TableBody className='shadow'>
+                                    {emprendimientos && emprendimientos.map(emprendimiento => (
+                                        <TableRow key={emprendimiento.id}>
+                                            <TableCell>
+                                                <Tooltip title="Ver">
+                                                    <IconButton onClick={() => { handleOpenViewEmprendimiento(emprendimiento) }}>
+                                                        <VisibilityIcon />
+                                                    </IconButton>
+                                                </Tooltip>
+                                            </TableCell>
+                                            <TableCell cscope="row">{emprendimiento.nombre}</TableCell>
+                                            <TableCell scope="row">
+                                                <Tooltip title="Cambiar estado">
+                                                    <IconButton onClick={() => handleEditClick(emprendimiento)}>
+                                                        <EditIcon />
+                                                    </IconButton>
+                                                </Tooltip>
+                                                <Chip label={emprendimiento.estado} color={emprendimiento.estado === 'Activo' ? 'success' : 'primary'} variant="outlined" ></Chip></TableCell>
+                                            <TableCell scope="row">{emprendimiento.rubro}</TableCell>
+                                            <TableCell scope="row">{emprendimiento.responsable}</TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
                 }
 
             </main>
@@ -376,7 +378,7 @@ export const EmprendedoresManager = () => {
                     </main>
                     <TextField label="Categoria" name='nombre_categoria' variant='standard' onChange={handleChange} style={{ width: '100%' }} required></TextField>
                     <div className='flex' style={{ padding: '1em', width: '100%', gap: 10, justifyContent: 'end' }}>
-                        <Button onClick={()=> {setCategoryModal(false)}}>Cancelar</Button>
+                        <Button onClick={() => { setCategoryModal(false) }}>Cancelar</Button>
                         <Button onClick={createRubro} variant='contained'>Guardar</Button>
                     </div>
                 </div>

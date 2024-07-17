@@ -3,7 +3,7 @@ import { FiltersContext } from "../context/filters";
 import { CATEGORIES } from "../util/dictionary";
 
 export function useFilters(){
-    const { filters, setFilters } = useContext(FiltersContext);
+    const { filters, setFilters, handlerChangeFilters } = useContext(FiltersContext);
 
     function filterProducts(products){
         let productosFiltrados;
@@ -31,5 +31,5 @@ export function useFilters(){
         })
         return productosFiltrados
     }
-    return { filters, filterProducts, setFilters}
+    return { filters, filterProducts, setFilters, handlerChangeFilters}
 }

@@ -17,7 +17,9 @@ export const APP_TEXTS = Object.freeze({
     BUTTON_DISCOVER_PRODUCTS: 'Descubre nuestros productos'
 });
 
-export const API_URL = "http://localhost:3000/"
+export const API_URL = "https://app-a26f0285-a336-4709-8ae8-7b46f0607934.cleverapps.io/"
+// export const API_URL = "http://localhost:3000/"
+
 
 export const RESOURCES = Object.freeze({
     ENDPOINTS: {
@@ -26,6 +28,7 @@ export const RESOURCES = Object.freeze({
             BASE: 'user/',
             REGISTER: 'user/register'
         },
+        REGISTER: API_URL + 'user/register',
         LOGIN: API_URL + 'auth/login',
         IMAGE: API_URL + 'image?filename=',
         PRODUCTOS_BY_EMPRENDIMIENTO: API_URL + 'productos/byEmprendimiento/',
@@ -38,10 +41,8 @@ export const RESOURCES = Object.freeze({
         EMPRENDIMIENTO_USUARIOS: 'emprendimiento/usuario',
         UPDATE_EMPRENDIMIENTO: API_URL +'emprendimiento/updateData/',
         UPDATE_USER: API_URL + 'user/',
-        PEDIDOS: {
-            PEDIDOS_BY_CLIENT : 'pedidos/',
-            PEDIDOS_BY_EMPRENDIMIENTO: 'pedidos/emprendimientos/'
-        }
+        PEDIDOS: API_URL + 'pedidos',
+        PEDIDOS_BY_USER: API_URL + 'pedidos/usuario/'
     }
 });
 

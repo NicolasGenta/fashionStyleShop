@@ -30,13 +30,14 @@ import { useFilters } from '../../hooks/useFilters';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
-import Snackbar from '@mui/material/Snackbar'
+import Snackbar from '@mui/material/Snackbar';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export const ProductosPanel = () => {
 
     //Hooks
     const { user } = useUser();
-    const { categorias, emprendimiento } = useData();
+    const { categorias, emprendimiento, setCategorias } = useData();
     const { filters, setFilters, filterProducts } = useFilters();
 
     const initialValues = {
@@ -71,11 +72,23 @@ export const ProductosPanel = () => {
                     console.log("Se ha producido un error", error);
                 });
         }
+
+        function getCategorias() {
+            fetch(RESOURCES.ENDPOINTS.CATEGORIAS)
+                .then(res => {
+                    return res.json()
+                })
+                .then(data => {
+                    setCategorias(data)
+                    console.log(data);
+                })
+        }
+
         getProducts(emprendimiento.id, user.token)
     }, [filters, reload]);
 
     //Variables de estado
-    const [productos, setProductos] = React.useState([]);
+    const [productos, setProductos] = React.useState(null);
     const [productSelected, setProductSelected] = useState(null);
     const [open, setOpen] = React.useState(false);
     const [submitDisabled, setSubmitDisabled] = React.useState(true);
@@ -269,60 +282,65 @@ export const ProductosPanel = () => {
                         </Select>
                     </FormControl>
                 </main>
-                {productos.length === 0
-                    ? <section className='flex wrap w-full' style={{ maxHeight: '70%', minHeight: '70%', height: '70%', justifyContent: 'center', alignContent: 'center' }}>
-                        <img width="100" height="100" src="https://img.icons8.com/ios/100/nothing-found.png" alt="nothing-found" />
-                        <p className='w-full' style={{ textAlign: 'center' }}>No se encontraron productos</p>
-                    </section>
+                {!productos
+                    ? <div className='w-full flex justify-center' style={{ height: '80%', alignItems: 'center' }}>
+                        <CircularProgress />
+                    </div>
                     :
-                    <section style={{ paddingTop: '0', height: '90%', display: 'flex' }}>
-                        <div style={{ width: "max-content", position: 'relative', bottom: '-140px' }}>
-                            <IconButton onClick={scrollLeft}>
-                                <KeyboardArrowLeftIcon />
-                            </IconButton>
-                        </div>
-                        <main
-                            ref={scrollContainerRef}
-                            style={{ display: 'flex', justifyContent: 'start', height: '100%', overflowX: 'scroll', overflowY: 'hidden', scrollbarWidth: 'none', padding: '1rem 3rem' }}>
-                            {productos.map(product => (
-                                <li key={product.id} style={{ listStyle: 'none', minWidth: '20%', maxWidth: '250PX', height: '20rem', margin: '0.3rem' }} className='box-shadow'>
-                                    <div style={{ width: '100%', height: '80%', overflow: 'hidden' }}>
-                                        <img
-                                            src={RESOURCES.ENDPOINTS.IMAGE + product.img}
-                                            alt={product.nombre}
-                                            style={{ objectFit: 'cover', objectPosition: 'center', width: '100%' }}
-                                        />
-                                    </div>
-                                    <section style={{ padding: '0.5rem', }}>
-                                        <div>
-                                            <strong>{product.nombre}</strong>
+                    (productos && productos.length === 0)
+                        ? <section className='flex wrap w-full' style={{ maxHeight: '70%', minHeight: '70%', height: '70%', justifyContent: 'center', alignContent: 'center' }}>
+                            <img width="100" height="100" src="https://img.icons8.com/ios/100/nothing-found.png" alt="nothing-found" />
+                            <p className='w-full' style={{ textAlign: 'center' }}>No se encontraron productos</p>
+                        </section>
+                        :
+                        <section style={{ paddingTop: '0', height: '90%', display: 'flex' }}>
+                            <div style={{ width: "max-content", position: 'relative', bottom: '-140px' }}>
+                                <IconButton onClick={scrollLeft}>
+                                    <KeyboardArrowLeftIcon />
+                                </IconButton>
+                            </div>
+                            <main
+                                ref={scrollContainerRef}
+                                style={{ display: 'flex', justifyContent: 'start', height: '100%', overflowX: 'scroll', overflowY: 'hidden', scrollbarWidth: 'none', padding: '1rem 3rem' }}>
+                                {productos && productos.map(product => (
+                                    <li key={product.id} style={{ listStyle: 'none', minWidth: '20%', maxWidth: '250PX', height: '20rem', margin: '0.3rem' }} className='box-shadow'>
+                                        <div style={{ width: '100%', height: '80%', overflow: 'hidden' }}>
+                                            <img
+                                                src={RESOURCES.ENDPOINTS.IMAGE + product.img}
+                                                alt={product.nombre}
+                                                style={{ objectFit: 'cover', objectPosition: 'center', width: '100%' }}
+                                            />
                                         </div>
-                                        <div>
-                                            <p>$ {product.precio}</p>
+                                        <section style={{ padding: '0.5rem', }}>
+                                            <div>
+                                                <strong>{product.nombre}</strong>
+                                            </div>
+                                            <div>
+                                                <p>$ {product.precio}</p>
+                                            </div>
+                                        </section>
+                                        <div style={{ position: 'relative', top: '-100%', display: 'flex', flexWrap: 'wrap', justifyContent: 'end', marginRight: '10px' }}>
+                                            <IconButton onClick={(e) => { handlerMenu(e); handleEditClick(product) }} style={{ width: 'max-content' }}>
+                                                <MoreVertIcon />
+                                            </IconButton>
                                         </div>
-                                    </section>
-                                    <div style={{ position: 'relative', top: '-100%', display: 'flex', flexWrap: 'wrap', justifyContent: 'end', marginRight: '10px' }}>
-                                        <IconButton onClick={(e) => { handlerMenu(e); handleEditClick(product) }} style={{ width: 'max-content' }}>
-                                            <MoreVertIcon />
-                                        </IconButton>
-                                    </div>
-                                </li>
-                            ))}
-                            <Menu
-                                anchorEl={anchorEl}
-                                open={openMenu}
-                                onClose={handlerCloseMenu}
-                            >
-                                <MenuItem onClick={() => { handlerCloseMenu(); handleClickOpen() }}>Editar</MenuItem>
-                                <MenuItem onClick={() => { handlerCloseMenu(); handlerOpenAlert() }}>Eliminar</MenuItem>
-                            </Menu>
-                        </main>
-                        <div style={{ width: "max-content", position: 'relative', top: '-300px', right: '-1000px' }}>
-                            <IconButton onClick={scrollRight}>
-                                <KeyboardArrowRightIcon />
-                            </IconButton>
-                        </div>
-                    </section>
+                                    </li>
+                                ))}
+                                <Menu
+                                    anchorEl={anchorEl}
+                                    open={openMenu}
+                                    onClose={handlerCloseMenu}
+                                >
+                                    <MenuItem onClick={() => { handlerCloseMenu(); handleClickOpen() }}>Editar</MenuItem>
+                                    <MenuItem onClick={() => { handlerCloseMenu(); handlerOpenAlert() }}>Eliminar</MenuItem>
+                                </Menu>
+                            </main>
+                            <div style={{ width: "max-content", position: 'relative', top: '-300px', right: '-1000px' }}>
+                                <IconButton onClick={scrollRight}>
+                                    <KeyboardArrowRightIcon />
+                                </IconButton>
+                            </div>
+                        </section>
                 }
             </section>
             <Alert openAlert={openAlert} handlerOpenAlert={handlerOpenAlert} accept={{ handlerCloseMenu, deleteProduct }} />

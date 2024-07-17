@@ -8,7 +8,8 @@ export function useData() {
         maxPrecio, 
         emprendimiento, 
         setEmprendimiento, 
-        rubros, 
+        rubros,
+        setCategorias, 
         setRubros } = useContext(DataContext);
 
     if(datos === undefined) throw new Error ('useData must be used within a CartProvider');
@@ -20,5 +21,6 @@ export function useData() {
         emprendimiento, 
         setEmprendimiento, 
         rubros, 
+        setCategorias,
         setRubros };
 }

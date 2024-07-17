@@ -1,12 +1,12 @@
 :root{
-    --principal-color: #545E3F !important;
+    /* --principal-color: #3F422E !important; */
     --secondary-color: #d78b30;
     --color-3: #9f886f;
     --color-4: #f5e6c5;
 }
 
 .custom-navbar {
-    background: #445957;
+    background: var(--principal-color);
     color: white !important;
     width: 100%;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
@@ -15,6 +15,7 @@
     transition: transform 0.3s ease;
     
 }
+
 
 .l0 {
     width: 20% !important;

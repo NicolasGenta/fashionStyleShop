@@ -11,8 +11,6 @@ export const Store = () => {
     const { datos } = useData();
     const filteredProducts = filterProducts(datos);
 
-    console.log(datos);
-
     return (
         <>
             <Banner></Banner>

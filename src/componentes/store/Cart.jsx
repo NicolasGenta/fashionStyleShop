@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog'
 import './cart.css'
 import '../../index.css'
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Slide from '@mui/material/Slide';
 import Divider from '@mui/material/Divider';
 import TextField from '@mui/material/TextField';
@@ -120,7 +120,7 @@ export function Cart() {
                                 </div>
                             </section>
                             :
-                            buyPage ? <FormPay />
+                            buyPage ? <FormPay/>
                                 :
                                 <body className="flex justify-between content-center overflow-y-hidden" style={{ height: '100%' }}>
                                     <main style={{ width: '80%', padding: '1em', overflowY: 'scroll' }}>
@@ -161,6 +161,54 @@ export function Cart() {
 }
 
 export function FormPay() {
+    const { cart } = useCart();
+    const initialValues = {
+        apellido : "",
+        nombre: "",
+        documento: "",
+        telefono: "",
+        email: "",
+        calle: "",
+        nro: "",
+        ciudad: ""
+    }
+
+    const [ payData, setPayData ] = useState(initialValues);
+
+    useEffect(() => {
+        setPayData({
+            ...payData,
+            detalle_compra : cart
+        })
+    },[])
+
+    const handlerOnChange = (e) => {
+        setPayData({
+            ...payData,
+            [e.target.name] : e.target.value
+        })
+    }
+
+    const handlerSubmit = () => {
+        const now = new Date();
+        const updatedPayData = {
+            ...payData,
+            fechaPedido: now.toISOString().split('T')[0],
+            timestamp: new Date().toISOString() 
+        };
+
+        fetch(RESOURCES.ENDPOINTS.PEDIDOS, {
+            method: 'POST',
+            headers: {
+                'Accept' : 'application/json',
+                'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify(updatedPayData)
+        })
+        .then((res) => {
+            console.log(res.json());
+        })
+    }
 
     return (
         <body style={{ display: 'flex', justifyContent: 'center' }}>
@@ -168,26 +216,73 @@ export function FormPay() {
                 <h3>Datos personales</h3>
                 <Divider />
                 <main>
-                    <TextField label="Apellido" variant='standard'></TextField>
-                    <TextField label="Nombre" variant='standard'></TextField>
-                    <TextField type="number" label="Documento de identidad" variant='standard' />
-                    <TextField type='phone' label="Telefono" />
-                    <TextField type='email' label="Email" />
+                    <TextField 
+                    label="Apellido" 
+                    variant='standard'
+                    name='apellido'
+                    value={payData.apellido}
+                    onChange={handlerOnChange}
+                    ></TextField>
+                    <TextField 
+                    label="Nombre" 
+                    name='nombre'
+                    variant='standard'
+                    value={payData.nombre}
+                    onChange={handlerOnChange}
+                    ></TextField>
+                    <TextField 
+                    type="number" 
+                    label="Documento de identidad" 
+                    name='documento'
+                    value={payData.documento}
+                    onChange={handlerOnChange}
+                    variant='standard' />
+                    <TextField 
+                    type='phone' 
+                    label="Telefono"
+                    name='telefono'
+                    value={payData.telefono}
+                    onChange={handlerOnChange}
+                    />
+                    <TextField 
+                    type='email' 
+                    name='email'
+                    label="Email"
+                    value={payData.email}
+                    onChange={handlerOnChange}
+                    />
                 </main>
                 <h3>Dirección</h3>
                 <Divider />
                 <p>{APP_TEXTS.COMPLETE_ADRESS}</p>
                 <section>
-                    <TextField label="Calle" variant='standard'></TextField>
-                    <TextField label="Numero" type="number" variant='standard'></TextField>
-                    <TextField label="Ciudad" variant='standard' />
+                    <TextField 
+                    label="Calle"
+                    name='calle' 
+                    variant='standard'
+                    value={payData.calle}
+                    onChange={handlerOnChange}
+                    ></TextField>
+                    <TextField 
+                    label="Numero" 
+                    name='nro'
+                    type="number" 
+                    value={payData.nro}
+                    onChange={handlerOnChange}
+                    variant='standard'></TextField>
+                    <TextField label="Ciudad" 
+                    name='ciudad'
+                    value={payData.ciudad}
+                    onChange={handlerOnChange}
+                    variant='standard'
+                    />
                 </section>
             </main>
             <section className="shadow" style={{ width: '30%', padding: '1em', alignSelf: 'start', margin: '2em' }}>
                 <h4 className='mb-2 mt-1'> Forma de envío</h4>
                 <Divider />
 
-                <Button variant='contained'>Continuar Compra</Button>
+                <Button variant='contained' onClick={handlerSubmit}>Continuar Compra</Button>
             </section>
         </body>
     )

@@ -4,7 +4,7 @@ import "../../index.css"
 import { Card } from "./Card";
 
 export function Products ({productos}) {
-
+    console.log('productos:',productos);
     return (
         <section className="store-container">
             <h2> Compra tus productos favoritos!</h2>

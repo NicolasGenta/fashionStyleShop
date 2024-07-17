@@ -6,7 +6,6 @@ import { updateCreate, convertFormToObject, setRoute } from '../util/functions';
 import { useUser } from '../hooks/useUser';
 import { useForm } from '../hooks/useForm';
 import { useWindowSize } from '../hooks/useWindowSize';
-import { useNotification } from '../hooks/useNotification';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import Input from '@mui/material/Input';
@@ -16,25 +15,30 @@ import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Tooltip from '@mui/material/Tooltip';
-import Button from '@mui/material/Button'
+import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
+import { useApp } from '../hooks/useApp';
+import CircularProgress from '@mui/material/CircularProgress';
+import { Loader } from '../componentes/Loader';
 
 
 export const LoginPage = () => {
 
     const { windowSize } = useWindowSize();
+    const {error, handlerError, loader, openLoader, closeLoader, viewPassword, handleViewPassword} = useApp();
     const navigate = useNavigate();
     const { email, password, onInputChange, onResetForm } = useForm({
         username: '',
         password: ''
     });
 
-    const { user, setUser } = useUser();
-    const { setNotification } = useNotification() || {};
-
-    const [errorMessage, setErrorMessage] = useState('');
-    const [viewPassword, setViewPassword] = useState(false);
+    const { user, setUser} = useUser();
 
     const onLogin = async (e) => {
+        if(error) {
+            handlerError(false)
+        }
+        openLoader()
         e.preventDefault();
         const form = document.getElementById('form-login');
         const formData = new FormData(form);
@@ -48,7 +52,7 @@ export const LoginPage = () => {
                 },
                 body: JSON.stringify(data)
             });
-    
+            closeLoader()
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -86,58 +90,70 @@ export const LoginPage = () => {
     
             onResetForm();
         } catch (error) {
-            setErrorMessage('usuario o contraseña incorrecto');
-            setNotification(true);
+            handlerError(true)
         }
     };
 
     const handlePasswordChange = (e) => {
         onInputChange(e);
-        setErrorMessage('');
+        if(error) {
+            handlerError(false)
+        }
     };
 
-    const handleViewPassword = () => {
-        if (viewPassword) {
-            setViewPassword(false)
-        } else {
-            setViewPassword(true)
-        }
-    }
 
     return (
-        <main className='form-container' style={{ height: windowSize.height - 56 }}>
-            <section className='register-container'>
-                <h2>Iniciar Sesión</h2>
-                <form id="form-login" className='form-auth' onSubmit={onLogin}>
-                    <FormControl>
-                        <TextField id="email" name='username' type='email' value={email} onChange={onInputChange} label="Email" variant="standard" />
-                    </FormControl>
-                    <FormControl sx={{ width: '100%' }} variant="standard">
-                        <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
-                        <Input
-                            id="password"
-                            name='password'
-                            value={password}
-                            onChange={handlePasswordChange}
-                            type={viewPassword ? 'text' : 'password'}
-                            endAdornment={
-                                <InputAdornment position="end">
-                                    <Tooltip title={viewPassword ? 'Ocultar' : 'Ver'}>
-                                        <IconButton
-                                            aria-label="toggle password visibility"
-                                            onClick={handleViewPassword}
-                                        >
-                                            {viewPassword ? <VisibilityOff /> : <Visibility />}
-                                        </IconButton>
-                                    </Tooltip>
-                                </InputAdornment>
-                            }
-                        />
-                    </FormControl>
-                    <Button type="submit"> Iniciar Sesión </Button>
-                </form>
-                <p>¿No estás registrado?</p>
-                <Button onClick={()=> {navigate('/registro')}}>Registrarse</Button>
+        <main className='w-full flex' style={{ height: windowSize.height - 56, alignItems: 'center', justifyContent: 'space between', overflowY: 'hidden' }}>
+            <section className=' flex wrap shadow' style={{width: '40%', height:'80%', minHeight: '90%', margin: '1.5em', padding: '2em', justifyContent: 'center', alignContent: 'center', gap: 20}}>
+                <h2 className="principal-color " style={{fontWeight: 'bolder', fontSize: '2em'}}>Iniciar Sesión</h2>
+                <main style={{width: '90%'}}>
+                    <p style={{fontSize: '0.8em', textAlign: 'center'}}>Inicia sesión para acceder a tu cuenta y descubrir productos únicos de nuestros emprendedores locales.</p>
+                </main>
+                {loader &&  <CircularProgress/>}
+                {error && <Alert severity='error' sx={{width: '100%'}}>Usuario y/o contraseña incorrecta</Alert>}
+                <section className='w-full flex wrap' style={{justifyContent: 'center', height: '60%', alignContent: 'space-between'}}>
+                    <form id="form-login" className='flex wrap' onSubmit={onLogin} style={{gap: 20, width: '90%', justifyContent: 'center'}}>
+                        <FormControl sx={{ width: '100%' }} variant="standard">
+                            <TextField id="email" name='username' type='email' value={email} onChange={onInputChange} label="Email" variant="standard"
+                            sx={{
+                                '&:active': {
+                                  backgroundColor: '#467d6a', // Cambia a tu color deseado
+                                },
+                              }}
+                            />
+                        </FormControl>
+                        <FormControl sx={{ width: '100%' }} variant="standard">
+                            <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+                            <Input
+                                id="password"
+                                name='password'
+                                value={password}
+                                onChange={handlePasswordChange}
+                                type={viewPassword ? 'text' : 'password'}
+                                endAdornment={
+                                    <InputAdornment position="end">
+                                        <Tooltip title={viewPassword ? 'Ocultar' : 'Ver'}>
+                                            <IconButton
+                                                aria-label="toggle password visibility"
+                                                onClick={handleViewPassword}
+                                            >
+                                                {viewPassword ? <VisibilityOff /> : <Visibility />}
+                                            </IconButton>
+                                        </Tooltip>
+                                    </InputAdornment>
+                                }
+                            />
+                        </FormControl>
+                        <Button type="submit" variant='contained' sx={{height: 'max-content'}}> Iniciar Sesión </Button>
+                    </form>
+                    <div className='flex w-full' style={{gap: 10, alignContent: 'center', padding: '0.5em', justifyContent: 'center'}}>
+                        <p style={{height: '100%', alignContent: 'center', fontSize: '0.9em'}}>¿Aún no tienes una cuenta?</p>
+                        <Button onClick={()=> {navigate('/registro')}}>Registrarse</Button>
+                    </div>
+                </section>
+            </section>
+            <section className="flex" style={{width: '50%', height: '80%', alignContent: 'center', justifyContent: 'center'}}>
+                <img src='./src/assets/images/buy_illustration.jpg' style={{width: '80%', scale: '1:1'}}/>
             </section>
         </main>
     )
