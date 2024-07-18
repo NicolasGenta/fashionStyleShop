@@ -19,6 +19,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import { API_URL, RESOURCES } from '../../util/dictionary';
 import Alert from '@mui/material/Alert';
 import CircularProgress from '@mui/material/CircularProgress';
+import { useWindowSize } from '../../hooks/useWindowSize';
 
 export const EmprendimientoProfile = () => {
     const { emprendimiento, setEmprendimiento, rubros, setRubros } = useData();
@@ -26,6 +27,7 @@ export const EmprendimientoProfile = () => {
     const [editable, setEditable] = useState(false);
     const [open, setOpen] = useState(false);
     const [alertShowed, setAlertShowed] = useState(false);
+    const {windowSize} = useWindowSize();
 
 
     async function getEmprendimiento(id, token) {
@@ -118,7 +120,8 @@ export const EmprendimientoProfile = () => {
     }
 
     return (
-        <main className="shadow justify-center" style={{ margin: '1em', padding: '3em', width: '70%' }}>
+        <main className="shadow justify-center" 
+        style={{ minWidth: `${windowSize.width < 768 ? '90%' : '65%'}`, maxWidth: `${windowSize.width < 768 ? '90%' : '65%'}`, height: `${windowSize.width < 768 && 'max-content'}`, margin: '1em', padding: '3em' }}>
             <div className="flex justify-beetwen" style={{ paddingRight: '3em' }}>
                 <h2>Emprendimiento</h2>
                 <div style={{ width: 'max-content' }}>
@@ -151,8 +154,11 @@ export const EmprendimientoProfile = () => {
                             onChange={handleChange}
                             value={emprendimiento && emprendimiento.razon_social}
                             disabled={(emprendimiento && editable) || (emprendimiento === null && editable) ? false : true}
+                            sx={{
+                                width: `${windowSize.width < 768 && '100%'}`
+                            }}
                         ></TextField>
-                        <FormControl sx={{ width: '50%' }}>
+                        <FormControl sx={{ width: `${windowSize.width < 768 ? '100%' : '50%'}` }}>
                             <InputLabel>Rubro</InputLabel>
                             <Select
                                 variant="standard"
@@ -168,7 +174,7 @@ export const EmprendimientoProfile = () => {
                             </Select>
                         </FormControl>
                     </div>
-                    <section style={{ marginTop: '2em' }}>
+                    <section style={{ width: '100%', marginTop: '2em' }}>
                         <h2>Dirección</h2>
                         <Divider />
                         <div className="flex align-center wrap" style={{ gap: 20 }}>
@@ -179,6 +185,9 @@ export const EmprendimientoProfile = () => {
                                 value={emprendimiento && emprendimiento.calle}
                                 onChange={handleChange}
                                 disabled={editable ? false : true}
+                                sx={{
+                                    width: `${windowSize.width < 768 && '100%'}`
+                                }}
                             ></TextField>
                             <TextField
                                 label="Numero"
@@ -188,6 +197,9 @@ export const EmprendimientoProfile = () => {
                                 name='nro'
                                 onChange={handleChange}
                                 disabled={editable ? false : true}
+                                sx={{
+                                    width: `${windowSize.width < 768 && '100%'}`
+                                }}
                             ></TextField>
                             <TextField
                                 label="Entre"
@@ -197,6 +209,9 @@ export const EmprendimientoProfile = () => {
                                 name='calle_1'
                                 onChange={handleChange}
                                 disabled={editable ? false : true}
+                                sx={{
+                                    width: `${windowSize.width < 768 && '100%'}`
+                                }}
                             ></TextField>
                             <TextField
                                 label="Y"
@@ -206,6 +221,9 @@ export const EmprendimientoProfile = () => {
                                 value={emprendimiento && emprendimiento.calle_2}
                                 onChange={handleChange}
                                 disabled={editable ? false : true}
+                                sx={{
+                                    width: `${windowSize.width < 768 && '100%'}`
+                                }}
                             ></TextField>
                         </div>
                     </section>

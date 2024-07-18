@@ -154,4 +154,31 @@ a:hover {
         width: 100% !important;
         margin: 1em;
     }
+    .cart-container {
+        width: 100% !important;
+      }
+      .resumen {
+        width: 100% !important;
+      }
+      .cart-body {
+        width: 100%;
+        flex-wrap: wrap;
+      }
 }
+
+/* @media (max-width: 900px) {
+    .filters-store {
+        width: 100% !important;
+        margin: 1em;
+    }
+    .cart-container {
+        width: 100% !important;
+      }
+      .resumen {
+        width: 100% !important;
+      }
+      .cart-body {
+        width: 100%;
+        flex-wrap: wrap;
+      }
+} */

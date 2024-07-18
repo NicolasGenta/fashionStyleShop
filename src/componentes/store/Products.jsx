@@ -8,13 +8,13 @@ export function Products ({productos}) {
     const {windowSize} = useWindowSize();
 
     return (
-        <section className="store-container" style={{ height: windowSize.height - 56, overflow: 'hidden'}}>
+        <section className="store-container" style={{ height: `${windowSize.width < 768 ? 'max-content' : windowSize.height - 56}`, overflow: 'hidden'}}>
             <h2> Compra tus productos favoritos!</h2>
-            <section className="flex wrap" style={{height: '100%'}}>
+            <section className="flex wrap" style={{height: `${windowSize.width < 768 ? 'max-content' : windowSize.height - 56}`, overflow: 'hidden'}}>
                 <main className="filters-store">
                     <Filters></Filters> 
                 </main>
-                <main className="products" style={{overflow: 'scroll', height: '100%', padding: '1em'}}>
+                <main className="products" style={{overflow: 'scroll', height: '90%', padding: '1em', width: `${windowSize.width < 768 ? '100%' : '70%' }`}}>
                     <ul>
                         {productos.map(product => {
                             return(

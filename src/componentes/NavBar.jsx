@@ -16,6 +16,7 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box'
 import { useCart } from '../hooks/useCart';
 import logo from '../../assets/images/logo-left.svg'
+import { useWindowSize } from '../hooks/useWindowSize';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -28,8 +29,9 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 export const NavBar = () => {
   const { user, logout } = useUser();
-  const {handleOpen, cartCount} = useCart()
+  const { handleOpen, cartCount } = useCart()
   const navigate = useNavigate();
+  const { windowSize } = useWindowSize();
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -49,42 +51,62 @@ export const NavBar = () => {
 
   return (
     <>
-      <Navbar data-bs-theme="dark" className="custom-navbar shadow">
+      <Navbar data-bs-theme="dark" className="custom-navbar shadow" style={{ padding: `${windowSize.width < 768 && '0em'}` }}>
         <Container>
           <Link className="l0" to="/">
             <img className='icon' src={logo} alt="Logo" />
           </Link>
-          <Nav className={`ml-auto ${isOpen && "open"}`} style={{ alignItems: 'center' }}>
-            <Link className="nav-button" to="/store" style={{ height: 'min-content' }}>Tienda</Link>
-            <Link className="nav-button" to="/contacto" style={{ height: 'min-content' }}>Contacto</Link>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
+          <Nav className={`ml-auto ${isOpen && "open"}`} style={{ alignItems: `${windowSize.width > 768 && 'center'}`, width: `${windowSize.width < 768 && '60%'}`, top: `${windowSize.width < 768 && '3.5em'}`, paddingTop: `${windowSize.width < 768 && '3em'}` }}>
+            <Link className="nav-button" to="/store" style={{ height: 'min-content', flex: `${windowSize.width < 768 && 'none'}`, marginBottom: `${windowSize.width < 768 && '2em'}` }}>Tienda</Link>
+            <Link className="nav-button" to="/contacto" style={{ height: 'min-content', flex: `${windowSize.width < 768 && 'none'}`, marginBottom: `${windowSize.width < 768 && '2em'}` }}>Contacto</Link>
+            {windowSize.width > 768
+              ?
+              <div style={{ display: 'flex', alignItems: 'center' }}>
                 <Tooltip title="Mi carrito" style={{ width: 'min-content', alignContent: 'center' }}>
-                      <StyledBadge badgeContent={cartCount} color="secondary" onClick={handleOpen}>
-                        <IconButton>
-                        <ShoppingCartIcon sx={{ color: 'white' }} />
+                  <StyledBadge badgeContent={cartCount} color="secondary" onClick={handleOpen}>
+                    <IconButton>
+                      <ShoppingCartIcon sx={{ color: 'white' }} />
                     </IconButton>
-                      </StyledBadge>
+                  </StyledBadge>
                 </Tooltip>
-              {user?.logged === true ? (
-                <div>
-                  <Link className='nav-button' to={user.profileRoute}>
-                    <Tooltip title="Mi cuenta">
-                      <IconButton style={{ width: 'max-content' }}>
-                        <AccountCircleIcon sx={{ color: 'white' }} />
+                {user?.logged === true ? (
+                  <div>
+                    <Link className='nav-button' to={user.profileRoute}>
+                      <Tooltip title="Mi cuenta">
+                        <IconButton style={{ width: 'max-content' }}>
+                          <AccountCircleIcon sx={{ color: 'white' }} />
+                        </IconButton>
+                      </Tooltip>
+                    </Link>
+                    <Tooltip title="Cerrar sesión">
+                      <IconButton style={{ width: 'max-content' }} onClick={onLogout}>
+                        <LogoutIcon sx={{ color: 'white' }} />
                       </IconButton>
                     </Tooltip>
-                  </Link>
-                  <Tooltip title="Cerrar sesión">
-                    <IconButton style={{ width: 'max-content' }} onClick={onLogout}>
-                      <LogoutIcon sx={{ color: 'white' }} />
-                    </IconButton>
-                  </Tooltip>
-                </div>
+                  </div>
 
-              ) : (
-                <Link className="nav-button" to="/login">Iniciar sesión</Link>
-              )}
-            </div>
+                ) : (
+                  <Link className="nav-button" to="/login">Iniciar sesión</Link>
+                )}
+              </div>
+              : <>
+                <Link className="nav-button" onClick={handleOpen} style={{ height: 'min-content', flex: `${windowSize.width < 768 && 'none'}`, marginBottom: `${windowSize.width < 768 && '2em'}` }}>Mi Carrito</Link>
+                {user?.logged === true
+                  ?
+                  <>
+                    <Link className='nav-button' to={user.profileRoute} style={{ height: 'min-content', flex: `${windowSize.width < 768 && 'none'}`, marginBottom: `${windowSize.width < 768 && '2em'}` }}>
+                    Mi cuenta
+                    </Link>
+                    <Link className='nav-button' onClick={onLogout} style={{ height: 'min-content', flex: `${windowSize.width < 768 && 'none'}`, marginBottom: `${windowSize.width < 768 && '2em'}` }}>
+                    Cerrar Sesion
+                    </Link>
+                  </>
+                  : <Link className="nav-button" to="/login">Iniciar sesión</Link>
+                }
+              </>
+
+            }
+
           </Nav>
         </Container>
         <div className={`nav_toggle ${isOpen && "open"}`} onClick={() => setIsOpen(!isOpen)}>

@@ -29,11 +29,13 @@ import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import { useFilters } from '../../hooks/useFilters';
 import CircularProgress from '@mui/material/CircularProgress';
+import { useWindowSize } from '../../hooks/useWindowSize';
 
 export const EmprendedoresManager = () => {
 
     const { user } = useUser()
-    const { filters, setFilters } = useFilters()
+    const { filters, setFilters } = useFilters();
+    const {windowSize} = useWindowSize();
     //👇Status variables
     const [emprendimientos, setEmprendimientos] = useState(null);
     const [modalVisible, setModalVisible] = useState(false);
@@ -228,8 +230,18 @@ export const EmprendedoresManager = () => {
 
 
     return (
-        <section className='shadow flex wrap' style={{ margin: '1rem 1rem 0.5rem 2rem', width: '90%', height: '95%', overflow: 'hidden', alignContent: 'start', justifyContent: 'space-between' }}>
-            <main className='w-full' style={{ padding: '2em', height: '100%' }}>
+        <section className='flex' style={{
+            margin: `${windowSize.width < 768 ? '0.2rem 0.2rem 0.2rem 1rem' : '1rem 1rem 0.5rem 2rem'}`,
+            minWidth: windowSize.width < 768 ? '75%' : '90%',
+            maxWidth: windowSize.width < 768 ? '75%' : '90%',
+            width: windowSize.width < 768 ? '75%' : '90%',
+            height: windowSize.height - 57,
+            flexWrap: `${windowSize.width < 768 && 'wrap'}`,
+            overflowY: `${windowSize.width < 768 ? 'scroll' : 'hidden'}`,
+            alignContent: 'start',
+            justifyContent: 'space-between'
+        }}>
+            <main style={{ minWidth: `${windowSize.width < 768 ? '100%' : '40%'}`, maxWidth: `${windowSize.width < 768 ? '100%' : '40%'}`, height: `${windowSize.width < 768 && 'max-content'}`, margin: '1em', padding: '3em' }}>
                 <div className='flex' style={{ justifyContent: 'space-between' }}>
                     <h2>Gestionar emprendimientos</h2>
                     <div>
@@ -250,7 +262,7 @@ export const EmprendedoresManager = () => {
                 </Snackbar>
                 <section style={{ display: 'flex', paddingBottom: '2em', gap: 15 }}>
                     <TextField label="Emprendimiento" type='text' name='razon_social' variant='standard' sx={{ width: '30%' }} onChange={handlerChangeFilters} value={filters.razon_social} ></TextField>
-                    <TextField label="Responsable" name='responsable' value={filters.responsable} onChange={handlerChangeFilters} variant='standard' sx={{ width: '30%' }}></TextField>
+                    <TextField label="Responsable" name='responsable' value={filters.responsable} onChange={handlerChangeFilters} variant='standard' sx={{ width: `${windowSize.width < 768 ? '100%' : '30%'}` }}></TextField>
                     <FormControl variant="standard" sx={{ m: 1, minWidth: '15%', maxWidth: '15%' }} size='small'>
                         <InputLabel id="rubro">Rubro</InputLabel>
                         <Select

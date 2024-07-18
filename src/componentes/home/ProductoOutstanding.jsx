@@ -12,8 +12,8 @@ const ProductoOutstanding = () => {
   return (
     <section className='product-container'>
       <h2>Productos Destacados 🌟</h2>
-      <main className='products'>
-        <ul style={{ width: windowSize.width }}>
+      <main>
+        <ul style={{ display: 'flex', justifyContent: 'start', height: '100%', overflowX: 'scroll', overflowY: 'hidden', scrollbarWidth: 'none', padding: '1rem 3rem' }}>
           {productsOutstanding.slice(0, 4).map((producto, index) => (
             <Card product={producto} />
           ))}

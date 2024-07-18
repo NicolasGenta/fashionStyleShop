@@ -6,7 +6,7 @@ function Carrusel() {
   const { width, height } = useWindowSize();
   
   return (
-    <div className='carruselContenedor' style={{height: `${height}px` }}>
+    <div style={{height: `${height}px`, margin: 0 }}>
     <Carousel data-bs-theme="dark">
       <Carousel.Item>
         <div className='custom-image-container'>   

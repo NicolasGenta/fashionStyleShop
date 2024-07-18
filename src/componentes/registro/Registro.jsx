@@ -101,7 +101,14 @@ const Registro = () => {
 
   return (
     <main id="registro" className='flex wrap' style={{ height: windowSize.height - 56, alignItems: 'center', justifyContent: 'space between', overflowY: 'hidden' }}>
-      <section className=' flex wrap shadow' style={{ width: '40%', height: '80%', minHeight: '90%', margin: '1.5em', padding: '2em', justifyContent: 'center', overflow: 'hidden', alignContent: 'center' }}>
+      <section className=' flex wrap shadow' style={{ width: `${windowSize.width < 768 ? '90%' : '40%' }`, height:`${windowSize.width < 768 ? 'min-content' : '80%' }`, minHeight: `${windowSize.width < 768 ? 'min-content' : '90%' }`, margin: '1.5em', padding: '2em', justifyContent: 'center', overflow: 'hidden', alignContent: 'center' }}>
+        {
+          windowSize.width < 768
+          && <section className="flex" style={{ width: '100%', height: '80%', alignContent: 'center', justifyContent: 'center' }}>
+          <img src={registroImage} style={{ width: '80%', scale: '1:1' }} />
+        </section>
+        }
+        
         <main className='flex wrap' style={{gap:10, justifyContent: 'center', marginTop: '1.5em'}}>
           <h2 className="principal-color " style={{ fontWeight: 'bolder', fontSize: '2em' }} >Registrarse</h2>
           <main style={{ width: '90%' }}>
@@ -226,9 +233,13 @@ const Registro = () => {
           </div>
         </div>
       </section>
-      <section className="flex" style={{ width: '50%', height: '80%', alignContent: 'center', justifyContent: 'center' }}>
-        <img src={registroImage} style={{ width: '80%', scale: '1:1' }} />
-      </section>
+
+      {windowSize.width > 768
+      &&
+        <section className="flex" style={{ width: '50%', height: '80%', alignContent: 'center', justifyContent: 'center' }}>
+          <img src={registroImage} style={{ width: '80%', scale: '1:1' }} />
+        </section>
+      }
     </main>
   );
 };
