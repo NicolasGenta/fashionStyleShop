@@ -15,6 +15,8 @@ import Chip from '@mui/material/Chip'
 import { useNavigate } from 'react-router-dom';
 import {  APP_TEXTS, RESOURCES } from '../../util/dictionary';
 import cartImage from '../../../assets/images/empty_cart.svg'
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
 
 function CartItem({ img, precio, nombre_producto, emprendimiento, descripcion, quantity, addToCart, removeFromCart, sx }) {
     const precioNumber = parseFloat(precio);
@@ -122,7 +124,7 @@ export function Cart() {
                                 </div>
                             </section>
                             :
-                            buyPage ? <FormPay/>
+                            buyPage ? <FormPay closeCart={closeDialog} buyClose={setBuyPage}/>
                                 :
                                 <body className={`flex justify-between content-center overflow-y-hidden cart-body `} style={{ height: '100%', flexWrap: `${windowSize.width < 768 && "wrap-reverse"}`, alignContent : `${windowSize.width < 768 && "flex-end"}` }}>
                                     <main  style={{ width: `${windowSize.width < 768 ? "100%" : "80%"}`, height: `${windowSize.width < 768 && "65%"}`, padding: '1em', overflowY: 'scroll' }} className={`${windowSize.width <768 && 'w-full'}`}>
@@ -162,8 +164,8 @@ export function Cart() {
     )
 }
 
-export function FormPay() {
-    const { cart } = useCart();
+export function FormPay({closeCart, buyClose}) {
+    const { cart, clearCart } = useCart();
     const {windowSize} = useWindowSize();
     const initialValues = {
         apellido : "",
@@ -179,7 +181,7 @@ export function FormPay() {
     const [ payData, setPayData ] = useState(initialValues);
     const [open, setOpen] = useState(false);
     const handleClose = () => {
-        setOpen(close)
+        setOpen(true)
     }
     useEffect(() => {
         setPayData({
@@ -213,13 +215,19 @@ export function FormPay() {
             body: JSON.stringify(updatedPayData)
         })
         .then((res) => {
-            if(!res.ok) {
+            if(res.status === 201 ) {
+                setOpen(open)
+                clearCart();
+                buyClose(false);
+                closeCart()
+            }else {
                 throw new Error('Error')
             }
-            setOpen(open)
         })
         .catch(err => {
-            console.error(err)
+            console.error(err);
+            clearCart();  buyClose(false);
+            closeCart()
         })
     }
 

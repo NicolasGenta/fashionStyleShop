@@ -90,7 +90,7 @@ export const ProfileInfo = () => {
             <main className="shadow justify-center" style={{ minWidth: `${windowSize.width < 768 ? '90%' : '3%'}`, maxWidth: `${windowSize.width < 768 ? '90%' : '30%'}`, height: `${windowSize.width < 768 && 'max-content'}`, margin: '1em', padding: '3em' }}>
                 <main className="flex wrap align-center" style={{ display: 'flex' }}>
                     <Avatar sx={{ width: 80, height: 80 }}>{(user.lastName)[0] + (user.firstName)[0]}</Avatar>
-                    <section className="flex wrap" style={{ width: `${windowSize.width < 768 ? '70%' : '40%'}`, gap: 10, padding: '1em' }}>
+                    <section className="flex wrap" style={{ width: `${windowSize.width < 768 ? '70%' : '70%'}`, gap: 10, padding: '1em' }}>
                         <div className="w-full flex wrap">
                             <div className="w-full flex" style={{ justifyContent: 'end' }}>
                                 <h4 className="w-full">{user.lastName} {user.firstName}</h4>

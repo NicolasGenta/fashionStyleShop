@@ -232,16 +232,16 @@ export const EmprendedoresManager = () => {
     return (
         <section className='flex' style={{
             margin: `${windowSize.width < 768 ? '0.2rem 0.2rem 0.2rem 1rem' : '1rem 1rem 0.5rem 2rem'}`,
-            minWidth: windowSize.width < 768 ? '75%' : '90%',
-            maxWidth: windowSize.width < 768 ? '75%' : '90%',
-            width: windowSize.width < 768 ? '75%' : '90%',
+            minWidth: `${windowSize.width < 768 ? '75%' : '90%'}`,
+            maxWidth: `${windowSize.width < 768 ? '75%' : '90%'}`,
+            width: `${windowSize.width < 768 ? '75%' : '90%'}`,
             height: windowSize.height - 57,
             flexWrap: `${windowSize.width < 768 && 'wrap'}`,
             overflowY: `${windowSize.width < 768 ? 'scroll' : 'hidden'}`,
             alignContent: 'start',
             justifyContent: 'space-between'
         }}>
-            <main style={{ minWidth: `${windowSize.width < 768 ? '100%' : '40%'}`, maxWidth: `${windowSize.width < 768 ? '100%' : '40%'}`, height: `${windowSize.width < 768 && 'max-content'}`, margin: '1em', padding: '3em' }}>
+            <main style={{ minWidth: `${windowSize.width < 768 ? '100%' : '100%'}`, maxWidth: `${windowSize.width < 768 ? '100%' : '100%'}`, height: `${windowSize.width < 768 && 'max-content'}`, margin: '1em', padding: '3em' }}>
                 <div className='flex' style={{ justifyContent: 'space-between' }}>
                     <h2>Gestionar emprendimientos</h2>
                     <div>
