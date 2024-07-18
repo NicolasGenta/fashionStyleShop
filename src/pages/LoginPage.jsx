@@ -19,6 +19,7 @@ import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
 import { useApp } from '../hooks/useApp';
 import CircularProgress from '@mui/material/CircularProgress';
+import imageBuy from '../../assets/images/buy_illustration.jpg'
 
 
 export const LoginPage = () => {
@@ -154,7 +155,7 @@ export const LoginPage = () => {
                 </section>
             </section>
             <section className="flex" style={{width: '50%', height: '80%', alignContent: 'center', justifyContent: 'center'}}>
-                <img src='./src/assets/images/buy_illustration.jpg' style={{width: '80%', scale: '1:1'}}/>
+                <img src={imageBuy} style={{width: '80%', scale: '1:1'}}/>
             </section>
         </main>
     )

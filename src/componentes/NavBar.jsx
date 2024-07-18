@@ -15,6 +15,7 @@ import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box'
 import { useCart } from '../hooks/useCart';
+import logo from '../../assets/images/logo-left.svg'
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -51,7 +52,7 @@ export const NavBar = () => {
       <Navbar data-bs-theme="dark" className="custom-navbar shadow">
         <Container>
           <Link className="l0" to="/">
-            <img className='icon' src='./src/assets/images/logo-left.svg' alt="Logo" />
+            <img className='icon' src={logo} alt="Logo" />
           </Link>
           <Nav className={`ml-auto ${isOpen && "open"}`} style={{ alignItems: 'center' }}>
             <Link className="nav-button" to="/store" style={{ height: 'min-content' }}>Tienda</Link>

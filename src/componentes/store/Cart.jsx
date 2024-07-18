@@ -14,6 +14,7 @@ import TextField from '@mui/material/TextField';
 import Chip from '@mui/material/Chip'
 import { useNavigate } from 'react-router-dom';
 import {  APP_TEXTS, RESOURCES } from '../../util/dictionary';
+import cartImage from '../../../assets/images/empty_cart.svg'
 
 function CartItem({ img, precio, nombre_producto, emprendimiento, descripcion, quantity, addToCart, removeFromCart, sx }) {
     const precioNumber = parseFloat(precio);
@@ -114,7 +115,7 @@ export function Cart() {
                             <section style={{display: 'flex', height: '100%', flexWrap:'wrap', justifyContent: 'center', alignContent: 'center'}}>
                                 <div style={{width: '50%', height: 'max-content', padding: '2em', 
                                 display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 20}}>
-                                    <img src='../../../src/assets/images/empty_cart.svg' style={{width: '50%'}} />
+                                    <img src={cartImage} style={{width: '50%'}} />
                                     <p>{APP_TEXTS.WITHOUT_PRODUCTS}</p>
                                     <Button onClick={()=> {closeDialog(); navigate('/store') }} variant='contained'>{APP_TEXTS.BUTTON_DISCOVER_PRODUCTS}</Button>
                                 </div>
@@ -122,8 +123,8 @@ export function Cart() {
                             :
                             buyPage ? <FormPay/>
                                 :
-                                <body className="flex justify-between content-center overflow-y-hidden" style={{ height: '100%' }}>
-                                    <main style={{ width: '80%', padding: '1em', overflowY: 'scroll' }}>
+                                <body className="flex justify-between content-center overflow-y-hidden cart-body" style={{ height: '100%' }}>
+                                    <main  style={{ width: '80%', padding: '1em', overflowY: 'scroll' }} className='cart-container'>
                                         {
                                             cart.map(product => (
                                                 <div className="shadow overflow-y-hidden" style={{ width: '95%', height: '10em', margin: '0.5em' }}>

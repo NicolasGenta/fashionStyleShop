@@ -14,7 +14,7 @@ export const Card = ({ product }) => {
                 src={ RESOURCES.ENDPOINTS.IMAGE + product.img}
                 alt={product.nombre}
             />
-            <button className="button-buy " style={{ backgroundColor: isProductInCart ? '#824133' : '#000000' }} onClick={() => isProductInCart
+            <button className="button-buy" style={{ backgroundColor: isProductInCart ? '#824133' : '#000000', color : 'white', border: 'none' }} onClick={() => isProductInCart
                 ? removeFromCart(product)
                 : addToCart(product)}>
                 {

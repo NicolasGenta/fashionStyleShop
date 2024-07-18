@@ -19,7 +19,8 @@ import Tooltip from "@mui/material/Tooltip";
 import BadgeIcon from '@mui/icons-material/Badge';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import HouseIcon from '@mui/icons-material/House';
-import Dialog from '@mui/material/Dialog'
+import Dialog from '@mui/material/Dialog';
+import profileImg from '../../../assets/images/profile_illustration.png'
 
 
 export const ProfileInfo = () => {
@@ -213,7 +214,7 @@ export const ProfileInfo = () => {
                 ? <EmprendimientoProfile />
 
                 : <div style={{height: '100%', width: '50%'}}>
-                    <img src="./src/assets/images/profile_illustration.png" style={{height: '100%'}}/>
+                    <img src={profileImg} style={{height: '100%'}}/>
                 </div>
 
             }

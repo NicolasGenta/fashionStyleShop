@@ -26,6 +26,7 @@ import Select from '@mui/material/Select';
 import FormHelperText from '@mui/material/FormHelperText';
 import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
+import registroImage from '../../../assets/images/illustration_buy.jpg';
 
 const Registro = () => {
 
@@ -226,7 +227,7 @@ const Registro = () => {
         </div>
       </section>
       <section className="flex" style={{ width: '50%', height: '80%', alignContent: 'center', justifyContent: 'center' }}>
-        <img src='./src/assets/images/illustration_buy.jpg' style={{ width: '80%', scale: '1:1' }} />
+        <img src={registroImage} style={{ width: '80%', scale: '1:1' }} />
       </section>
     </main>
   );

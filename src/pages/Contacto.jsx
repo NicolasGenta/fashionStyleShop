@@ -18,6 +18,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Dialog  from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
+import contactImage from '../../assets/images/contacto.png'
 
 export const Contacto = () => {
   const { user } = useUser();
@@ -163,7 +164,7 @@ export const Contacto = () => {
         </form>
       </main>
       <main className='flex wrap' style={{ height: '90%', width: '45%', justifyContent: 'center', alignContent: 'center' }}>
-        <img src='./src/assets/images/contacto.png' style={{ width: '55%' }} />
+        <img src={contactImage} style={{ width: '55%' }} />
         <h2 className='principal-color' style={{ fontWeight: 'bolder' }}>Red de Emprendedores</h2>
         <div className='flex' style={{ gap: 10 }}>
           <FmdGoodIcon />

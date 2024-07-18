@@ -236,7 +236,7 @@ export const ProductosPanel = () => {
     return (
         <section id="manager" className='shadow flex wrap' style={{ margin: '1rem 1rem 0.5rem 2rem', width: '90%', height: '95%', overflow: 'hidden', alignContent: 'start', justifyContent: 'space-between' }}>
             <div className='flex w-full justify-between w-full' style={{ justifyContent: 'space-between', marginTop: '1rem', width: '100%', height: 'min-content', padding: '0.5rem 5rem 0.5rem 2rem' }}>
-                <h2>Gestionar productos</h2>
+                <h2>Gestionar mis productos</h2>
                 <div>
                     <Tooltip title="Agregar Producto">
                         <IconButton onClick={handleClickOpen}>
