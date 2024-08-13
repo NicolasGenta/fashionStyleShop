@@ -17,12 +17,14 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel'
+import { useWindowSize } from '../../hooks/useWindowSize';
 
 
 export const Pedidos = ({ }) => {
     const { user } = useUser();
     const [pedidos, setPedidos] = useState([]);
     const { filters, handlerChangeFilters } = useFilters();
+    const {windowSize} = useWindowSize();
 
     const filterPedidos = (pedidos)=>{
         let pedidosFiltrados;
@@ -53,39 +55,23 @@ export const Pedidos = ({ }) => {
 
 
     return (
-        <section className='shadow flex wrap' style={{ margin: '1rem 1rem 0.5rem 2rem', width: '90%', height: '95%', overflow: 'hidden', alignContent: 'start', justifyContent: 'space-between' }}>
+        <section className='shadow flex wrap' style={{ margin: `${windowSize.width < 768 ? '0.2rem 0.2rem 0.2rem 1rem' : '1rem 1rem 0.5rem 2rem'}`, 
+            width: `${windowSize.width < 768 ? '80%' : '90%'}`, 
+            height: windowSize.height - 57, 
+            flexWrap: `${windowSize.width < 768 && 'wrap'}`,
+            overflowX: `${windowSize.width > 768 && 'hidden' }`,
+            overflowY: `${windowSize.width < 768 ? 'scroll' : 'hidden'}`, 
+            alignContent: 'start', 
+            justifyContent: 'space-between'  }}>
             <main className='w-full' style={{ padding: '2em', height: '100%' }}>
                 <div className='flex' style={{ justifyContent: 'space-between' }}>
                     <h2>Mis pedidos</h2>
                 </div>
-                <section>
-                    <div>
-                        <TextField 
-                        label="Nro de pedido" 
-                        name='nro_pedido' 
-                        type='number'
-                        variant='standard'
-                        value={filters.nro_pedido} 
-                        onChange={handlerChangeFilters}/>
-                    </div>
-                    <FormControl variant="standard" sx={{ m: 1, minWidth: '15%', maxWidth: '15%' }} size='small'>
-                        <InputLabel id="rubro">Estado</InputLabel>
-                        <Select
-                            label="Estado"
-                            name='estado_pedido'
-                            value={filters.estado_pedido}
-                            onChange={handlerChangeFilters}
-                        >
-                            <MenuItem value="All">Todas</MenuItem>
-                            <MenuItem value="Aprobado">Aprobado</MenuItem>
-                            <MenuItem value="En proceso">En proceso</MenuItem>
-                            <MenuItem value="Entregado">Entregado</MenuItem>
-                            
-                        </Select>
-                    </FormControl>
-                </section>
                 {pedidos.length === 0
-                    ? <p>No se encontraron pedidos</p>
+                    ? <section className='flex wrap w-full' style={{ maxHeight: '70%', minHeight: '70%', height: '70%', justifyContent: 'center', alignContent: 'center' }}>
+                    <img width="100" height="100" src="https://img.icons8.com/ios/100/nothing-found.png" alt="nothing-found" />
+                    <p className='w-full' style={{ textAlign: 'center' }}>No se encontraron pedidos</p>
+                </section>
                     :
                     <main style={{overflowY: 'scroll', height: '70%'}}>
                         {

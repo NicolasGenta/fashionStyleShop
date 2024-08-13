@@ -21,10 +21,12 @@ import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import HouseIcon from '@mui/icons-material/House';
 import Dialog from '@mui/material/Dialog';
 import profileImg from '../../../assets/images/profile_illustration.png'
+import { useWindowSize } from "../../hooks/useWindowSize";
 
 
 export const ProfileInfo = () => {
     const { user, setUser } = useUser();
+    const {windowSize} = useWindowSize();
     const { newPassword, onInputChange, onResetForm } = useForm({
         newPassword: ''
     });
@@ -75,11 +77,20 @@ export const ProfileInfo = () => {
     }
 
     return (
-        <section className="flex" style={{ margin: '1rem 1rem 0.5rem 2rem', width: '90%', height: '95%', overflow: 'hidden', alignContent: 'start', justifyContent: 'space-between' }}>
-            <main className="shadow justify-center" style={{ minWidth: '30%', maxWidth: '40%', margin: '1em', padding: '3em' }}>
+        <section className="flex" 
+        style={{ 
+        margin: `${windowSize.width < 768 ? '0.2rem 0.2rem 0.2rem 1rem' : '1rem 1rem 0.5rem 2rem'}`, 
+        width: `${windowSize.width < 768 ? '80%' : '90%'}`, 
+        height: windowSize.height - 57, 
+        flexWrap: `${windowSize.width < 768 && 'wrap'}`,
+        overflowX: `${windowSize.width > 768 && 'hidden' }`,
+        overflowY: `${windowSize.width < 768 ? 'scroll' : 'hidden'}`, 
+        alignContent: 'start', 
+        justifyContent: 'space-between' }}>
+            <main className="shadow justify-center" style={{ minWidth: `${windowSize.width < 768 ? '90%' : '3%'}`, maxWidth: `${windowSize.width < 768 ? '90%' : '30%'}`, height: `${windowSize.width < 768 && 'max-content'}`, margin: '1em', padding: '3em' }}>
                 <main className="flex wrap align-center" style={{ display: 'flex' }}>
                     <Avatar sx={{ width: 80, height: 80 }}>{(user.lastName)[0] + (user.firstName)[0]}</Avatar>
-                    <section className="flex wrap" style={{ width: '70%', gap: 10, padding: '1em' }}>
+                    <section className="flex wrap" style={{ width: `${windowSize.width < 768 ? '70%' : '70%'}`, gap: 10, padding: '1em' }}>
                         <div className="w-full flex wrap">
                             <div className="w-full flex" style={{ justifyContent: 'end' }}>
                                 <h4 className="w-full">{user.lastName} {user.firstName}</h4>

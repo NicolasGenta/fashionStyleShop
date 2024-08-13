@@ -13,8 +13,8 @@ const HotSale = () => {
   return (
     <section className='hotSale-container'>
       <h2 >Hot Sale</h2>
-      <main className='products'>
-        <ul style={{width: windowSize.width}}>
+      <main>
+        <ul  style={{ display: 'flex', justifyContent: 'start', height: '100%', overflowX: 'scroll', overflowY: 'hidden', scrollbarWidth: 'none', padding: '1rem 3rem' }}>
           { hotSaleProducts.slice(0,5).map((producto, index) => {
               return(
                   <Card product={producto}/>

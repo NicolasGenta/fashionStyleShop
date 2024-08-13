@@ -32,6 +32,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import Snackbar from '@mui/material/Snackbar';
 import CircularProgress from '@mui/material/CircularProgress';
+import { useWindowSize } from '../../hooks/useWindowSize';
 
 export const ProductosPanel = () => {
 
@@ -39,6 +40,7 @@ export const ProductosPanel = () => {
     const { user } = useUser();
     const { categorias, emprendimiento, setCategorias } = useData();
     const { filters, setFilters, filterProducts } = useFilters();
+    const {windowSize} = useWindowSize();
 
     const initialValues = {
         nombre_producto: '',
@@ -234,7 +236,15 @@ export const ProductosPanel = () => {
 
 
     return (
-        <section id="manager" className='shadow flex wrap' style={{ margin: '1rem 1rem 0.5rem 2rem', width: '90%', height: '95%', overflow: 'hidden', alignContent: 'start', justifyContent: 'space-between' }}>
+        <section id="manager" className='shadow flex wrap' style={{ 
+            margin: `${windowSize.width < 768 ? '0.2rem 0.2rem 0.2rem 1rem' : '1rem 1rem 0.5rem 2rem'}`,
+            width: `${windowSize.width < 768 ? '77%' : '90%'}`,
+            height: windowSize.height - 57,
+            flexWrap: `${windowSize.width < 768 && 'wrap'}`,
+            overflow: 'hidden',
+            alignContent: 'start',
+            justifyContent: 'space-between'
+        }}>
             <div className='flex w-full justify-between w-full' style={{ justifyContent: 'space-between', marginTop: '1rem', width: '100%', height: 'min-content', padding: '0.5rem 5rem 0.5rem 2rem' }}>
                 <h2>Gestionar mis productos</h2>
                 <div>
@@ -258,14 +268,14 @@ export const ProductosPanel = () => {
                         name="nombre_producto"
                         onChange={handlerChangeFilters}
                         variant='standard'
-                        style={{ width: '40%' }}
+                        style={{ width: `${windowSize.width < 768 ? '90%' : '40%'}` }}
                     />
                     <TextField
                         label="Descripcion del producto"
                         name="descripcion"
                         onChange={handlerChangeFilters}
                         variant='standard'
-                        style={{ width: '40%' }}
+                        style={{ width: `${windowSize.width < 768 ? '90%' : '40%'}` }}
                     />
                     <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }} size='small'>
                         <InputLabel id="demo-simple-select-standard-label">Categoria</InputLabel>
@@ -274,6 +284,7 @@ export const ProductosPanel = () => {
                             name='category'
                             value={filters.category}
                             onChange={handlerChangeFilters}
+                            style={{ width: `${windowSize.width < 768 && '90%'}` }}
                         >
                             <MenuItem value="All">Todas</MenuItem>
                             {categorias.map(cat => (
@@ -293,7 +304,7 @@ export const ProductosPanel = () => {
                             <p className='w-full' style={{ textAlign: 'center' }}>No se encontraron productos</p>
                         </section>
                         :
-                        <section style={{ paddingTop: '0', height: '90%', display: 'flex' }}>
+                        <section style={{ paddingTop: '0', height: '90%', display: 'flex', overflowX: `${windowSize.width < 768 ? 'scroll' : 'hidden'}`, overflowY: 'hidden' }}>
                             <div style={{ width: "max-content", position: 'relative', bottom: '-140px' }}>
                                 <IconButton onClick={scrollLeft}>
                                     <KeyboardArrowLeftIcon />
@@ -303,7 +314,7 @@ export const ProductosPanel = () => {
                                 ref={scrollContainerRef}
                                 style={{ display: 'flex', justifyContent: 'start', height: '100%', overflowX: 'scroll', overflowY: 'hidden', scrollbarWidth: 'none', padding: '1rem 3rem' }}>
                                 {productos && productos.map(product => (
-                                    <li key={product.id} style={{ listStyle: 'none', minWidth: '20%', maxWidth: '250PX', height: '20rem', margin: '0.3rem' }} className='box-shadow'>
+                                    <li key={product.id} style={{ listStyle: 'none', minWidth: '250px', maxWidth: '250px', height: '20rem', margin: '0.3rem' }} className='box-shadow'>
                                         <div style={{ width: '100%', height: '80%', overflow: 'hidden' }}>
                                             <img
                                                 src={RESOURCES.ENDPOINTS.IMAGE + product.img}
@@ -345,7 +356,7 @@ export const ProductosPanel = () => {
             </section>
             <Alert openAlert={openAlert} handlerOpenAlert={handlerOpenAlert} accept={{ handlerCloseMenu, deleteProduct }} />
             <ModalContainer open={open} handleClose={handleClose}>
-                <div style={{ backgroundColor: 'white', padding: '2rem', width: '50%' }} className='box-shadow'>
+                <div style={{ backgroundColor: 'white', padding: '2rem', width: `${windowSize.width < 768 ? '90%' : '50%'}`}} className='box-shadow'>
                     <h2>
                         {productSelected
                             ? 'Actualizar producto'
@@ -430,7 +441,7 @@ export const ProductosPanel = () => {
                 </div>
             </ModalContainer>
             <ModalContainer open={openImageContainer}>
-                <main style={{ backgroundColor: 'white', padding: '2rem', width: '50%' }} className='box-shadow'>
+                <main style={{ backgroundColor: 'white', padding: '2rem', width: `${windowSize.width < 768 ? '90%' : '50%'}` }} className='box-shadow'>
                     <section style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
                         <h3>Imagen del producto</h3>
                         <div>

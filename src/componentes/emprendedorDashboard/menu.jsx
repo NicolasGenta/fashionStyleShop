@@ -19,7 +19,7 @@ export const Menu = ({ setOption }) => {
     const { user } = useUser()
 
     return (
-        <div className='w-5 bg-primaryColor shadow pt-1' style={{ height: windowSize.height }}>
+        <div className='w-5 bg-primaryColor shadow pt-1' style={{ height: windowSize.height, width: `${windowSize.width < 768 && '15%'}` }}>
             <div className='flex justify-center wrap'>
                 <IconButton onClick={() => setOption('profile')}>
                     <AccountCircleIcon sx={{ color: 'white' }} />

@@ -104,7 +104,14 @@ export const LoginPage = () => {
 
     return (
         <main className='w-full flex' style={{ height: windowSize.height - 56, alignItems: 'center', justifyContent: 'space between', overflowY: 'hidden' }}>
-            <section className=' flex wrap shadow' style={{width: '40%', height:'80%', minHeight: '90%', margin: '1.5em', padding: '2em', justifyContent: 'center', alignContent: 'center', gap: 20}}>
+            <section className=' flex wrap shadow' style={{width: `${windowSize.width < 768 ? '90%' : '40%' }`, height:`${windowSize.width < 768 ? 'min-content' : '80%' }`, minHeight: '90%', margin: '1.5em', padding: '2em', justifyContent: 'center', alignContent: 'center', gap: 20}}>
+                {
+                    windowSize.width < 768
+                    && <section className="flex" style={{width: '100%', alignContent: 'center', justifyContent: 'center'}}>
+                    <img src={imageBuy} style={{width: '80%', scale: '1:1'}}/>
+                </section>
+                }
+                
                 <h2 className="principal-color " style={{fontWeight: 'bolder', fontSize: '2em'}}>Iniciar Sesión</h2>
                 <main style={{width: '90%'}}>
                     <p style={{fontSize: '0.8em', textAlign: 'center'}}>Inicia sesión para acceder a tu cuenta y descubrir productos únicos de nuestros emprendedores locales.</p>
@@ -154,9 +161,12 @@ export const LoginPage = () => {
                     </div>
                 </section>
             </section>
+            {windowSize.width > 768
+            &&
             <section className="flex" style={{width: '50%', height: '80%', alignContent: 'center', justifyContent: 'center'}}>
                 <img src={imageBuy} style={{width: '80%', scale: '1:1'}}/>
             </section>
+            }
         </main>
     )
 }

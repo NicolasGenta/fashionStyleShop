@@ -19,9 +19,11 @@ import Dialog  from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import contactImage from '../../assets/images/contacto.png'
+import { useWindowSize } from '../hooks/useWindowSize';
 
 export const Contacto = () => {
   const { user } = useUser();
+  const {windowSize} = useWindowSize();
   const {loader, openLoader, closeLoader} = useApp()
   const { emprendimientos } = useData();
   const [selectedEmail, setSelectedEmail] = useState('');
@@ -92,8 +94,8 @@ export const Contacto = () => {
   }
 
   return (
-    <section className='container-contacto flex' style={{ height: '516px', overflow: 'hidden' }}>
-      <main className='shadow' style={{ height: 'max-content', alignSelf: 'center', padding: '2em' }}>
+    <section className='container-contacto flex' style={{ height: `${windowSize.width < 768 ? "max-content" : "516px"}`, overflow: 'hidden', flexWrap: `${windowSize.width < 768 && "wrap"}` }}>
+      <main className='shadow' style={{ height: 'max-content', alignSelf: 'center', padding: '2em', margin: `${windowSize.width < 768 && "1em"}` }}>
         <h2 className='title-contacto'>Contactenos</h2>
         {loader &&  
         <div className='w-full flex justify-center'>
@@ -163,7 +165,7 @@ export const Contacto = () => {
           </div>
         </form>
       </main>
-      <main className='flex wrap' style={{ height: '90%', width: '45%', justifyContent: 'center', alignContent: 'center' }}>
+      <main className='flex wrap' style={{ height: '90%', width: `${windowSize.width < 768 ? "100%" : "45%"}`, justifyContent: 'center', alignContent: 'center' }}>
         <img src={contactImage} style={{ width: '55%' }} />
         <h2 className='principal-color' style={{ fontWeight: 'bolder' }}>Red de Emprendedores</h2>
         <div className='flex' style={{ gap: 10 }}>
